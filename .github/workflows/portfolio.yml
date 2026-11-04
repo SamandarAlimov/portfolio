@@ -29,6 +29,9 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: 'true'
+      - name: Configure GitHub Pages
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
       - name: Upload site
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4
