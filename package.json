@@ -1,0 +1,31 @@
+{
+  "name": "samandar-premium-portfolio",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "check": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.6",
+    "@react-three/fiber": "^9.3.0",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "three": "^0.179.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@types/three": "^0.179.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.2"
+  },
+  "engines": { "node": ">=20.19.0" }
+}
