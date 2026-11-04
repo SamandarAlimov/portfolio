@@ -192,7 +192,7 @@ export default function App() {
               </motion.h1>
               <Reveal delay={0.14}>
                 <p className="hero-description">
-                  I'm <strong>Samandar Alimov</strong> — a developer crafting expressive interfaces,
+                  I'm <strong>Samandar Otabek</strong> — a developer crafting expressive interfaces,
                   cross-platform applications and practical digital products.
                 </p>
                 <div className="hero-actions">
@@ -235,7 +235,7 @@ export default function App() {
           <div className="layout about-grid">
             <div className="about-portrait">
               <Reveal><div className="portrait-frame">
-                <img src={import.meta.env.BASE_URL + 'images/profile.jpg'} alt="Portrait of Samandar Alimov" loading="lazy" />
+                <img src={import.meta.env.BASE_URL + 'images/profile.jpg'} alt="Portrait of Samandar Otabek" loading="lazy" />
                 <span className="portrait-badge"><span>✳</span> CREATIVE DEVELOPER</span>
               </div></Reveal>
               <span className="portrait-caption">BUILDING WITH CURIOSITY, ALWAYS.</span>
@@ -326,7 +326,7 @@ export default function App() {
       <footer className="footer">
         <div className="layout footer-inner">
           <a className="footer-brand" href="#home">samandar<span>.</span></a>
-          <p>Designed with care. Built with purpose.<br />© {new Date().getFullYear()} Samandar Alimov.</p>
+          <p>Designed with care. Built with purpose.<br />© {new Date().getFullYear()} Samandar Otabek.</p>
           <div className="footer-links"><a href={GITHUB} target="_blank" rel="noopener noreferrer"><Github size={18} /> GitHub</a><a href={'mailto:' + EMAIL}><Mail size={18} /> Email</a><a href="#home">Back to top ↑</a></div>
         </div>
       </footer>

@@ -1,4 +1,4 @@
-# Samandar Alimov — Portfolio
+# Samandar Otabek — Portfolio
 
 A React + TypeScript portfolio with a responsive editorial interface, scroll motion and a lazily loaded interactive Three.js scene.
 
