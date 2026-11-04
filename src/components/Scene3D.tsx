@@ -13,10 +13,11 @@ function ObjectStudy() {
     clearcoatRoughness: 0.08,
   }), []);
   const graphite = useMemo(() => new THREE.MeshPhysicalMaterial({
-    color: '#34373b',
-    metalness: 0.63,
-    roughness: 0.23,
-    clearcoat: 0.7,
+    color: '#075bff',
+    metalness: 0.28,
+    roughness: 0.13,
+    clearcoat: 1,
+    clearcoatRoughness: 0.04,
   }), []);
 
   useFrame((state, delta) => {
@@ -37,11 +38,11 @@ function ObjectStudy() {
         </mesh>
         <mesh rotation={[1.4, -0.5, -0.26]}>
           <torusGeometry args={[2.21, 0.009, 6, 150]} />
-          <meshStandardMaterial color="#96999c" transparent opacity={0.63} metalness={0.5} roughness={0.28} />
+          <meshStandardMaterial color="#075bff" transparent opacity={0.63} metalness={0.5} roughness={0.28} />
         </mesh>
         <mesh rotation={[0.2, 1.22, 0.35]}>
           <torusGeometry args={[1.92, 0.007, 6, 150]} />
-          <meshStandardMaterial color="#b0b3b5" transparent opacity={0.55} metalness={0.5} roughness={0.3} />
+          <meshStandardMaterial color="#ff4e20" transparent opacity={0.55} metalness={0.5} roughness={0.3} />
         </mesh>
       </Float>
     </group>
@@ -55,13 +56,13 @@ export default function Scene3D() {
       dpr={[1, 1.5]}
       gl={{ alpha: true, antialias: true, powerPreference: 'low-power' }}
       shadows
-      aria-label="Interactive rotating silver and graphite sculptural form"
+      aria-label="Interactive rotating chrome sculpture with a vivid cobalt-blue core"
     >
       <ambientLight intensity={2.2} />
       <hemisphereLight args={['#ffffff', '#6e747b', 2.0]} />
       <directionalLight position={[4, 5, 6]} intensity={4} color="#ffffff" castShadow />
       <directionalLight position={[-4, 2, -2]} intensity={4} color="#c4ccd4" />
-      <pointLight position={[-2, -4, 3]} intensity={20} color="#ffffff" distance={11} />
+      <pointLight position={[-2, -4, 3]} intensity={22} color="#075bff" distance={11} />
       <ObjectStudy />
       <ContactShadows position={[0, -2.5, 0]} opacity={0.21} scale={8} blur={2.8} far={4} />
     </Canvas>

@@ -25,6 +25,14 @@
 - [x] Created a dark inverted contact monolith, responsive mobile menu and reduced-motion / no-WebGL fallbacks.
 - [ ] Verify this new monochrome implementation builds and visually inspect real browser output.
 
+## 2026-11-04: Precision saturation correction
+- [x] Clarified color hierarchy: white/gray/black define the foundation, not a ban on vibrant accents.
+- [x] Added electric cobalt primary accent to the hero, CTAs, active states and contact panel.
+- [x] Updated the 3D sculpture with a saturated cobalt inner gem and selective blue/orange orbit lines.
+- [x] Recolored individual project illustrations in high-saturation violet, cyan, coral and lime without changing the neutral card surfaces.
+- [x] Updated visual system and AGENTS.md to prevent later regressions to dull all-gray or template-like rainbow design.
+- [ ] Verify the latest browser screenshots and any remaining contrast issues.
+
 ## Next — pre-release QA
 - [ ] Visually inspect at 360, 390, 768, 1024, 1440 and 1920px. Check contrast, overflow, typography and card layouts.
 - [ ] Validate keyboard navigation, screen readers, mobile menus, Gallery/Index switch, expertise accordions, mailto and copy-email.

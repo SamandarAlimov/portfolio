@@ -14,7 +14,7 @@ Evolve this repository into a professional, fast, accessible, visually distincti
 8. Record major completed features, QA results and open issues in docs/portfolio-roadmap.md.
 
 ## Visual identity mandate
-The owner chose a unique, white-first monochrome premium glassmorphism aesthetic, **not** a standard portfolio template. Retain off-white/gray/black surfaces, translucent layered materials, strong typography, asymmetrical compositions and non-gimmicky 3D interaction. Avoid rainbow gradients, generic skills cards, fake statistics or template-like hero sections. Keep all motion performant and respect prefers-reduced-motion.
+The owner chose a unique, **white-first premium glassmorphism** art direction, **not** a colorless monochrome template. White, gray and black are the *base surfaces*. When accents appear they must be **saturated, clear, vivid colors**, as in precisely art-directed premium product websites. The primary interface accent is electric cobalt blue (#075BFF); distinct project artworks may use saturated violet, sky cyan, coral and lime. Avoid dull dusty pastels, muddy gradients, random rainbow decoration or generic portfolio components. Preserve negative space, contrast, immersive 3D and purposeful motion. Keep motion performant and respect prefers-reduced-motion.
 
 ## Active status as of 2026-11-04
 - Legacy source archived on main, with original images preserved.

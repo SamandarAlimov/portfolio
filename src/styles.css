@@ -404,3 +404,97 @@ h1,h2,h3,p { margin-top: 0; }
   .glass { background: rgba(253,253,250,.96); }
   .hero-gallery { background: #e2e3e0; }
 }
+
+
+/* CHROMATIC PRECISION — white/gray/black remain architectural.
+   Accent pigments are intentionally vivid, never faded or washed-out. */
+:root {
+  --accent: #075bff;
+  --accent-orange: #ff4e20;
+  --accent-violet: #692cff;
+  --accent-cyan: #00b8fb;
+  --accent-pink: #ff347d;
+  --accent-lime: #bdff18;
+}
+::selection { background: var(--accent); color: #fff; }
+a:focus-visible,button:focus-visible { outline-color: var(--accent); }
+.read-progress { background: var(--accent); }
+.identity-mark span,.footer-identity span { color: var(--accent); }
+.header-contact,.black-button { background: var(--accent); color: #fff; box-shadow: 0 10px 28px rgba(7,91,255,.16); }
+.header-contact:hover,.black-button:hover { background: #0049d5; box-shadow: 0 18px 34px rgba(7,91,255,.26); }
+.mini-indicator i,.contact-indicator i { background: var(--accent); box-shadow: 0 0 0 4px rgba(7,91,255,.12); }
+.kicker-square { border-color: var(--accent); }
+.hero h1 em { color: var(--accent); }
+.hero-gallery {
+  background:
+    radial-gradient(ellipse at 67% 51%,rgba(7,91,255,.19) 0%,rgba(7,91,255,.08) 30%,transparent 66%),
+    radial-gradient(circle at 42% 38%,#fff 0%,rgba(248,249,252,.88) 30%,rgba(218,221,225,.8) 100%);
+}
+.hero-gallery::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  width: 310px;
+  height: 310px;
+  border-radius: 50%;
+  left: 25%;
+  top: 22%;
+  background: radial-gradient(circle,rgba(7,91,255,.21),transparent 70%);
+  filter: blur(26px);
+  pointer-events: none;
+}
+.gallery-corner { border-color: var(--accent); }
+.gallery-caption-top span:last-child { color: var(--accent); }
+.orbit-marker-one { color: var(--accent); }
+.sculpture-fallback span {
+  background: linear-gradient(135deg,#fdfefe,#0060ff 47%,#162e80 90%);
+  box-shadow: inset 9px 13px 30px rgba(255,255,255,.68),inset -23px -24px 58px rgba(0,0,0,.27),13px 26px 55px rgba(7,91,255,.2);
+}
+.progress-symbol { color: var(--accent); }
+.hero-down:hover { background: var(--accent); border-color: var(--accent); }
+.manifesto-band .band-asterisk { color: var(--accent); }
+.chapter-rule { background: var(--accent); }
+.about-statement h2 em { color: var(--accent); }
+.photo-float .float-signal { background: var(--accent); }
+.work-intro h2 em { color: var(--accent); }
+.work-control button.selected { background: var(--accent); box-shadow: 0 5px 16px rgba(7,91,255,.18); }
+.work-art--violet {
+  background: radial-gradient(ellipse at 48% 46%,#a16aff 0%,#7133ff 45%,#4315c8 100%);
+}
+.work-art--cyan {
+  background: radial-gradient(ellipse at 70% 29%,#63e9ff 0%,#00baf5 44%,#007ed3 100%);
+}
+.work-art--coral {
+  background: radial-gradient(ellipse at 38% 53%,#ffac45 0%,#ff5930 46%,#e92748 100%);
+}
+.work-art--lime {
+  background: radial-gradient(ellipse at 53% 46%,#e3ff81 0%,#c4ff24 42%,#88d800 100%);
+}
+.work-art--violet .art-grid,.work-art--cyan .art-grid,.work-art--coral .art-grid { background-image:linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px); }
+.work-art--violet .art-serial,.work-art--violet .art-coordinate,
+.work-art--cyan .art-serial,.work-art--cyan .art-coordinate,
+.work-art--coral .art-serial,.work-art--coral .art-coordinate { color:#fff; }
+.work-art--lime .art-serial,.work-art--lime .art-coordinate { color:#263200; }
+.work-art--violet .art-disc { background: linear-gradient(134deg,#eee5ff,#c1a2ff 30%,#6025ed 72%,#3212a4); }
+.work-art--cyan .art-disc { background: linear-gradient(134deg,#efffff,#88f4ff 30%,#00a0f6 72%,#0062ae); }
+.work-art--coral .art-disc { background: linear-gradient(134deg,#fff3d5,#ffc36c 27%,#ff562f 73%,#c41536); }
+.work-art--lime .art-disc { background: linear-gradient(134deg,#fff,#e8ff85 33%,#b2f300 72%,#4d9d00); }
+.work-art--lime .art-disc span { color:#f8fff1; }
+.work-art .art-disc { box-shadow: inset 15px 16px 28px rgba(255,255,255,.5),inset -22px -24px 42px rgba(0,0,0,.24),14px 25px 56px rgba(19,20,23,.24); }
+.work-actions a:first-child { background:var(--accent); }
+.work-actions a:first-child:hover { background:#0049d5; }
+.work-status > span { background:var(--accent); }
+.expertise-open .skill-toggle,.expertise-trigger:hover .skill-toggle { background:var(--accent); border-color:var(--accent); }
+.expertise-left h2 em { color:var(--accent); }
+.record-number { color:var(--accent); }
+.journey-layout h2 span { color:var(--accent); }
+.contact-slab {
+  background: radial-gradient(circle at 92% 8%,rgba(7,91,255,.25),transparent 37%), #1e2123;
+}
+.contact-slab h2 em { color:#5d96ff; }
+.contact-button { background:var(--accent); color:#fff; }
+.contact-button:hover { background:#4a86ff; }
+.copy-action:hover { border-color:#79a4ff; }
+@media (prefers-reduced-motion: reduce) {
+  .work-item:hover .art-disc { transform:rotate(-24deg) skew(-4deg,-1deg); }
+}
