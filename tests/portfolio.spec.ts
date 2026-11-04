@@ -1,7 +1,20 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
 
-test('desktop: original design composition and functional controls', async ({ page }) => {
+async function revealEverySection(page: Page) {
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+  const height = await page.evaluate(() => document.documentElement.scrollHeight);
+  const viewportHeight = page.viewportSize()?.height ?? 800;
+  for (let top = 0; top < height; top += Math.floor(viewportHeight * 0.65)) {
+    await page.evaluate((y) => window.scrollTo(0, y), top);
+    await page.waitForTimeout(115);
+  }
+  await page.waitForTimeout(850);
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(280);
+}
+
+test('desktop: gallery, index, accordion and complete visual composition', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('curiosity.');
@@ -13,11 +26,12 @@ test('desktop: original design composition and functional controls', async ({ pa
   await expect(page.locator('.work-collection--gallery')).toBeVisible();
   await page.locator('.expertise-trigger').nth(1).click();
   await expect(page.locator('#skill-panel-1')).toBeVisible();
+  await revealEverySection(page);
   await mkdir('screenshots', { recursive: true });
   await page.screenshot({ path: 'screenshots/desktop-1440.png', fullPage: true, animations: 'disabled' });
 });
 
-test('mobile: readable navigation and no horizontal overflow', async ({ page }) => {
+test('mobile: responsive navigation and complete visual composition', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
@@ -26,22 +40,23 @@ test('mobile: readable navigation and no horizontal overflow', async ({ page }) 
   await expect(nav).toBeVisible();
   await nav.getByRole('link', { name: /Work/ }).click();
   await expect(nav).not.toBeVisible();
-  const dimensions = await page.evaluate(() => ({
+  const dims = await page.evaluate(() => ({
     scrollWidth: document.documentElement.scrollWidth,
     clientWidth: document.documentElement.clientWidth,
   }));
-  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
+  expect(dims.scrollWidth).toBeLessThanOrEqual(dims.clientWidth + 1);
+  await revealEverySection(page);
   await mkdir('screenshots', { recursive: true });
   await page.screenshot({ path: 'screenshots/mobile-390.png', fullPage: true, animations: 'disabled' });
 });
 
-test('small mobile: content fits a 320px viewport', async ({ page }) => {
+test('small mobile: 320px viewport remains within its bounds', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
   await page.goto('/');
   await expect(page.locator('#main')).toBeVisible();
-  const dimensions = await page.evaluate(() => ({
+  const dims = await page.evaluate(() => ({
     scrollWidth: document.documentElement.scrollWidth,
     clientWidth: document.documentElement.clientWidth,
   }));
-  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
+  expect(dims.scrollWidth).toBeLessThanOrEqual(dims.clientWidth + 1);
 });
