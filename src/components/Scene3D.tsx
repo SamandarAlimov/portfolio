@@ -1,51 +1,47 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Stars } from '@react-three/drei';
+import { ContactShadows, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
-function Sculpture() {
-  const core = useRef<THREE.Group>(null);
+function ObjectStudy() {
+  const rig = useRef<THREE.Group>(null);
+  const satin = useMemo(() => new THREE.MeshPhysicalMaterial({
+    color: '#c4c8cd',
+    metalness: 0.68,
+    roughness: 0.19,
+    clearcoat: 1,
+    clearcoatRoughness: 0.08,
+  }), []);
+  const graphite = useMemo(() => new THREE.MeshPhysicalMaterial({
+    color: '#34373b',
+    metalness: 0.63,
+    roughness: 0.23,
+    clearcoat: 0.7,
+  }), []);
 
   useFrame((state, delta) => {
-    if (!core.current) return;
-    core.current.rotation.y += delta * 0.11;
-    core.current.rotation.x = THREE.MathUtils.lerp(
-      core.current.rotation.x,
-      state.pointer.y * 0.16,
-      0.025
-    );
+    if (!rig.current) return;
+    rig.current.rotation.y += delta * 0.12;
+    rig.current.rotation.x = THREE.MathUtils.damp(rig.current.rotation.x, -0.1 - state.pointer.y * 0.13, 3, delta);
+    rig.current.rotation.z = THREE.MathUtils.damp(rig.current.rotation.z, -0.25 + state.pointer.x * 0.12, 3, delta);
   });
 
   return (
-    <group ref={core}>
-      <Float speed={1.4} rotationIntensity={0.24} floatIntensity={0.45}>
-        <mesh castShadow>
-          <icosahedronGeometry args={[1.62, 4]} />
-          <meshPhysicalMaterial
-            color="#849bff"
-            metalness={0.58}
-            roughness={0.16}
-            clearcoat={1}
-            clearcoatRoughness={0.12}
-            emissive="#263f85"
-            emissiveIntensity={0.25}
-          />
+    <group rotation={[0.05, 0, -0.18]} position={[0, 0.15, 0]} ref={rig}>
+      <Float speed={1.1} rotationIntensity={0.12} floatIntensity={0.25}>
+        <mesh material={satin} castShadow>
+          <torusKnotGeometry args={[1.23, 0.36, 220, 32, 2, 3]} />
         </mesh>
-        <mesh scale={1.025}>
-          <icosahedronGeometry args={[1.62, 1]} />
-          <meshBasicMaterial color="#e6f5ff" wireframe transparent opacity={0.075} />
+        <mesh material={graphite} castShadow rotation={[0.5, 1.1, 0.28]} scale={0.65}>
+          <icosahedronGeometry args={[0.98, 1]} />
         </mesh>
-        <mesh rotation={[0.5, 0.2, 0.28]}>
-          <torusGeometry args={[2.34, 0.012, 8, 160]} />
-          <meshBasicMaterial color="#b4bbff" transparent opacity={0.65} />
+        <mesh rotation={[1.4, -0.5, -0.26]}>
+          <torusGeometry args={[2.21, 0.009, 6, 150]} />
+          <meshStandardMaterial color="#96999c" transparent opacity={0.63} metalness={0.5} roughness={0.28} />
         </mesh>
-        <mesh rotation={[1.2, 0.7, -0.3]}>
-          <torusGeometry args={[2.05, 0.009, 8, 160]} />
-          <meshBasicMaterial color="#93f5fc" transparent opacity={0.45} />
-        </mesh>
-        <mesh position={[1.65, 1.32, 0.3]}>
-          <sphereGeometry args={[0.082, 16, 16]} />
-          <meshBasicMaterial color="#e5faff" />
+        <mesh rotation={[0.2, 1.22, 0.35]}>
+          <torusGeometry args={[1.92, 0.007, 6, 150]} />
+          <meshStandardMaterial color="#b0b3b5" transparent opacity={0.55} metalness={0.5} roughness={0.3} />
         </mesh>
       </Float>
     </group>
@@ -55,18 +51,19 @@ function Sculpture() {
 export default function Scene3D() {
   return (
     <Canvas
+      camera={{ position: [0, 0, 7.7], fov: 42 }}
       dpr={[1, 1.5]}
-      camera={{ position: [0, 0, 7.8], fov: 42 }}
       gl={{ alpha: true, antialias: true, powerPreference: 'low-power' }}
-      style={{ width: '100%', height: '100%' }}
-      aria-label="Rotating abstract three-dimensional sculpture"
+      shadows
+      aria-label="Interactive rotating silver and graphite sculptural form"
     >
-      <ambientLight intensity={0.95} />
-      <directionalLight position={[4, 6, 5]} intensity={3.2} color="#dbebff" />
-      <pointLight position={[-5, -2, 2]} intensity={38} color="#8c72ff" distance={13} />
-      <pointLight position={[2, -3, -4]} intensity={25} color="#63e7ef" distance={10} />
-      <Sculpture />
-      <Stars radius={80} depth={40} count={180} factor={2.2} saturation={0} fade speed={0.25} />
+      <ambientLight intensity={2.2} />
+      <hemisphereLight args={['#ffffff', '#6e747b', 2.0]} />
+      <directionalLight position={[4, 5, 6]} intensity={4} color="#ffffff" castShadow />
+      <directionalLight position={[-4, 2, -2]} intensity={4} color="#c4ccd4" />
+      <pointLight position={[-2, -4, 3]} intensity={20} color="#ffffff" distance={11} />
+      <ObjectStudy />
+      <ContactShadows position={[0, -2.5, 0]} opacity={0.21} scale={8} blur={2.8} far={4} />
     </Canvas>
   );
 }

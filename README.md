@@ -1,6 +1,6 @@
 # Samandar Otabek — Portfolio
 
-A React + TypeScript portfolio with a responsive editorial interface, scroll motion and a lazily loaded interactive Three.js scene.
+A custom-designed monochrome editorial portfolio with layered white/gray/black glassmorphism, sculptural chrome-and-graphite 3D, asymmetrical project art direction, motion and a React + TypeScript foundation.
 
 ## Original site preserved
 
@@ -21,6 +21,10 @@ Node.js 20.19+ (Node.js 22 recommended). Run npm install, npm run dev, npm run c
 ## Publishing
 
 The GitHub Actions workflow builds on pull requests and deploys dist/ when changes land on main. In Settings → Pages, select Source: GitHub Actions. The GitHub Pages build uses the /portfolio/ base path. For Vercel or a custom root domain, omit GITHUB_PAGES to use the default / base.
+
+## Design direction
+
+This is intentionally **not** a generic portfolio template. Visual language: off-white gallery paper, graphite typography, smoky translucent glass, overprinted giant typography, the Instrument Serif editorial accent, asymmetrical project specimens, and a dark inverted contact monolith. Work switches between bento gallery and compact index, while skills use an interactive accordion. Do not reintroduce colored gradient cards or a standard sidebar portfolio template. See docs/design-system.md.
 
 ## Accessibility and motion
 

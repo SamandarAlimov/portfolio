@@ -15,9 +15,19 @@
 - [x] Added GitHub Actions typecheck + build + planned Pages deployment.
 - [x] First CI production build passed; follow-up brand/favicon changes also passed.
 
+## 2026-11-04: Bespoke monochrome redesign
+- [x] Replaced the earlier dark generic layout with a white-first off-white/gray/graphite editorial system.
+- [x] Designed an original floating frosted navigation capsule and asymmetrical hero in a translucent object gallery.
+- [x] Converted the colorful 3D hero into a chrome-and-graphite abstract sculpture with self-contained studio lighting.
+- [x] Replaced repeated project cards with an asymmetric gallery and interactive compact index mode.
+- [x] Added project pointer spotlight, monochrome sculptural illustrations, and tactile button transitions.
+- [x] Replaced standard skill cards with accessible accordions and styled the journey as an editorial index.
+- [x] Created a dark inverted contact monolith, responsive mobile menu and reduced-motion / no-WebGL fallbacks.
+- [ ] Verify this new monochrome implementation builds and visually inspect real browser output.
+
 ## Next — pre-release QA
 - [ ] Visually inspect at 360, 390, 768, 1024, 1440 and 1920px. Check contrast, overflow, typography and card layouts.
-- [ ] Validate keyboard navigation, screen readers, mobile menus, project filters, mailto and copy-email.
+- [ ] Validate keyboard navigation, screen readers, mobile menus, Gallery/Index switch, expertise accordions, mailto and copy-email.
 - [ ] Test 3D scene on iOS Safari, Android Chrome and low-end hardware; check WebGL fallback and reduced motion.
 - [ ] Run Lighthouse for performance, accessibility, best practices and SEO. Optimize JS/3D payload if needed.
 - [ ] Verify live links and project case-study facts.

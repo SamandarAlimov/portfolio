@@ -13,6 +13,9 @@ Evolve this repository into a professional, fast, accessible, visually distincti
 7. Keep personal contact details provisional until confirmed. Do not add personal phone, birthdate or private data from the archived old site.
 8. Record major completed features, QA results and open issues in docs/portfolio-roadmap.md.
 
+## Visual identity mandate
+The owner chose a unique, white-first monochrome premium glassmorphism aesthetic, **not** a standard portfolio template. Retain off-white/gray/black surfaces, translucent layered materials, strong typography, asymmetrical compositions and non-gimmicky 3D interaction. Avoid rainbow gradients, generic skills cards, fake statistics or template-like hero sections. Keep all motion performant and respect prefers-reduced-motion.
+
 ## Active status as of 2026-11-04
 - Legacy source archived on main, with original images preserved.
 - Premium React/TypeScript v2 is developed on feature branch and reviewed through a draft pull request.

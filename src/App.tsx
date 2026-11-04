@@ -1,94 +1,98 @@
-
 import { lazy, Suspense, useEffect, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import {
-  ArrowDown, ArrowRight, ArrowUpRight, Check, Code2, Command,
-  ExternalLink, Github, Globe2, Layers3, Mail, Menu, Sparkles, X
+  ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, ExternalLink,
+  Github, Grid2X2, List, Mail, Menu, Minus, Plus, X
 } from 'lucide-react';
 import { journey, projects, skills, type Project } from './content';
 
 const Scene3D = lazy(() => import('./components/Scene3D'));
 const EMAIL = 'samandaralimov18@gmail.com';
 const GITHUB = 'https://github.com/SamandarAlimov';
-const navigation = [
-  { id: 'about', label: 'About' },
-  { id: 'work', label: 'Work' },
-  { id: 'expertise', label: 'Expertise' },
-  { id: 'journey', label: 'Journey' },
-  { id: 'contact', label: 'Contact' },
+const links = [
+  { id: 'about', text: 'Approach' },
+  { id: 'work', text: 'Work' },
+  { id: 'expertise', text: 'Expertise' },
+  { id: 'journey', text: 'Journey' },
 ] as const;
 
-type Filter = 'All' | 'Products' | 'Web' | 'Research';
-const filters: Filter[] = ['All', 'Products', 'Web', 'Research'];
-
-function hasWebGL(): boolean {
+function canRenderWebGL() {
   try {
     const canvas = document.createElement('canvas');
-    return Boolean(canvas.getContext('webgl2') || canvas.getContext('webgl'));
+    return !!(canvas.getContext('webgl2') || canvas.getContext('webgl'));
   } catch {
     return false;
   }
 }
 
-function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
-  const reduce = useReducedMotion();
+function Reveal({ children, className = '', delay = 0 }: {
+  children: ReactNode; className?: string; delay?: number;
+}) {
+  const reduceMotion = useReducedMotion();
   return (
     <motion.div
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 32 }}
-      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.76, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={reduceMotion ? false : { opacity: 0, y: 26 }}
+      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.13 }}
+      transition={{ duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>
   );
 }
 
-function SectionTitle({ overline, title, description }: { overline: string; title: ReactNode; description?: string }) {
+function Chapter({ number, label }: { number: string; label: string }) {
   return (
-    <Reveal className="section-heading">
-      <p className="eyebrow"><span className="eyebrow-line" />{overline}</p>
-      <h2>{title}</h2>
-      {description && <p className="section-intro">{description}</p>}
-    </Reveal>
+    <div className="chapter" aria-label={label}>
+      <span className="chapter-no">{number}</span>
+      <span className="chapter-rule" aria-hidden="true" />
+      <span className="chapter-label">{label}</span>
+    </div>
   );
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectArtwork({ project }: { project: Project }) {
   return (
-    <Reveal delay={index * 0.08}>
+    <div className={'work-art work-art--' + project.highlight} aria-hidden="true">
+      <div className="art-grid" />
+      <div className="art-loop art-loop-a" />
+      <div className="art-loop art-loop-b" />
+      <div className="art-disc">
+        <span>{project.mark}</span>
+      </div>
+      <div className="art-serial">S / {project.number.padStart(3, '0')}</div>
+      <span className="art-coordinate">OBJECT STUDY — {project.number}</span>
+    </div>
+  );
+}
+
+function WorkItem({ project, index }: { project: Project; index: number }) {
+  return (
+    <Reveal className={'work-reveal work-reveal--' + (index + 1)} delay={Math.min(index * 0.06, 0.2)}>
       <motion.article
-        layout
-        className={'project-card project-' + project.highlight}
-        whileHover={{ y: -6 }}
-        transition={{ type: 'spring', stiffness: 320, damping: 25 }}
+        className="work-item glass"
+        onPointerMove={(event) => {
+          const rect = event.currentTarget.getBoundingClientRect();
+          event.currentTarget.style.setProperty('--cursor-x', (event.clientX - rect.left) + 'px');
+          event.currentTarget.style.setProperty('--cursor-y', (event.clientY - rect.top) + 'px');
+        }}
+        whileHover={{ y: -3 }}
+        transition={{ duration: 0.23 }}
       >
-        <div className="project-visual">
-          <span className="project-no">{project.number} / SELECTED WORK</span>
-          <div className="project-orb" aria-hidden="true"><span>{project.mark}</span></div>
-          <span className="project-visual-tag">{project.category}</span>
-          <span className="project-visual-corner" aria-hidden="true">↗</span>
-        </div>
-        <div className="project-body">
-          <div className="project-line">
-            <p className="micro-label">{project.category}</p>
-            <span className="status"><span className="status-dot" />{project.status}</span>
-          </div>
+        <div className="work-art-frame"><ProjectArtwork project={project} /></div>
+        <div className="work-meta"><span>{project.number} / {project.category}</span><span className="work-status"><span />{project.status}</span></div>
+        <div className="work-details">
           <h3>{project.title}</h3>
-          <p className="project-description">{project.description}</p>
-          <div className="tag-row">
-            {project.technologies.map((technology) => <span className="tag" key={technology}>{technology}</span>)}
-          </div>
-          <div className="project-links">
-            <a className="text-link" href={project.href} target="_blank" rel="noopener noreferrer">
-              {project.status === 'Live site' ? 'Visit website' : 'View project'} <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
-            {project.source && (
-              <a className="text-link muted-link" href={project.source} target="_blank" rel="noopener noreferrer">
-                Source <ExternalLink size={14} aria-hidden="true" />
+          <p>{project.description}</p>
+          <div className="work-foot">
+            <div className="work-tags">{project.technologies.slice(0, 4).map((tool) => <span key={tool}>{tool}</span>)}</div>
+            <div className="work-actions">
+              <a href={project.href} target="_blank" rel="noopener noreferrer" aria-label={'Open ' + project.title + ' in a new tab'}>
+                <ArrowUpRight size={22} strokeWidth={1.6} />
               </a>
-            )}
+              {project.source && <a className="work-source" href={project.source} target="_blank" rel="noopener noreferrer" aria-label={'View ' + project.title + ' source repository'}><Github size={18} /></a>}
+            </div>
           </div>
         </div>
       </motion.article>
@@ -96,36 +100,63 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
+function ExpertiseItem({ index, isOpen, toggle }: { index: number; isOpen: boolean; toggle: () => void }) {
+  const skill = skills[index];
+  const reduceMotion = useReducedMotion();
+  return (
+    <div className={'expertise-item ' + (isOpen ? 'expertise-open' : '')}>
+      <h3>
+        <button type="button" aria-expanded={isOpen} aria-controls={'skill-panel-' + index} onClick={toggle} className="expertise-trigger">
+          <span className="skill-index">0{index + 1}</span>
+          <span className="skill-title">{skill.title}</span>
+          <span className="skill-toggle" aria-hidden="true">{isOpen ? <Minus size={21} /> : <Plus size={21} />}</span>
+        </button>
+      </h3>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="panel"
+            initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
+            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            className="skill-panel-wrap"
+          >
+            <div className="skill-panel" id={'skill-panel-' + index}>
+              <p>{skill.summary}</p>
+              <div className="skill-tags">{skill.tools.map((tool) => <span key={tool}>{tool}</span>)}</div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function App() {
-  const reduce = useReducedMotion();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [threeReady, setThreeReady] = useState(false);
-  const [filter, setFilter] = useState<Filter>('All');
-  const [emailCopied, setEmailCopied] = useState(false);
+  const reduceMotion = useReducedMotion();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [threeEnabled, setThreeEnabled] = useState(false);
+  const [workMode, setWorkMode] = useState<'gallery' | 'index'>('gallery');
+  const [openSkill, setOpenSkill] = useState(0);
+  const [copied, setCopied] = useState(false);
   const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 28 });
 
   useEffect(() => {
-    setThreeReady(!reduce && hasWebGL());
-  }, [reduce]);
+    setThreeEnabled(!reduceMotion && canRenderWebGL());
+  }, [reduceMotion]);
 
   useEffect(() => {
-    document.body.classList.toggle('menu-open', menuOpen);
+    document.body.classList.toggle('menu-open', isMenuOpen);
     return () => document.body.classList.remove('menu-open');
-  }, [menuOpen]);
+  }, [isMenuOpen]);
 
-  const visibleProjects = projects.filter((project) => {
-    if (filter === 'All') return true;
-    if (filter === 'Products') return ['01'].includes(project.number);
-    if (filter === 'Web') return project.number === '02';
-    return project.number === '03' || project.number === '04';
-  });
-
-  async function copyEmail() {
+  async function copyAddress() {
     try {
       await navigator.clipboard.writeText(EMAIL);
-      setEmailCopied(true);
-      window.setTimeout(() => setEmailCopied(false), 2300);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2200);
     } catch {
       window.location.href = 'mailto:' + EMAIL;
     }
@@ -133,44 +164,35 @@ export default function App() {
 
   return (
     <>
-      <a className="skip-link" href="#main">Skip to content</a>
-      <motion.div className="scroll-progress" style={{ scaleX: progress }} aria-hidden="true" />
-      <div className="page-noise" aria-hidden="true" />
+      <a href="#main" className="skip-link">Skip to content</a>
+      <motion.div className="read-progress" style={{ scaleX: progress }} aria-hidden="true" />
+      <div className="ambient ambient-a" aria-hidden="true" />
+      <div className="ambient ambient-b" aria-hidden="true" />
       <header className="site-header">
-        <div className="header-inner layout">
-          <a className="brand" href="#home" aria-label="Samandar — home">
-            <span className="brand-symbol">s<span>.</span></span>
-            <span className="brand-name">samandar<span className="brand-light"> / portfolio</span></span>
+        <div className="nav-shell glass">
+          <a className="identity" href="#home" aria-label="Samandar Otabek portfolio — home">
+            <span className="identity-mark" aria-hidden="true">S<span>·</span></span>
+            <span className="identity-name">SAMANDAR<br />OTABEK</span>
           </a>
-          <nav className="desktop-nav" aria-label="Main navigation">
-            {navigation.map((item) => <a key={item.id} href={'#' + item.id}>{item.label}</a>)}
+          <nav className="header-links" aria-label="Primary navigation">
+            {links.map(({ id, text }) => <a href={'#' + id} key={id}>{text}</a>)}
           </nav>
-          <a href={'mailto:' + EMAIL} className="nav-cta">Let's talk <ArrowUpRight size={16} aria-hidden="true" /></a>
-          <button
-            className="menu-toggle"
-            type="button"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-navigation"
-          >{menuOpen ? <X size={23} /> : <Menu size={23} />}</button>
+          <a className="header-contact" href="#contact">Let's connect <ArrowUpRight size={16} aria-hidden="true" /></a>
+          <button type="button" className="menu-toggle" aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} aria-expanded={isMenuOpen} aria-controls="mobile-menu" onClick={() => setIsMenuOpen((v) => !v)}>
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </header>
-
       <AnimatePresence>
-        {menuOpen && (
+        {isMenuOpen && (
           <motion.nav
-            id="mobile-navigation"
-            className="mobile-navigation"
-            aria-label="Mobile navigation"
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.22 }}
+            id="mobile-menu" className="mobile-menu glass" aria-label="Mobile navigation"
+            initial={{ opacity: 0, y: -15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.24 }}
           >
-            {navigation.map((item, i) => (
-              <a href={'#' + item.id} key={item.id} onClick={() => setMenuOpen(false)}>
-                <span>0{i + 1}</span>{item.label}<ArrowUpRight size={20} aria-hidden="true" />
+            {[...links, { id: 'contact', text: 'Contact' }].map(({ id, text }, i) => (
+              <a key={id} onClick={() => setIsMenuOpen(false)} href={'#' + id}>
+                <span>0{i + 1}</span>{text}<ArrowUpRight size={19} />
               </a>
             ))}
           </motion.nav>
@@ -178,158 +200,168 @@ export default function App() {
       </AnimatePresence>
 
       <main id="main">
-        <section className="hero" id="home" aria-labelledby="hero-heading">
-          <div className="hero-grid layout">
-            <div className="hero-content">
-              <Reveal><div className="availability"><span className="pulse-dot" /> OPEN TO MEANINGFUL PROJECTS <span className="availability-arrow">↗</span></div></Reveal>
+        <section className="hero layout" id="home" aria-labelledby="hero-title">
+          <div className="hero-topline">
+            <span className="mini-indicator"><i /> INDEPENDENT DIGITAL BUILDER</span>
+            <span className="hero-top-right">PORTFOLIO / 2026 — PRESENT</span>
+          </div>
+          <div className="hero-display">
+            <div className="hero-type">
+              <Reveal><span className="hero-kicker"><span className="kicker-square" /> IDEAS / INTERFACES / IMPACT</span></Reveal>
               <motion.h1
-                id="hero-heading"
-                initial={reduce ? false : { opacity: 0, y: 45 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                id="hero-title"
+                initial={reduceMotion ? false : { opacity: 0, y: 52 }}
+                animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
               >
-                Designing<br />what's <em>next.</em>
+                Form<br />follows<br /><em>curiosity.</em>
               </motion.h1>
-              <Reveal delay={0.14}>
-                <p className="hero-description">
-                  I'm <strong>Samandar Otabek</strong> — a developer crafting expressive interfaces,
-                  cross-platform applications and practical digital products.
-                </p>
-                <div className="hero-actions">
-                  <a className="button button-primary" href="#work">Explore my work <ArrowUpRight size={18} aria-hidden="true" /></a>
-                  <a className="button button-secondary" href="#about">More about me <ArrowDown size={17} aria-hidden="true" /></a>
-                </div>
+              <Reveal delay={0.2} className="hero-intro-row">
+                <span className="intro-bullet" aria-hidden="true">↳</span>
+                <p>I turn ambitious thinking into practical digital experiences — where engineering, interaction and imagination meet.</p>
               </Reveal>
-              <div className="hero-bottom">
-                <span><span className="small-point" /> BASED IN UZBEKISTAN</span>
-                <span><span className="small-point" /> BUILDING FOR THE WORLD</span>
-              </div>
+              <Reveal delay={0.26} className="hero-links">
+                <a className="black-button" href="#work">Explore the work <ArrowUpRight size={19} /></a>
+                <a className="quiet-link" href="#about">The thinking behind it <ArrowDown size={17} /></a>
+              </Reveal>
             </div>
-            <div className="hero-art" aria-hidden="true">
-              <div className="art-halo" />
-              <div className="art-ring art-ring-one" />
-              <div className="art-ring art-ring-two" />
-              <div className="art-label art-label-top"><Sparkles size={14} /> DESIGN × CODE</div>
-              <div className="art-label art-label-bottom">INTERACTIVE / 001</div>
-              {threeReady ? (
-                <Suspense fallback={<div className="art-fallback" />}>
+            <div className="hero-gallery glass">
+              <div className="gallery-grid" aria-hidden="true" />
+              <div className="gallery-caption gallery-caption-top"><span>FIG. 001</span><span>FORM IN MOTION</span></div>
+              <div className="gallery-corner gallery-corner-tl" aria-hidden="true" />
+              <div className="gallery-corner gallery-corner-br" aria-hidden="true" />
+              {threeEnabled ? (
+                <Suspense fallback={<div className="sculpture-fallback" aria-hidden="true"><span>S</span></div>}>
                   <Scene3D />
                 </Suspense>
-              ) : (
-                <div className="art-fallback"><span className="art-fallback-core">S</span></div>
-              )}
+              ) : <div className="sculpture-fallback" aria-hidden="true"><span>S</span></div>}
+              <div className="gallery-caption gallery-caption-bottom"><span>SCULPTED IN CODE</span><span>INTERACTIVE OBJECT / 3D</span></div>
+              <span className="orbit-marker orbit-marker-one" aria-hidden="true">+</span>
+              <span className="orbit-marker orbit-marker-two" aria-hidden="true">+</span>
             </div>
+            <div className="hero-side-index" aria-hidden="true"><span>DESIGNED TO FEEL DIFFERENT</span><span>↓</span></div>
           </div>
-          <a className="hero-scroll" href="#about"><span>SCROLL TO EXPLORE</span><ArrowDown size={18} aria-hidden="true" /></a>
-        </section>
-
-        <section className="marquee-strip" aria-label="Areas of expertise">
-          <div className="marquee-content">
-            {['DEVELOPMENT', '✳', 'DESIGN ENGINEERING', '✳', 'MOTION', '✳', 'PRODUCT THINKING', '✳', 'DEVELOPMENT', '✳', 'DESIGN ENGINEERING', '✳', 'MOTION', '✳', 'PRODUCT THINKING', '✳'].map((word, i) =>
-              <span key={i} aria-hidden={i >= 8}>{word}</span>
-            )}
-          </div>
-        </section>
-
-        <section className="section about-section" id="about" aria-labelledby="about-heading">
-          <div className="layout about-grid">
-            <div className="about-portrait">
-              <Reveal><div className="portrait-frame">
-                <img src={import.meta.env.BASE_URL + 'images/profile.jpg'} alt="Portrait of Samandar Otabek" loading="lazy" />
-                <span className="portrait-badge"><span>✳</span> CREATIVE DEVELOPER</span>
-              </div></Reveal>
-              <span className="portrait-caption">BUILDING WITH CURIOSITY, ALWAYS.</span>
-            </div>
-            <div className="about-copy">
-              <SectionTitle overline="01 / ABOUT ME" title={<span id="about-heading">A builder at heart.<br /><span className="gradient-text">A learner by nature.</span></span>} />
-              <Reveal delay={0.08}>
-                <p className="about-lead">I care about the little details that make a product feel effortless — and the engineering that makes it work.</p>
-                <p className="about-muted">My path connects software development, design, economics and a growing interest in logistics. I enjoy taking ambitious ideas and making them tangible, one thoughtful iteration at a time.</p>
-                <p className="about-muted">Today I'm building across React, TypeScript and Flutter, including the Alsamos ecosystem. I value honest progress, accessible experiences and continuous improvement.</p>
-                <a className="text-link about-link" href="#journey">Explore my journey <ArrowRight size={18} aria-hidden="true" /></a>
-              </Reveal>
-              <Reveal className="about-facts">
-                <div><strong>React / TS</strong><span>WEB ENGINEERING</span></div>
-                <div><strong>Flutter</strong><span>CROSS-PLATFORM</span></div>
-                <div><strong>Uzbekistan</strong><span>HOME BASE</span></div>
-              </Reveal>
-            </div>
+          <div className="hero-footer">
+            <div className="hero-footer-item"><span>001 / LOCATION</span><strong>Jizzakh · Uzbekistan</strong></div>
+            <div className="hero-footer-item"><span>002 / DISCIPLINE</span><strong>Design-minded engineering</strong></div>
+            <div className="hero-footer-item"><span>003 / MINDSET</span><strong>Always in progress <span className="progress-symbol">↗</span></strong></div>
+            <a href="#about" className="hero-down" aria-label="Scroll to approach"><ArrowDown size={23} /></a>
           </div>
         </section>
 
-        <section className="section work-section" id="work" aria-labelledby="work-heading">
+        <div className="manifesto-band" aria-label="Portfolio ethos">
+          <span>BUILD WITH PURPOSE</span><span className="band-asterisk" aria-hidden="true">✳</span>
+          <span>QUESTION THE OBVIOUS</span><span className="band-asterisk" aria-hidden="true">✳</span>
+          <span>DETAILS MAKE THE DIFFERENCE</span>
+        </div>
+
+        <section id="about" className="about-section section-pad" aria-labelledby="about-title">
           <div className="layout">
-            <div className="work-heading-row">
-              <SectionTitle overline="02 / SELECTED WORK" title={<span id="work-heading">A few things <span className="gradient-text">I've built.</span></span>} description="Real projects, ongoing explorations and meaningful challenges. Each one teaches me something new." />
-              <Reveal><a className="view-github" href={GITHUB} target="_blank" rel="noopener noreferrer"><Github size={19} aria-hidden="true" /> All repositories <ArrowUpRight size={16} aria-hidden="true" /></a></Reveal>
+            <Chapter number="01" label="THE APPROACH" />
+            <div className="about-grid">
+              <div className="about-statement">
+                <Reveal><h2 id="about-title">Not just<br />what it <em>looks like.</em><br />What it <span className="outline-word">does.</span></h2></Reveal>
+                <Reveal delay={0.08} className="about-prose"><span className="tiny-arrow" aria-hidden="true">↳</span><p>I'm Samandar Otabek, a developer interested in the space between technically sound products and the feeling of using them.</p></Reveal>
+                <Reveal className="about-second"><p>My work spans React, TypeScript, Flutter and product experiments. Economics and logistics give me another lens: software matters most when it solves real problems.</p></Reveal>
+                <Reveal><a className="inline-link" href="#journey">Read my story <ArrowUpRight size={19} /></a></Reveal>
+              </div>
+              <Reveal className="about-photo-wrap">
+                <div className="about-photo glass">
+                  <div className="photo-label"><span>IDENTITY</span><span>NO. 001</span></div>
+                  <img src={import.meta.env.BASE_URL + 'images/profile.jpg'} alt="Portrait of Samandar Otabek" loading="lazy" />
+                  <div className="photo-float glass"><span className="float-signal" /> <span>WORK IN PROGRESS<br /><strong>Always learning. Always building.</strong></span></div>
+                </div>
+                <div className="photo-under"><span>HUMAN BEHIND THE INTERFACE</span><span>© 2026</span></div>
+              </Reveal>
             </div>
-            <div className="filters" role="group" aria-label="Filter projects">
-              {filters.map((item) => <button type="button" key={item} className={'filter' + (filter === item ? ' active' : '')} aria-pressed={filter === item} onClick={() => setFilter(item)}>{item}</button>)}
-            </div>
-            <motion.div layout className="project-grid">
-              <AnimatePresence mode="popLayout" initial={false}>
-                {visibleProjects.map((project, index) => (
-                  <motion.div layout key={project.number} initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.97 }} transition={{ duration: 0.25 }}>
-                    <ProjectCard project={project} index={index} />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </motion.div>
           </div>
         </section>
 
-        <section className="section expertise-section" id="expertise" aria-labelledby="expertise-heading">
+        <section id="work" className="work-section section-pad" aria-labelledby="work-title">
           <div className="layout">
-            <SectionTitle overline="03 / WHAT I DO" title={<span id="expertise-heading">Thoughtful by design.<br /><span className="gradient-text">Solid by engineering.</span></span>} description="The best experiences sit where thoughtful design meets dependable code." />
+            <Chapter number="02" label="SELECTED EXPLORATIONS" />
+            <div className="work-intro">
+              <Reveal><h2 id="work-title">Proof of<br /><em>possibility.</em></h2></Reveal>
+              <div className="work-aside">
+                <Reveal><p>A curated look at products, systems and experiments — including the unfinished things worth pursuing.</p></Reveal>
+                <div className="work-control glass" role="group" aria-label="Project presentation">
+                  <button type="button" aria-pressed={workMode === 'gallery'} className={workMode === 'gallery' ? 'selected' : ''} onClick={() => setWorkMode('gallery')}><Grid2X2 size={16} /> Gallery</button>
+                  <button type="button" aria-pressed={workMode === 'index'} className={workMode === 'index' ? 'selected' : ''} onClick={() => setWorkMode('index')}><List size={16} /> Index</button>
+                </div>
+              </div>
+            </div>
+            <div className={'work-collection work-collection--' + workMode}>
+              {projects.map((project, i) => <WorkItem project={project} index={i} key={project.number} />)}
+            </div>
+            <Reveal className="all-work"><span>MORE THAN A SHOWCASE. AN ONGOING PRACTICE.</span><a href={GITHUB} target="_blank" rel="noopener noreferrer">All GitHub projects <Github size={18} /><ArrowUpRight size={17} /></a></Reveal>
+          </div>
+        </section>
+
+        <section id="expertise" className="expertise-section section-pad" aria-labelledby="expertise-title">
+          <div className="layout">
+            <Chapter number="03" label="THE TOOLKIT" />
             <div className="expertise-grid">
-              {skills.map((skill, i) => {
-                const Icon = [Code2, Layers3, Globe2][i];
-                return <Reveal key={skill.title} delay={i * 0.09}><article className="expertise-card">
-                  <div className="expertise-header"><span className="expertise-icon"><Icon size={23} strokeWidth={1.7} aria-hidden="true" /></span><span className="expertise-count">0{i + 1}</span></div>
-                  <h3>{skill.title}</h3><p>{skill.summary}</p>
-                  <div className="expertise-tags">{skill.tools.map((tool) => <span key={tool}>{tool}</span>)}</div>
-                </article></Reveal>;
-              })}
+              <Reveal className="expertise-left">
+                <h2 id="expertise-title">The work<br />behind the<br /><em>work.</em></h2>
+                <p>Different disciplines. One belief: the simplest experiences often require the most considered thinking.</p>
+                <div className="expertise-mini">A FEW THINGS I KEEP SHARPENING <span>↗</span></div>
+              </Reveal>
+              <div className="expertise-right">
+                {skills.map((skill, i) => <Reveal key={skill.title} delay={i * 0.06}><ExpertiseItem index={i} isOpen={openSkill === i} toggle={() => setOpenSkill(openSkill === i ? -1 : i)} /></Reveal>)}
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="section journey-section" id="journey" aria-labelledby="journey-heading">
-          <div className="layout journey-grid">
-            <div className="journey-intro">
-              <SectionTitle overline="04 / THE JOURNEY" title={<span id="journey-heading">Still curious.<br /><span className="gradient-text">Still creating.</span></span>} description="Not a straight line, but a direction that keeps making more sense." />
-              <Reveal><div className="journey-quote"><Command size={26} strokeWidth={1.6} aria-hidden="true" /><p>Build with intention.<br />Keep learning in public.</p></div></Reveal>
-            </div>
-            <div className="timeline">
-              {journey.map((event, i) => <Reveal key={event.period} delay={i * 0.07}>
-                <article className="timeline-item"><span className="timeline-period">{event.period}</span><div><span className="timeline-marker" /><h3>{event.title}</h3><p>{event.detail}</p></div></article>
-              </Reveal>)}
-            </div>
-          </div>
-        </section>
-
-        <section className="contact-section" id="contact" aria-labelledby="contact-heading">
-          <div className="contact-glow" aria-hidden="true" />
+        <section id="journey" className="journey-section section-pad" aria-labelledby="journey-title">
           <div className="layout">
-            <Reveal><p className="eyebrow"><span className="eyebrow-line" />05 / GET IN TOUCH</p></Reveal>
-            <Reveal delay={0.05}><h2 id="contact-heading">Have a good idea?<br /><em>Let's make it real.</em></h2></Reveal>
-            <Reveal delay={0.09}><p className="contact-description">I enjoy collaborating on ambitious, useful and beautifully considered digital experiences. Tell me what you're building.</p></Reveal>
-            <Reveal className="contact-actions">
-              <a className="button button-primary contact-primary" href={'mailto:' + EMAIL}>Start a conversation <Mail size={19} aria-hidden="true" /></a>
-              <button className="copy-email" type="button" onClick={copyEmail} aria-live="polite">{emailCopied ? <Check size={16} /> : <Command size={16} />}{emailCopied ? 'Copied!' : 'Copy email'}</button>
-            </Reveal>
-            <Reveal><div className="contact-email">{EMAIL}</div></Reveal>
+            <Chapter number="04" label="THE JOURNEY" />
+            <div className="journey-layout">
+              <Reveal><h2 id="journey-title">Still becoming<span>.</span></h2><p className="journey-intro">A path formed by curiosity, technical practice and the willingness to begin before everything is certain.</p></Reveal>
+              <div className="journey-records">
+                {journey.map((event, i) => (
+                  <Reveal key={event.period} className="journey-record" delay={i * 0.065}>
+                    <span className="record-number">0{i + 1}</span>
+                    <span className="record-period">{event.period}</span>
+                    <div className="record-content"><h3>{event.title}</h3><p>{event.detail}</p></div>
+                    <span className="record-star" aria-hidden="true">↗</span>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="contact-section" aria-labelledby="contact-title">
+          <div className="layout">
+            <div className="contact-slab">
+              <div className="contact-noise" aria-hidden="true" />
+              <div className="contact-top"><span className="contact-indicator"><i /> NEXT CHAPTER / OPEN</span><span>05 — CONTACT</span></div>
+              <Reveal><h2 id="contact-title">Something good<br />starts with <em>hello.</em></h2></Reveal>
+              <Reveal className="contact-lower"><p>If you're building something meaningful, I'd be glad to hear about it. Let's make the next idea count.</p>
+                <div className="contact-actions">
+                  <a href={'mailto:' + EMAIL} className="contact-button">Start a conversation <ArrowUpRight size={22} /></a>
+                  <button className="copy-action" type="button" onClick={copyAddress}>{copied ? <Check size={18} /> : <Mail size={18} />}{copied ? 'Email copied' : 'Copy email address'}</button>
+                </div>
+              </Reveal>
+              <div className="contact-bottom"><span>SAMANDAR OTABEK / INDEPENDENT DEVELOPER</span><span>JIZZAKH · UZBEKISTAN</span></div>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="layout footer-inner">
-          <a className="footer-brand" href="#home">samandar<span>.</span></a>
-          <p>Designed with care. Built with purpose.<br />© {new Date().getFullYear()} Samandar Otabek.</p>
-          <div className="footer-links"><a href={GITHUB} target="_blank" rel="noopener noreferrer"><Github size={18} /> GitHub</a><a href={'mailto:' + EMAIL}><Mail size={18} /> Email</a><a href="#home">Back to top ↑</a></div>
+      <footer className="site-footer">
+        <div className="layout footer-row">
+          <a href="#home" className="footer-identity" aria-label="Back to top">S<span>·</span></a>
+          <span>Made with intention. © {new Date().getFullYear()} Samandar Otabek.</span>
+          <div className="footer-links">
+            <a href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub <ExternalLink size={14} /></a>
+            <a href={'mailto:' + EMAIL}>Email <ArrowUpRight size={15} /></a>
+            <a href="#home">Back to top <ArrowRight className="arrow-up" size={15} /></a>
+          </div>
         </div>
       </footer>
+      <div className="decorative-edge" aria-hidden="true"><ChevronDown size={14} /></div>
     </>
   );
 }
