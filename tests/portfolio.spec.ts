@@ -66,7 +66,7 @@ test('small mobile: 320px viewport remains within its bounds', async ({ page }) 
 test('CV download is a valid publicly served searchable PDF', async ({ page, request }) => {
   await page.goto('/');
   const downloadLink = page.getByRole('link', { name: /Download CV/i }).first();
-  await expect(downloadLink).toHaveAttribute('href', /cv\\/Samandar_Alimov_CV\\.pdf$/);
+  await expect(downloadLink).toHaveAttribute('href', '/cv/Samandar_Alimov_CV.pdf');
   const pdf = await request.get('/cv/Samandar_Alimov_CV.pdf');
   expect(pdf.status()).toBe(200);
   const bytes = await pdf.body();
