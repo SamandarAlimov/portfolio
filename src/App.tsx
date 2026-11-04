@@ -2,18 +2,21 @@ import { lazy, Suspense, useEffect, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import {
   ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, ExternalLink,
-  Github, Grid2X2, List, Mail, Menu, Minus, Plus, X
+  Github, Grid2X2, List, Mail, Menu, Minus, Plus, X, FileText, Download, Eye
 } from 'lucide-react';
 import { journey, projects, skills, type Project } from './content';
+import resume from './resume.json';
 
 const Scene3D = lazy(() => import('./components/Scene3D'));
 const EMAIL = 'samandaralimov18@gmail.com';
 const GITHUB = 'https://github.com/SamandarAlimov';
+const CV_URL = import.meta.env.BASE_URL + 'cv/Samandar_Alimov_CV.pdf';
 const links = [
   { id: 'about', text: 'Approach' },
   { id: 'work', text: 'Work' },
   { id: 'expertise', text: 'Expertise' },
   { id: 'journey', text: 'Journey' },
+  { id: 'resume', text: 'CV' },
 ] as const;
 
 function canRenderWebGL() {
@@ -223,6 +226,7 @@ export default function App() {
               <Reveal delay={0.26} className="hero-links">
                 <a className="black-button" href="#work">Explore the work <ArrowUpRight size={19} /></a>
                 <a className="quiet-link" href="#about">The thinking behind it <ArrowDown size={17} /></a>
+                <a className="quiet-link resume-hero-link" href={CV_URL} download="Samandar_Alimov_CV.pdf"><Download size={17} /> Download CV</a>
               </Reveal>
             </div>
             <div className="hero-gallery glass">
@@ -332,11 +336,52 @@ export default function App() {
           </div>
         </section>
 
+
+        <section id="resume" className="resume-section section-pad" aria-labelledby="resume-title">
+          <div className="layout">
+            <Chapter number="05" label="PROFILE / CV" />
+            <div className="resume-layout">
+              <Reveal className="resume-message">
+                <div className="resume-eyebrow"><span className="resume-dot" /> A CLOSER LOOK AT THE WORK</div>
+                <h2 id="resume-title">Beyond the<br /><em>portfolio.</em></h2>
+                <p>Projects show what I build. My CV brings the experience, education, and technical foundations together in a clear, recruiter-friendly document.</p>
+                <div className="resume-spec"><span>01 / FILE FORMAT</span><strong>PDF · A4 · 1 page</strong></div>
+                <div className="resume-spec"><span>02 / FOCUS</span><strong>Engineering, projects &amp; experience</strong></div>
+                <div className="resume-spec"><span>03 / LAST UPDATED</span><strong>November 2026</strong></div>
+                <div className="resume-actions">
+                  <a href={CV_URL} download="Samandar_Alimov_CV.pdf" className="resume-download"><Download size={18} aria-hidden="true" /> Download CV <ArrowUpRight size={18} aria-hidden="true" /></a>
+                  <a href={CV_URL} target="_blank" rel="noopener noreferrer" className="resume-view"><Eye size={18} aria-hidden="true" /> View PDF</a>
+                </div>
+                <p className="resume-helper">No sign-up or request required. The PDF opens directly and is available to anyone visiting this site.</p>
+              </Reveal>
+              <Reveal className="resume-art glass">
+                <div className="resume-art-top"><span>DOCUMENT / 001</span><span>CV · 2026</span></div>
+                <div className="resume-paper" aria-label="Preview-inspired summary of the downloadable CV">
+                  <div className="resume-paper-top"><span className="resume-paper-mark" /> <span>CURRICULUM VITAE</span></div>
+                  <h3>{resume.name}</h3>
+                  <p className="resume-paper-role">{resume.headline}</p>
+                  <div className="resume-paper-divider" />
+                  <span className="resume-paper-heading">PROFILE</span>
+                  <p>Developer of thoughtful digital products, responsive interfaces and cross-platform experiences.</p>
+                  <span className="resume-paper-heading">EXPERIENCE</span>
+                  <div className="resume-paper-row"><strong>{resume.experience[0].title}</strong><span>Alsamos</span></div>
+                  <div className="resume-paper-row"><strong>{resume.experience[1].title}</strong><span>Independent</span></div>
+                  <span className="resume-paper-heading">EDUCATION</span>
+                  <div className="resume-paper-row"><strong>TMC Institute of Tashkent</strong><span>Economics</span></div>
+                  <span className="resume-paper-heading">SELECTED PROJECTS</span>
+                  <div className="resume-paper-tags"><span>Alsamos</span><span>Leo Logistics</span><span>Samhus</span></div>
+                </div>
+                <div className="resume-art-bottom"><FileText size={16} aria-hidden="true" /><span>DESIGNED TO BE READ — NOT JUST SEEN</span><ArrowUpRight size={16} aria-hidden="true" /></div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
         <section id="contact" className="contact-section" aria-labelledby="contact-title">
           <div className="layout">
             <div className="contact-slab">
               <div className="contact-noise" aria-hidden="true" />
-              <div className="contact-top"><span className="contact-indicator"><i /> NEXT CHAPTER / OPEN</span><span>05 — CONTACT</span></div>
+              <div className="contact-top"><span className="contact-indicator"><i /> NEXT CHAPTER / OPEN</span><span>06 — CONTACT</span></div>
               <Reveal><h2 id="contact-title">Something good<br />starts with <em>hello.</em></h2></Reveal>
               <Reveal className="contact-lower"><p>If you're building something meaningful, I'd be glad to hear about it. Let's make the next idea count.</p>
                 <div className="contact-actions">
@@ -356,6 +401,7 @@ export default function App() {
           <span>Made with intention. © {new Date().getFullYear()} Samandar Otabek.</span>
           <div className="footer-links">
             <a href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub <ExternalLink size={14} /></a>
+            <a href={CV_URL} download="Samandar_Alimov_CV.pdf">CV <Download size={15} /></a>
             <a href={'mailto:' + EMAIL}>Email <ArrowUpRight size={15} /></a>
             <a href="#home">Back to top <ArrowRight className="arrow-up" size={15} /></a>
           </div>

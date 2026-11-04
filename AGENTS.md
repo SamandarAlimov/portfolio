@@ -21,3 +21,9 @@ The owner chose a unique, **white-first premium glassmorphism** art direction, *
 - Premium React/TypeScript v2 is developed on feature branch and reviewed through a draft pull request.
 - CI TypeScript and Vite production build pass.
 - Real cross-browser screenshots, Lighthouse scores, mobile-device checks, email/domain confirmation and publishing still need verification.
+
+## CV public document
+- A one-page professional, readable/ATS-friendly PDF is built from `src/resume.json` by the dependency-free `scripts/generate-cv.mjs`. Source of truth is the JSON; do not hand-edit the generated PDF.
+- Keep the CV sober (real text, plain language, dates, actual employers and links; no invented metrics, photo, visual ratings or fake certifications).
+- Every Vite production build MUST generate `public/cv/Samandar_Alimov_CV.pdf` automatically, and the website MUST offer direct view/download links.
+- Test real PDF response bytes and mobile navigation. Existing archive remains immutable.

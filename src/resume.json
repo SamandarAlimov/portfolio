@@ -1,0 +1,65 @@
+{
+  "name": "Samandar Alimov",
+  "fullName": "Samandar Alimov Otabek o'g'li",
+  "headline": "Frontend & Cross-Platform Developer",
+  "location": "Uzbekistan",
+  "email": "samandaralimov18@gmail.com",
+  "phone": "+998 93 300 77 09",
+  "github": "github.com/SamandarAlimov",
+  "website": "alsamos.com",
+  "summary": "Software developer focused on responsive React and TypeScript interfaces, Flutter applications, and product-minded engineering. Founder and product builder at Alsamos; developed the Leo Logistics Academy website. Economics graduate with hands-on customer service experience and ongoing U.S. trucking logistics training.",
+  "experience": [
+    {
+      "title": "Founder & Product Builder",
+      "organization": "Alsamos | Independent venture",
+      "period": "Ongoing",
+      "points": [
+        "Building an interconnected web and mobile product ecosystem using React, TypeScript, Flutter and Supabase.",
+        "Coordinating product decisions, interface consistency, and iterative improvement across platforms."
+      ]
+    },
+    {
+      "title": "Web & Cross-Platform Developer",
+      "organization": "Independent projects",
+      "period": "2020 - Present",
+      "points": [
+        "Developed responsive web interfaces and explored Flutter applications with a focus on UI quality and usability.",
+        "Built the Leo Logistics Academy website and worked on practical digital product experiences."
+      ]
+    },
+    {
+      "title": "Service Manager",
+      "organization": "Business Development Bank | Jizzakh",
+      "period": "03 - 29 Sep 2026",
+      "points": [
+        "Assisted customers with service requests, routine banking documentation, and issue resolution."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Alsamos",
+      "description": "React/TypeScript web platform and Flutter companion; cross-platform design parity in development."
+    },
+    {
+      "name": "Leo Logistics Academy",
+      "description": "Responsive website for logistics education: leo-logistics.uz."
+    },
+    {
+      "name": "Samhus",
+      "description": "Experimental programming language project with a Python-based interpreter and automated tests."
+    }
+  ],
+  "education": [
+    {
+      "title": "TMC Institute of Tashkent",
+      "detail": "Economics | 2022 - 2026 | Degree completed"
+    },
+    {
+      "title": "Leo Logistics Academy",
+      "detail": "U.S. trucking logistics and Logistics English | Oct 2026 - Present"
+    }
+  ],
+  "skills": "React, TypeScript, JavaScript, HTML, CSS, Flutter, Dart, Supabase, Git, GitHub, Vercel, responsive UI",
+  "languages": "Uzbek (native), English (B1)"
+}
