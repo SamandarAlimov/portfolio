@@ -62,3 +62,15 @@ test('small mobile: 320px viewport remains within its bounds', async ({ page }) 
   }));
   expect(dims.scrollWidth).toBeLessThanOrEqual(dims.clientWidth + 1);
 });
+
+test('CV download is a valid publicly served searchable PDF', async ({ page, request }) => {
+  await page.goto('/');
+  const downloadLink = page.getByRole('link', { name: /Download CV/i }).first();
+  await expect(downloadLink).toHaveAttribute('href', '/cv/Samandar_Alimov_CV.pdf');
+  const pdf = await request.get('/cv/Samandar_Alimov_CV.pdf');
+  expect(pdf.status()).toBe(200);
+  const bytes = await pdf.body();
+  expect(bytes.subarray(0, 5).toString()).toBe('%PDF-');
+  expect(bytes.length).toBeGreaterThan(3000);
+  await expect(page.getByRole('heading', { name: /Beyond the/i })).toBeVisible();
+});

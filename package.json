@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "check": "tsc --noEmit",
-    "build": "tsc --noEmit && vite build",
+    "build": "node scripts/generate-cv.mjs && tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "predev": "node scripts/generate-cv.mjs",
+    "build:cv": "node scripts/generate-cv.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.6",

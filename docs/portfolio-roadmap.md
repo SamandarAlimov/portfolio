@@ -56,3 +56,11 @@
 
 ## Guardrails
 The legacy archive remains immutable. Never publish fabricated work history or achievements. No deployment is considered complete solely because the build passes.
+
+## 2026-11-04: Professional recruiter CV and conversion experience
+- [x] Prepared a one-page, English, software-focused professional CV based on prior CV content and the existing portfolio.
+- [x] Created a versioned CV content source and a zero-dependency PDF generator invoked by every development / production build.
+- [x] Added a distinct portfolio CV section, readable document illustration, public View PDF and Download CV links, header navigation and a hero shortcut.
+- [x] Added an automated PDF HTTP/signature test to the browser smoke suite.
+- [ ] Verify personal contact details and any job claims before each CV revision.
+- [ ] Run current desktop/mobile screenshot QA and inspect PDF from the real published deployment.

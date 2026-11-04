@@ -37,3 +37,12 @@ Project statuses distinguish live websites, products in development and experime
 ## Follow-up review
 
 Verify the preferred email and domain, add project screenshots and case studies, test on actual mobile devices, run a Lighthouse audit, and only enable optional analytics with consent.
+
+## Public professional CV
+
+- A purpose-built professional, one-page, ATS-readable English CV is generated from `src/resume.json`.
+- Run `npm run build:cv` to generate `public/cv/Samandar_Alimov_CV.pdf` (also runs automatically during `npm run dev` and `npm run build`).
+- The public page has a dedicated `#resume` section, a real View PDF link, and an explicit Download CV link (header, hero, footer).
+- The file is served as a real PDF, not a screenshot or a JS-generated click-time blob.
+- Check content accuracy in the resume JSON before changing dates, outcomes, experience or contact details.
+- No duplicate CV blobs are committed; the PDF is rebuilt from versioned source on deployment.
