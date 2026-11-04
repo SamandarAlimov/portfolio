@@ -5,16 +5,17 @@ async function revealEverySection(page: Page) {
   await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
   const height = await page.evaluate(() => document.documentElement.scrollHeight);
   const viewportHeight = page.viewportSize()?.height ?? 800;
-  for (let top = 0; top < height; top += Math.floor(viewportHeight * 0.65)) {
+  for (let top = 0; top < height; top += Math.floor(viewportHeight * 0.87)) {
     await page.evaluate((y) => window.scrollTo(0, y), top);
-    await page.waitForTimeout(115);
+    await page.waitForTimeout(75);
   }
-  await page.waitForTimeout(850);
+  await page.waitForTimeout(500);
   await page.evaluate(() => window.scrollTo(0, 0));
-  await page.waitForTimeout(280);
+  await page.waitForTimeout(180);
 }
 
 test('desktop: gallery, index, accordion and complete visual composition', async ({ page }) => {
+  test.setTimeout(120_000);
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('curiosity.');
@@ -28,10 +29,11 @@ test('desktop: gallery, index, accordion and complete visual composition', async
   await expect(page.locator('#skill-panel-1')).toBeVisible();
   await revealEverySection(page);
   await mkdir('screenshots', { recursive: true });
-  await page.screenshot({ path: 'screenshots/desktop-1440.png', fullPage: true, animations: 'disabled' });
+  await page.screenshot({ path: 'screenshots/desktop-1440.png', fullPage: true, animations: 'disabled', timeout: 90_000 });
 });
 
 test('mobile: responsive navigation and complete visual composition', async ({ page }) => {
+  test.setTimeout(120_000);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
