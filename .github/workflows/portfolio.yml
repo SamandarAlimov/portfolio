@@ -29,6 +29,13 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: 'true'
+      - name: Save generated CV for PDF visual QA
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-cv-proof
+          path: public/cv/Samandar_Alimov_CV.pdf
+          if-no-files-found: error
       - name: Configure GitHub Pages
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
