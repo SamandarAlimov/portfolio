@@ -49,3 +49,7 @@ Verify the preferred email and domain, add project screenshots and case studies,
 
 ## Portrait
 The user-approved 3:4 image is stored as a transparent WebP (`public/images/samandar-portrait.webp`) for the About and Resume-preview sections and an optimized white-composite JPEG (`public/images/samandar-portrait-cv.jpg`) embedded by the one-page PDF generator. Update both together to keep the website and downloadable CV consistent.
+
+## Google Search Console / SEO
+
+This is the personal portfolio (`samandarotabek.uz`), separate from the Alsamos Superapp (`alsamos.com`). `public/sitemap.xml` lists the single indexable SPA document `/`; scroll anchors (`#work`, `#resume` etc.) do not belong in a sitemap. `public/robots.txt` points to the canonical personal-domain sitemap. `index.html` includes the canonical URL, Open Graph URL, and Person structured data. The Vite build copies the two static XML/TXT files into `dist/` for Vercel. Verify the live domain serves HTTP 200 with the expected XML before submitting to Search Console. Never submit the Alsamos sitemap for the portfolio property.

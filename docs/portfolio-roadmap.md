@@ -72,3 +72,9 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [x] Embed the JPEG headshot into the generated, searchable one-page PDF while preserving the CV content and direct download.
 - [x] Add tests for the WebP image and PDF image XObject.
 - [ ] Review CI, the actual rendered PDF and production deployment status.
+
+## 2026-11-05: Portfolio-domain SEO setup
+- [x] Add a standalone single-page sitemap and robots.txt for `samandarotabek.uz` (never reuse `alsamos.com` sitemap).
+- [x] Add canonical URL, Open Graph URL and basic Person JSON-LD.
+- [ ] Verify Vercel serves `/sitemap.xml` as XML (not SPA HTML) at `https://samandarotabek.uz/sitemap.xml`.
+- [ ] Submit only the portfolio sitemap to the `samandarotabek.uz` Search Console property after verifying ownership and HTTP response.
