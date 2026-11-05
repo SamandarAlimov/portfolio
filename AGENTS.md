@@ -30,3 +30,7 @@ The owner chose a unique, **white-first premium glassmorphism** art direction, *
 
 ## Approved public portrait (2026-11-05)
 The owner explicitly approved their 3:4 cut-out photo to appear on both the public website and the downloadable CV. The source is included as optimized `public/images/samandar-portrait.webp` (transparent for site) and `public/images/samandar-portrait-cv.jpg` (white composite for the PDF). Keep natural facial features, cap and straight posture. Do not use an old photo or a generic portrait. Retain CV as a real one-page searchable PDF with a restrained, small headshot; run CI before publishing.
+
+## Current portfolio publishing constraint (2026-11-05)
+- The owner explicitly removed the experimental programming-language project from the public portfolio, CV and preview. Do not reintroduce it into public-facing artifacts without a new explicit request.
+- The fourth featured project is Proactive Marketing, sourced from the owner-linked `SamandarAlimov/proactiveagency` repository. Do not fabricate launch metrics, client outcomes or production status. The CV PDF is regenerated from `src/resume.json` with each build.

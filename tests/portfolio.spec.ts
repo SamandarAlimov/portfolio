@@ -21,6 +21,10 @@ test('desktop: gallery, index, accordion and complete visual composition', async
   await expect(page.getByRole('heading', { level: 1 })).toContainText('curiosity.');
   await expect(page.locator('.hero-gallery')).toBeVisible();
   await expect(page.locator('.work-item')).toHaveCount(4);
+  await expect(page.getByRole('heading', { name: 'Proactive Marketing' })).toHaveCount(1);
+  await expect(page.getByRole('heading', { name: 'Samhus' })).toHaveCount(0);
+  await expect(page.locator('.resume-paper-tags')).toContainText('Proactive');
+  await expect(page.locator('.resume-paper-tags')).not.toContainText('Samhus');
   await page.getByRole('button', { name: 'Index' }).click();
   await expect(page.locator('.work-collection--index')).toBeVisible();
   await page.getByRole('button', { name: 'Gallery' }).click();
@@ -72,6 +76,9 @@ test('CV download is a valid publicly served searchable PDF', async ({ page, req
   const bytes = await pdf.body();
   expect(bytes.subarray(0, 5).toString()).toBe('%PDF-');
   expect(bytes.length).toBeGreaterThan(3000);
+  const pdfData = bytes.toString('latin1');
+  expect(pdfData).toContain('Proactive Marketing');
+  expect(pdfData).not.toContain('Samhus');
   await expect(page.getByRole('heading', { name: /Beyond the/i })).toBeVisible();
 });
 
