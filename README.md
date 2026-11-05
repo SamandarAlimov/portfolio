@@ -46,3 +46,6 @@ Verify the preferred email and domain, add project screenshots and case studies,
 - The file is served as a real PDF, not a screenshot or a JS-generated click-time blob.
 - Check content accuracy in the resume JSON before changing dates, outcomes, experience or contact details.
 - No duplicate CV blobs are committed; the PDF is rebuilt from versioned source on deployment.
+
+## Portrait
+The user-approved 3:4 image is stored as a transparent WebP (`public/images/samandar-portrait.webp`) for the About and Resume-preview sections and an optimized white-composite JPEG (`public/images/samandar-portrait-cv.jpg`) embedded by the one-page PDF generator. Update both together to keep the website and downloadable CV consistent.

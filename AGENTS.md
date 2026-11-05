@@ -24,6 +24,9 @@ The owner chose a unique, **white-first premium glassmorphism** art direction, *
 
 ## CV public document
 - A one-page professional, readable/ATS-friendly PDF is built from `src/resume.json` by the dependency-free `scripts/generate-cv.mjs`. Source of truth is the JSON; do not hand-edit the generated PDF.
-- Keep the CV sober (real text, plain language, dates, actual employers and links; no invented metrics, photo, visual ratings or fake certifications).
+- Keep the CV sober (real text, plain language, dates, actual employers and links; no invented metrics, decorative portrait manipulation, visual ratings or fake certifications).
 - Every Vite production build MUST generate `public/cv/Samandar_Alimov_CV.pdf` automatically, and the website MUST offer direct view/download links.
 - Test real PDF response bytes and mobile navigation. Existing archive remains immutable.
+
+## Approved public portrait (2026-11-05)
+The owner explicitly approved their 3:4 cut-out photo to appear on both the public website and the downloadable CV. The source is included as optimized `public/images/samandar-portrait.webp` (transparent for site) and `public/images/samandar-portrait-cv.jpg` (white composite for the PDF). Keep natural facial features, cap and straight posture. Do not use an old photo or a generic portrait. Retain CV as a real one-page searchable PDF with a restrained, small headshot; run CI before publishing.

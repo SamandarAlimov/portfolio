@@ -1,6 +1,6 @@
 /**
  * Self-contained, zero-dependency generator for a readable, one-page PDF CV.
- * Produces real searchable PDF text; no photo, rasterization, bars or fake claims.
+ * Produces real searchable PDF text with a small professional portrait; no image-only text, bars or fake claims.
  */
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
@@ -9,6 +9,8 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const cv = JSON.parse(await readFile(join(root, 'src', 'resume.json'), 'utf8'));
 const dest = join(root, 'public', 'cv', 'Samandar_Alimov_CV.pdf');
+const portrait = await readFile(join(root, 'public', 'images', 'samandar-portrait-cv.jpg'));
+if (portrait[0] !== 0xff || portrait[1] !== 0xd8) throw new Error('CV portrait must be a JPEG');
 const W=595.28, H=841.89, X=47, RIGHT=548;
 const INK=[.095,.105,.12], GRAY=[.39,.42,.46], BLUE=[.027,.357,1], HAIR=[.88,.9,.92];
 const ops=[], annotations=[];
@@ -45,18 +47,23 @@ function experience(t,item){
 }
 function link(x,top,w,h,url){annotations.push({x,top,w,h,url});}
 
+// Deliberately small identity portrait; preserves the CV's one-page text hierarchy.
+rect(458,62,90,118,[.935,.947,.965]);
+ops.push('q 84 0 0 112 461 '+py(177)+' cm /Portrait Do Q');
 rect(X,43,42,3.1,BLUE);
 text(X+54,46.3,'CURRICULUM VITAE  /  2026',8.1,true,GRAY);
 right(46.3,'01 / PROFESSIONAL PROFILE',8,true,GRAY);
 text(X,87,'SAMANDAR ALIMOV',31.8,true);
 text(X,109,cv.fullName,9,false,GRAY);
 text(X,134,cv.headline.toUpperCase(),11.4,true,BLUE);
-line(X,146,RIGHT,.9);
-text(X,164,cv.location+'    |    '+cv.email+'    |    '+cv.phone,9.15);
-link(139,153,175,17,'mailto:'+cv.email);
-text(X,179,cv.github+'    |    '+cv.website,9.1,false,GRAY);
-link(X,168,167,15,'https://'+cv.github);
-link(215,168,106,15,'https://'+cv.website);
+line(X,146,443,.9);
+text(X,164,cv.location+'    |    '+cv.email,9.15);
+link(120,153,220,17,'mailto:'+cv.email);
+text(X,179,cv.phone+'    |    '+cv.github,9.1,false,GRAY);
+link(X,168,135,16,'tel:'+cv.phone.replace(/\s/g,''));
+link(192,168,180,16,'https://'+cv.github);
+text(X,194,cv.website,8.8,false,GRAY);
+link(X,183,120,14,'https://'+cv.website);
 
 heading(211,'Profile');
 let end=paragraph(cv.summary,X,233,RIGHT-X,9.13,13.55);
@@ -91,10 +98,11 @@ const pages=add('<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
 const page=add('');
 const regular=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>');
 const bold=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>');
+const portraitImage=add('<< /Type /XObject /Subtype /Image /Width 420 /Height 560 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+portrait.length+' >>\nstream\n'+portrait.toString('latin1')+'\nendstream');
 const contents=add('<< /Length '+Buffer.byteLength(stream,'binary')+' >>\nstream\n'+stream+'endstream');
 const ann=[];
 for(const a of annotations) ann.push(add('<< /Type /Annot /Subtype /Link /Border [0 0 0] /Rect ['+num(a.x)+' '+py(a.top+a.h)+' '+num(a.x+a.w)+' '+py(a.top)+'] /A << /S /URI /URI ('+clean(a.url)+') >> >>'));
-objects[page-1]='<< /Type /Page /Parent '+pages+' 0 R /MediaBox [0 0 '+W+' '+H+'] /Resources << /Font << /F1 '+regular+' 0 R /F2 '+bold+' 0 R >> >> /Contents '+contents+' 0 R /Annots ['+ann.map(i=>i+' 0 R').join(' ')+'] >>';
+objects[page-1]='<< /Type /Page /Parent '+pages+' 0 R /MediaBox [0 0 '+W+' '+H+'] /Resources << /Font << /F1 '+regular+' 0 R /F2 '+bold+' 0 R >> /XObject << /Portrait '+portraitImage+' 0 R >> >> /Contents '+contents+' 0 R /Annots ['+ann.map(i=>i+' 0 R').join(' ')+'] >>';
 let output='%PDF-1.4\n%\xE2\xE3\xCF\xD3\n';
 const offsets=[0];
 for(let i=0;i<objects.length;i++){offsets.push(Buffer.byteLength(output,'binary'));output+=(i+1)+' 0 obj\n'+objects[i]+'\nendobj\n';}

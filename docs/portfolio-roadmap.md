@@ -64,3 +64,11 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [x] Added an automated PDF HTTP/signature test to the browser smoke suite.
 - [ ] Verify personal contact details and any job claims before each CV revision.
 - [ ] Run current desktop/mobile screenshot QA and inspect PDF from the real published deployment.
+
+## 2026-11-05 — owner-approved consistent portrait
+- [x] Prepared the user's corrected, transparent 3:4 portrait for the website and CV in optimized formats.
+- [x] Replace the old About image; retain natural color and transparency.
+- [x] Match the portfolio CV preview to the same portrait.
+- [x] Embed the JPEG headshot into the generated, searchable one-page PDF while preserving the CV content and direct download.
+- [x] Add tests for the WebP image and PDF image XObject.
+- [ ] Review CI, the actual rendered PDF and production deployment status.
