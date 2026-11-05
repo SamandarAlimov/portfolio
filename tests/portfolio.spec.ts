@@ -74,3 +74,20 @@ test('CV download is a valid publicly served searchable PDF', async ({ page, req
   expect(bytes.length).toBeGreaterThan(3000);
   await expect(page.getByRole('heading', { name: /Beyond the/i })).toBeVisible();
 });
+
+test('updated real portrait appears on site and is embedded in the CV', async ({ page, request }) => {
+  await page.goto('/');
+  const portrait = page.getByRole('img', { name: /centered professional portrait/i });
+  await expect(portrait).toHaveAttribute('src', /samandar-portrait[.]webp$/);
+  const photo = await request.get('/images/samandar-portrait.webp');
+  expect(photo.status()).toBe(200);
+  const imageBytes = await photo.body();
+  expect(imageBytes.subarray(0, 4).toString('ascii')).toBe('RIFF');
+  expect(imageBytes.subarray(8, 12).toString('ascii')).toBe('WEBP');
+  const pdf = await request.get('/cv/Samandar_Alimov_CV.pdf');
+  const pdfBody = (await pdf.body()).toString('latin1');
+  expect(pdf.status()).toBe(200);
+  expect(pdfBody).toContain('/Subtype /Image');
+  expect(pdfBody).toContain('/Portrait');
+  expect(pdfBody).toContain('SAMANDAR ALIMOV');
+});

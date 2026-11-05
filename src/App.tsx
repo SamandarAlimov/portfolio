@@ -272,7 +272,7 @@ export default function App() {
               <Reveal className="about-photo-wrap">
                 <div className="about-photo glass">
                   <div className="photo-label"><span>IDENTITY</span><span>NO. 001</span></div>
-                  <img src={import.meta.env.BASE_URL + 'images/profile.jpg'} alt="Portrait of Samandar Otabek" loading="lazy" />
+                  <img src={import.meta.env.BASE_URL + 'images/samandar-portrait.webp'} alt="Samandar Otabek, centered professional portrait" width={420} height={560} loading="lazy" decoding="async" />
                   <div className="photo-float glass"><span className="float-signal" /> <span>WORK IN PROGRESS<br /><strong>Always learning. Always building.</strong></span></div>
                 </div>
                 <div className="photo-under"><span>HUMAN BEHIND THE INTERFACE</span><span>© 2026</span></div>
@@ -358,8 +358,10 @@ export default function App() {
                 <div className="resume-art-top"><span>DOCUMENT / 001</span><span>CV · 2026</span></div>
                 <div className="resume-paper" aria-label="Preview-inspired summary of the downloadable CV">
                   <div className="resume-paper-top"><span className="resume-paper-mark" /> <span>CURRICULUM VITAE</span></div>
-                  <h3>{resume.name}</h3>
-                  <p className="resume-paper-role">{resume.headline}</p>
+                  <div className="resume-paper-title-row">
+                    <div><h3>{resume.name}</h3><p className="resume-paper-role">{resume.headline}</p></div>
+                    <img className="resume-paper-avatar" src={import.meta.env.BASE_URL + 'images/samandar-portrait.webp'} alt="" width={420} height={560} loading="lazy" />
+                  </div>
                   <div className="resume-paper-divider" />
                   <span className="resume-paper-heading">PROFILE</span>
                   <p>Developer of thoughtful digital products, responsive interfaces and cross-platform experiences.</p>
