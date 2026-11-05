@@ -371,7 +371,7 @@ export default function App() {
                   <span className="resume-paper-heading">EDUCATION</span>
                   <div className="resume-paper-row"><strong>TMC Institute of Tashkent</strong><span>Economics</span></div>
                   <span className="resume-paper-heading">SELECTED PROJECTS</span>
-                  <div className="resume-paper-tags"><span>Alsamos</span><span>Leo Logistics</span><span>Samhus</span></div>
+                  <div className="resume-paper-tags"><span>Alsamos</span><span>Leo Logistics</span><span>Proactive</span></div>
                 </div>
                 <div className="resume-art-bottom"><FileText size={16} aria-hidden="true" /><span>DESIGNED TO BE READ — NOT JUST SEEN</span><ArrowUpRight size={16} aria-hidden="true" /></div>
               </Reveal>

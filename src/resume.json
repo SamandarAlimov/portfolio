@@ -7,7 +7,7 @@
   "phone": "+998 93 300 77 09",
   "github": "github.com/SamandarAlimov",
   "website": "alsamos.com",
-  "summary": "Software developer focused on responsive React and TypeScript interfaces, Flutter applications, and product-minded engineering. Founder and product builder at Alsamos; developed the Leo Logistics Academy website. Economics graduate with hands-on customer service experience and ongoing U.S. trucking logistics training.",
+  "summary": "Software developer focused on responsive React and TypeScript interfaces, Flutter applications, and product-minded engineering. Founder and product builder at Alsamos; built websites for Leo Logistics Academy and Proactive Marketing. Economics graduate with hands-on customer service experience and ongoing U.S. trucking logistics training.",
   "experience": [
     {
       "title": "Founder & Product Builder",
@@ -24,7 +24,7 @@
       "period": "2020 - Present",
       "points": [
         "Developed responsive web interfaces and explored Flutter applications with a focus on UI quality and usability.",
-        "Built the Leo Logistics Academy website and worked on practical digital product experiences."
+        "Built Leo Logistics Academy and Proactive Marketing websites with responsive layouts."
       ]
     },
     {
@@ -46,8 +46,8 @@
       "description": "Responsive website for logistics education: leo-logistics.uz."
     },
     {
-      "name": "Samhus",
-      "description": "Experimental programming language project with a Python-based interpreter and automated tests."
+      "name": "Proactive Marketing",
+      "description": "Multilingual marketing agency site with services, case studies, lead forms and SEO (React/TypeScript)."
     }
   ],
   "education": [

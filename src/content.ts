@@ -49,14 +49,15 @@ export const projects: Project[] = [
   },
   {
     number: '04',
-    title: 'Samhus',
-    category: 'Programming language · Experiment',
-    description: 'An experimental language with an initial interpreter, lexer, parser, runtime and tests. A hands-on exploration of how programming languages work under the hood.',
-    technologies: ['Python bootstrap', 'Language design', 'CLI'],
-    href: 'https://github.com/SamandarAlimov/samhus',
-    status: 'Experimental',
+    title: 'Proactive Marketing',
+    category: 'Marketing agency · Corporate website',
+    description: 'Developed a multilingual marketing agency website with service pages, project case studies, team and academy sections, a contact lead form, and a dedicated SEO layer.',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    href: 'https://proactive.agency.uz',
+    source: 'https://github.com/SamandarAlimov/proactiveagency',
+    status: 'In development',
     highlight: 'lime',
-    mark: '</>',
+    mark: 'P',
   },
 ];
 

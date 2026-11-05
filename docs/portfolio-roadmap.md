@@ -10,7 +10,7 @@
 - [x] Added lazy-loaded interactive Three.js hero with a CSS fallback.
 - [x] Added Framer Motion reveals, entrance effects, interactive project filtering and responsive menus.
 - [x] Created About, Work, Expertise, Journey, Contact and semantic navigation.
-- [x] Rewrote project descriptions with clear statuses for Alsamos, Leo Logistics Academy, Alsamos AI and Samhus.
+- [x] Rewrote project descriptions with clear statuses for Alsamos, Leo Logistics Academy, Alsamos AI and Proactive Marketing.
 - [x] Added reduced-motion styles, keyboard focus styles and direct working outbound links.
 - [x] Added GitHub Actions typecheck + build + planned Pages deployment.
 - [x] First CI production build passed; follow-up brand/favicon changes also passed.
@@ -78,3 +78,9 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [x] Add canonical URL, Open Graph URL and basic Person JSON-LD.
 - [ ] Verify Vercel serves `/sitemap.xml` as XML (not SPA HTML) at `https://samandarotabek.uz/sitemap.xml`.
 - [ ] Submit only the portfolio sitemap to the `samandarotabek.uz` Search Console property after verifying ownership and HTTP response.
+
+## 2026-11-05: Proactive Marketing replaces unpublished experiment
+- [x] Public project No. 04 changed to Proactive Marketing Agency website, based on owner repository `SamandarAlimov/proactiveagency` (React, TypeScript, Tailwind, Framer Motion, multilingual pages, services, case studies, lead capture and SEO).
+- [x] Removed unpublished experimental project from portfolio card, CV JSON and CV preview.
+- [x] Added browser and generated PDF content assertions to prevent accidentally displaying that project again.
+- [ ] Confirm real public site availability and fine-tune project status if required; source contains `https://proactive.agency.uz` as canonical.
