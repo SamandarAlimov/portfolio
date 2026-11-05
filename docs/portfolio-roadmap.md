@@ -84,3 +84,10 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [x] Removed unpublished experimental project from portfolio card, CV JSON and CV preview.
 - [x] Added browser and generated PDF content assertions to prevent accidentally displaying that project again.
 - [ ] Confirm real public site availability and fine-tune project status if required; source contains `https://proactive.agency.uz` as canonical.
+
+## 2026-11-05: Meaningful hero instead of decorative abstract sculpture
+- [x] Replace the arbitrary chrome torus knot with a spatial process showing a faceted idea, engineered software module, finished product/impact, and a moving connection signal.
+- [x] Add readable IDEA -> ENGINEERING -> IMPACT labels, each with an explicit outcome; revise intro copy to explain the idea-to-product journey.
+- [x] Keep the electric-blue premium glass art direction, but ensure the WebGL fallback communicates the same stages.
+- [x] Add accessible descriptive semantics and automated browser checks for stages and reduced-motion fallback.
+- [ ] Inspect iPhone Safari and Android on real devices, not just Chromium snapshots.

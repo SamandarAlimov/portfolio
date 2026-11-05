@@ -25,7 +25,7 @@ Not another portfolio template. The site should feel like a digital design exhib
 ## Signature composition
 1. Fixed floating translucent nav capsule.
 2. Overprinted, enormous typographic hero against a frosted 3D object vitrine.
-3. Studio-lit chrome torus-knot with a saturated electric-blue inner core, blue/orange metallic orbit lines, falling back to a vivid static CSS sculpture.
+3. A meaningful interactive three-stage 3D process: faceted idea, chrome software engineering module and vivid cobalt real-world impact connected by a moving signal. HTML labels spell out IDEA / ENGINEERING / IMPACT. Reduced-motion and WebGL fallback show the same message.
 4. White floating cards around distinctly vivid project artwork: violet / cyan / coral / lime, variable bento spans and gallery/index interaction.
 5. Toolset as accordion; timeline as technical record; contact as an inverted charcoal slab.
 6. Subtle scroll reveals, pointer-driven material accents, and a crisp electric-blue progress line.
