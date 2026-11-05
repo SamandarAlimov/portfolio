@@ -210,7 +210,7 @@ export default function App() {
           </div>
           <div className="hero-display">
             <div className="hero-type">
-              <Reveal><span className="hero-kicker"><span className="kicker-square" /> IDEAS / INTERFACES / IMPACT</span></Reveal>
+              <Reveal><span className="hero-kicker"><span className="kicker-square" /> IDEA / ENGINEERING / IMPACT</span></Reveal>
               <motion.h1
                 id="hero-title"
                 initial={reduceMotion ? false : { opacity: 0, y: 52 }}
@@ -221,7 +221,7 @@ export default function App() {
               </motion.h1>
               <Reveal delay={0.2} className="hero-intro-row">
                 <span className="intro-bullet" aria-hidden="true">↳</span>
-                <p>I turn ambitious thinking into practical digital experiences — where engineering, interaction and imagination meet.</p>
+                <p>I turn real problems into practical digital products — taking ideas through engineering to experiences people can use.</p>
               </Reveal>
               <Reveal delay={0.26} className="hero-links">
                 <a className="black-button" href="#work">Explore the work <ArrowUpRight size={19} /></a>
@@ -229,19 +229,24 @@ export default function App() {
                 <a className="quiet-link resume-hero-link" href={CV_URL} download="Samandar_Alimov_CV.pdf"><Download size={17} /> Download CV</a>
               </Reveal>
             </div>
-            <div className="hero-gallery glass">
+            <div className="hero-gallery glass" role="group" aria-label="My process: idea, engineering and real-world impact. A concept becomes a working digital product.">
               <div className="gallery-grid" aria-hidden="true" />
-              <div className="gallery-caption gallery-caption-top"><span>FIG. 001</span><span>FORM IN MOTION</span></div>
+              <div className="gallery-caption gallery-caption-top"><span>FIG. 001 / THE PROCESS</span><span>FROM IDEA TO IMPACT</span></div>
               <div className="gallery-corner gallery-corner-tl" aria-hidden="true" />
               <div className="gallery-corner gallery-corner-br" aria-hidden="true" />
               {threeEnabled ? (
-                <Suspense fallback={<div className="sculpture-fallback" aria-hidden="true"><span>S</span></div>}>
+                <Suspense fallback={<div className="process-fallback" aria-hidden="true"><span className="process-fallback-node process-fallback-idea" /><span className="process-fallback-link" /><span className="process-fallback-node process-fallback-engineering" /><span className="process-fallback-link" /><span className="process-fallback-node process-fallback-impact" /></div>}>
                   <Scene3D />
                 </Suspense>
-              ) : <div className="sculpture-fallback" aria-hidden="true"><span>S</span></div>}
-              <div className="gallery-caption gallery-caption-bottom"><span>SCULPTED IN CODE</span><span>INTERACTIVE OBJECT / 3D</span></div>
-              <span className="orbit-marker orbit-marker-one" aria-hidden="true">+</span>
-              <span className="orbit-marker orbit-marker-two" aria-hidden="true">+</span>
+              ) : (
+                <div className="process-fallback" aria-hidden="true"><span className="process-fallback-node process-fallback-idea" /><span className="process-fallback-link" /><span className="process-fallback-node process-fallback-engineering" /><span className="process-fallback-link" /><span className="process-fallback-node process-fallback-impact" /></div>
+              )}
+              <ol className="process-stages" aria-label="Three stages of how I work">
+                <li><span>01 / DISCOVER</span><strong>IDEA</strong><small>Find the problem</small></li>
+                <li><span>02 / CREATE</span><strong>ENGINEERING</strong><small>Build the solution</small></li>
+                <li><span>03 / DELIVER</span><strong>IMPACT</strong><small>Make it useful</small></li>
+              </ol>
+              <div className="gallery-caption gallery-caption-bottom"><span>CONCEPT → CODE → PRODUCT</span><span>PURPOSE-DRIVEN BUILD</span></div>
             </div>
             <div className="hero-side-index" aria-hidden="true"><span>DESIGNED TO FEEL DIFFERENT</span><span>↓</span></div>
           </div>

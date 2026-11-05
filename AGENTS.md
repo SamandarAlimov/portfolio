@@ -34,3 +34,6 @@ The owner explicitly approved their 3:4 cut-out photo to appear on both the publ
 ## Current portfolio publishing constraint (2026-11-05)
 - The owner explicitly removed the experimental programming-language project from the public portfolio, CV and preview. Do not reintroduce it into public-facing artifacts without a new explicit request.
 - The fourth featured project is Proactive Marketing, sourced from the owner-linked `SamandarAlimov/proactiveagency` repository. Do not fabricate launch metrics, client outcomes or production status. The CV PDF is regenerated from `src/resume.json` with each build.
+
+## Meaningful 3D content (2026-11-05)
+The hero 3D element is **not decorative filler**. It conveys the owner's concrete process: IDEA (identify a real problem) -> ENGINEERING (build it in code) -> IMPACT (deliver useful products). Keep three clearly labeled stages visible at mobile widths and a no-WebGL/reduced-motion fallback communicating exactly the same meaning. Avoid abstract knot/sphere artwork that cannot be explained. Preserve clarity, legibility, performance, and verified project claims.

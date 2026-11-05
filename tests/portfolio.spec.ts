@@ -98,3 +98,25 @@ test('updated real portrait appears on site and is embedded in the CV', async ({
   expect(pdfBody).toContain('/Portrait');
   expect(pdfBody).toContain('SAMANDAR ALIMOV');
 });
+
+test('meaningful hero explains the physical 3D stages, including without WebGL', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  const panel = page.getByRole('group', { name: /my process: idea, engineering and real-world impact/i });
+  await expect(panel).toBeVisible();
+  const stages = panel.getByRole('list', { name: 'Three stages of how I work' });
+  await expect(stages.getByRole('listitem')).toHaveCount(3);
+  await expect(stages).toContainText('IDEA');
+  await expect(stages).toContainText('ENGINEERING');
+  await expect(stages).toContainText('IMPACT');
+  await expect(stages).toContainText('Find the problem');
+  await expect(stages).toContainText('Build the solution');
+  await expect(stages).toContainText('Make it useful');
+  await expect(panel.locator('.process-fallback')).toBeVisible();
+  const size = await page.evaluate(() => ({
+    scrollWidth: document.documentElement.scrollWidth,
+    clientWidth: document.documentElement.clientWidth,
+  }));
+  expect(size.scrollWidth).toBeLessThanOrEqual(size.clientWidth + 1);
+});
