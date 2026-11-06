@@ -13,6 +13,8 @@ import { offeredServices } from './services';
 const EMAIL = 'samandaralimov18@gmail.com';
 const GITHUB = 'https://github.com/SamandarAlimov';
 const CV_URL = import.meta.env.BASE_URL + 'cv/Samandar_Alimov_CV.pdf';
+const SERVICES_EN_URL = import.meta.env.BASE_URL + 'services.html';
+const SERVICES_UZ_URL = import.meta.env.BASE_URL + 'xizmatlar.html';
 const links = [
   { id: 'about', text: 'Approach' },
   { id: 'work', text: 'Work' },
@@ -325,7 +327,7 @@ export default function App() {
                     <h3>{service.en}</h3>
                     <p>{service.enDescription}</p>
                     <div className="service-tile-bottom">
-                      <a href={'/services.html#' + service.slug} aria-label={'Read about ' + service.en}>Details <ArrowUpRight size={16} aria-hidden="true" /></a>
+                      <a href={SERVICES_EN_URL + '#' + service.slug} aria-label={'Read about ' + service.en}>Details <ArrowUpRight size={16} aria-hidden="true" /></a>
                       <a href={service.proofUrl} target="_blank" rel="noopener noreferrer" aria-label={'See reference for ' + service.en}>Work reference <ExternalLink size={14} aria-hidden="true" /></a>
                     </div>
                   </article>
@@ -334,7 +336,7 @@ export default function App() {
             </div>
             <div className="services-cta">
               <p>Need a website, React or Flutter developer, AI integration, or help turning a Figma design into code?</p>
-              <div><a className="services-main-link" href="/xizmatlar.html">Xizmatlar — O‘zbekcha <ArrowUpRight size={18} aria-hidden="true" /></a><a className="services-sub-link" href="/services.html">Services in English <ArrowUpRight size={17} aria-hidden="true" /></a></div>
+              <div><a className="services-main-link" href={SERVICES_UZ_URL}>Xizmatlar — O‘zbekcha <ArrowUpRight size={18} aria-hidden="true" /></a><a className="services-sub-link" href={SERVICES_EN_URL}>Services in English <ArrowUpRight size={17} aria-hidden="true" /></a></div>
             </div>
           </div>
         </section>
@@ -443,7 +445,7 @@ export default function App() {
             <a href={GITHUB} target="_blank" rel="me noopener noreferrer">GitHub <ExternalLink size={14} /></a>
             <a href="https://www.linkedin.com/in/samandarotabek/" target="_blank" rel="me noopener noreferrer">LinkedIn <ExternalLink size={14} /></a>
             <a href={import.meta.env.BASE_URL + "about.html"}>About me <ArrowUpRight size={14} /></a>
-            <a href="/xizmatlar.html">Xizmatlar <ArrowUpRight size={14} /></a>
+            <a href={SERVICES_UZ_URL}>Xizmatlar <ArrowUpRight size={14} /></a>
             <a href={CV_URL} download="Samandar_Alimov_CV.pdf">CV <Download size={15} /></a>
             <a href={'mailto:' + EMAIL}>Email <ArrowUpRight size={15} /></a>
             <a href="#home">Back to top <ArrowRight className="arrow-up" size={15} /></a>

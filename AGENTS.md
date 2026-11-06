@@ -61,3 +61,7 @@ The owner rejected both the arbitrary torus knot and symbolic IDEA/ENGINEERING/I
 - Service pages `/services.html` and `/xizmatlar.html` are standalone static indexable content, each with self-canonical and reciprocal hreflang. Maintain both together and add any future meaningful pages to sitemap.
 - Each service must have relevant, truthful work references; collaborative projects remain attributed as teamwork. Do not create thin keyword doorway pages, fake star reviews, city spam pages or pretend that JSON-LD guarantees ranking.
 - Keep existing React home, CV, archive, personal identity, portraits and navigation intact; preserve mobile/keyboard accessibility.
+
+## Static services portability
+- Do not hardcode root-relative service CSS/navigation links in `public/services.html` or `public/xizmatlar.html`; these pages must work both at the production domain root and under GitHub Pages `/portfolio/`.
+- In React use `import.meta.env.BASE_URL` for service page links; Vite's GitHub Pages build uses `/portfolio/`.
