@@ -53,3 +53,11 @@ The user-approved 3:4 image is stored as a transparent WebP (`public/images/sama
 ## Google Search Console / SEO
 
 This is the personal portfolio (`samandarotabek.uz`), separate from the Alsamos Superapp (`alsamos.com`). `public/sitemap.xml` lists the single indexable SPA document `/`; scroll anchors (`#work`, `#resume` etc.) do not belong in a sitemap. `public/robots.txt` points to the canonical personal-domain sitemap. `index.html` includes the canonical URL, Open Graph URL, and Person structured data. The Vite build copies the two static XML/TXT files into `dist/` for Vercel. Verify the live domain serves HTTP 200 with the expected XML before submitting to Search Console. Never submit the Alsamos sitemap for the portfolio property.
+
+## Identity SEO / Discoverability
+- Canonical identity: `Samandar Otabek`; name also appears as `Samandar Alimov` and shortened `Samandar` on the same public identity.
+- Independent page `/about.html`: static HTML biography and visible verified links, accessible to bots without JavaScript, distinct from home.
+- Home includes WebSite/WebPage/Person/Alsamos Organization JSON-LD; about includes ProfilePage/Person structured data. `sameAs` contains *only* confirmed GitHub and LinkedIn personal profiles.
+- SAMOS is described as a *historical educational initiative*, **not** another name for the person or the same company as Alsamos.
+- No guessed YouTube, Instagram, X, Facebook or Telegram profiles; no assumed Alsamos subdomains.
+- Sitemap includes two actual pages; confirm Search Console URL Inspection and submit sitemap. Optimization does **not** guarantee Google ranking or indexing.
