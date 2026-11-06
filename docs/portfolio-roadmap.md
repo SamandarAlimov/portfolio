@@ -123,3 +123,11 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [x] Add the third real page to the sitemap and browser tests.
 - [x] Update generated public CV personal website from Alsamos corporate homepage to `samandarotabek.uz`.
 - [ ] Validate Search Console coverage and DNS real-world fetch for all three URLs.
+
+## 2026-11-07 — Service-intent SEO and client conversion
+- [x] Build two substantial, indexable service pages: `/xizmatlar.html` Uzbek and `/services.html` English with reciprocal hreflang and self-canonicals, helpful descriptions and honest project evidence.
+- [x] Add seven service scopes: websites, React/TypeScript, Flutter, Figma-to-code, AI API integration, Supabase/backend APIs and focused bug fixes.
+- [x] Add Services section to portfolio navigation and home, with proof URLs and a direct contact CTA.
+- [x] Add pages to sitemap and cross-link from English/Uzbek personal profiles. Schema.org Service + Person provider is descriptive, not a guaranteed rich result.
+- [ ] Confirm real Search Console indexing/rankings and track queries for these pages after publishing.
+- [ ] If desired later, gather real detailed case studies and customer approval before claiming service performance or testimonials.

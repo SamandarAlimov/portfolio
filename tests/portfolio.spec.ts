@@ -137,3 +137,16 @@ test('collaborative work is complete, clear and not presented as sole work', asy
   await expect(page.locator('.collaborations')).toContainText('Loftmee');
   await expect(page.locator('.collaborations')).not.toContainText('Englify');
 });
+
+test('services are discoverable and usable from mobile portfolio', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('/');
+  await page.getByRole('button',{name:'Open menu'}).click();
+  const nav=page.getByRole('navigation',{name:'Mobile navigation'});
+  await nav.getByRole('link',{name:/Services/}).click();
+  await expect(page.getByRole('heading',{name:/Let's build/})).toBeVisible();
+  await expect(page.locator('.service-tile')).toHaveCount(7);
+  await expect(page.getByRole('link',{name:/Xizmatlar — O‘zbekcha/})).toHaveAttribute('href','/xizmatlar.html');
+  const dims=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));
+  expect(dims.scroll).toBeLessThanOrEqual(dims.client+1);
+});

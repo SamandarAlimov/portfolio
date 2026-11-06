@@ -55,3 +55,9 @@ The owner rejected both the arbitrary torus knot and symbolic IDEA/ENGINEERING/I
 - Keep English `/about.html` and Uzbek `/haqimda.html` as substantive translated bios. Use reciprocal hreflang, each self-canonical, sitemap 3 real pages only.
 - The CV's personal `website` must be `samandarotabek.uz`, not the separate corporate `alsamos.com`.
 - Do not fabricate rankings, GitHub/LinkedIn profile ownership outside verified URLs, nor otherwise add personal data from private memory without owner approval.
+
+## 2026-11-07 — Public software services and discoverability
+- Portfolio now offers project-scoped website/frontend, Flutter, Figma-to-code, AI API integration, backend/Supabase and repair services. Do not imply certifications, agency staff, fixed prices, guarantees or finished production work where not verified.
+- Service pages `/services.html` and `/xizmatlar.html` are standalone static indexable content, each with self-canonical and reciprocal hreflang. Maintain both together and add any future meaningful pages to sitemap.
+- Each service must have relevant, truthful work references; collaborative projects remain attributed as teamwork. Do not create thin keyword doorway pages, fake star reviews, city spam pages or pretend that JSON-LD guarantees ranking.
+- Keep existing React home, CV, archive, personal identity, portraits and navigation intact; preserve mobile/keyboard accessibility.

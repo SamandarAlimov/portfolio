@@ -8,6 +8,7 @@ import { journey, projects, skills, type Project } from './content';
 import resume from './resume.json';
 import { collaborations } from './collaborations';
 import { ProjectShowcase } from './components/ProjectShowcase';
+import { offeredServices } from './services';
 
 const EMAIL = 'samandaralimov18@gmail.com';
 const GITHUB = 'https://github.com/SamandarAlimov';
@@ -15,6 +16,7 @@ const CV_URL = import.meta.env.BASE_URL + 'cv/Samandar_Alimov_CV.pdf';
 const links = [
   { id: 'about', text: 'Approach' },
   { id: 'work', text: 'Work' },
+  { id: 'services', text: 'Services' },
   { id: 'expertise', text: 'Expertise' },
   { id: 'journey', text: 'Journey' },
   { id: 'resume', text: 'CV' },
@@ -212,7 +214,7 @@ export default function App() {
               </Reveal>
               <Reveal delay={0.26} className="hero-links">
                 <a className="black-button" href="#work">Explore the work <ArrowUpRight size={19} /></a>
-                <a className="quiet-link" href="#about">The thinking behind it <ArrowDown size={17} /></a>
+                <a className="quiet-link" href="#services">Services &amp; hire me <ArrowUpRight size={17} /></a>
                 <a className="quiet-link resume-hero-link" href={CV_URL} download="Samandar_Alimov_CV.pdf"><Download size={17} /> Download CV</a>
               </Reveal>
             </div>
@@ -307,9 +309,39 @@ export default function App() {
           </div>
         </section>
 
+
+        <section id="services" className="services-section section-pad" aria-labelledby="services-heading">
+          <div className="layout">
+            <Chapter number="03" label="SERVICES / WORK WITH ME" />
+            <div className="services-head">
+              <Reveal><div><span className="services-kicker">REAL PROJECTS. PRACTICAL SERVICES.</span><h2 id="services-heading">Let's build<br /><em>something useful.</em></h2></div></Reveal>
+              <Reveal><p>I develop websites and frontend applications, create Flutter interfaces and work on Figma-to-code, AI features and targeted improvements. Each project is discussed by scope — not a one-size-fits-all package.</p></Reveal>
+            </div>
+            <div className="services-grid">
+              {offeredServices.map((service, index) => (
+                <Reveal key={service.slug} delay={Math.min(0.15, index * 0.03)}>
+                  <article className="service-tile glass">
+                    <div className="service-tile-top"><span>{String(index + 1).padStart(2, '0')} / SERVICE</span><span className="service-tile-mark" aria-hidden="true">↗</span></div>
+                    <h3>{service.en}</h3>
+                    <p>{service.enDescription}</p>
+                    <div className="service-tile-bottom">
+                      <a href={'/services.html#' + service.slug} aria-label={'Read about ' + service.en}>Details <ArrowUpRight size={16} aria-hidden="true" /></a>
+                      <a href={service.proofUrl} target="_blank" rel="noopener noreferrer" aria-label={'See reference for ' + service.en}>Work reference <ExternalLink size={14} aria-hidden="true" /></a>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+            <div className="services-cta">
+              <p>Need a website, React or Flutter developer, AI integration, or help turning a Figma design into code?</p>
+              <div><a className="services-main-link" href="/xizmatlar.html">Xizmatlar — O‘zbekcha <ArrowUpRight size={18} aria-hidden="true" /></a><a className="services-sub-link" href="/services.html">Services in English <ArrowUpRight size={17} aria-hidden="true" /></a></div>
+            </div>
+          </div>
+        </section>
+
         <section id="expertise" className="expertise-section section-pad" aria-labelledby="expertise-title">
           <div className="layout">
-            <Chapter number="03" label="THE TOOLKIT" />
+            <Chapter number="04" label="THE TOOLKIT" />
             <div className="expertise-grid">
               <Reveal className="expertise-left">
                 <h2 id="expertise-title">The work<br />behind the<br /><em>work.</em></h2>
@@ -325,7 +357,7 @@ export default function App() {
 
         <section id="journey" className="journey-section section-pad" aria-labelledby="journey-title">
           <div className="layout">
-            <Chapter number="04" label="THE JOURNEY" />
+            <Chapter number="05" label="THE JOURNEY" />
             <div className="journey-layout">
               <Reveal><h2 id="journey-title">Still becoming<span>.</span></h2><p className="journey-intro">A path formed by curiosity, technical practice and the willingness to begin before everything is certain.</p></Reveal>
               <div className="journey-records">
@@ -345,7 +377,7 @@ export default function App() {
 
         <section id="resume" className="resume-section section-pad" aria-labelledby="resume-title">
           <div className="layout">
-            <Chapter number="05" label="PROFILE / CV" />
+            <Chapter number="06" label="PROFILE / CV" />
             <div className="resume-layout">
               <Reveal className="resume-message">
                 <div className="resume-eyebrow"><span className="resume-dot" /> A CLOSER LOOK AT THE WORK</div>
@@ -389,7 +421,7 @@ export default function App() {
           <div className="layout">
             <div className="contact-slab">
               <div className="contact-noise" aria-hidden="true" />
-              <div className="contact-top"><span className="contact-indicator"><i /> NEXT CHAPTER / OPEN</span><span>06 — CONTACT</span></div>
+              <div className="contact-top"><span className="contact-indicator"><i /> NEXT CHAPTER / OPEN</span><span>07 — CONTACT</span></div>
               <Reveal><h2 id="contact-title">Something good<br />starts with <em>hello.</em></h2></Reveal>
               <Reveal className="contact-lower"><p>If you're building something meaningful, I'd be glad to hear about it. Let's make the next idea count.</p>
                 <div className="contact-actions">
@@ -411,6 +443,7 @@ export default function App() {
             <a href={GITHUB} target="_blank" rel="me noopener noreferrer">GitHub <ExternalLink size={14} /></a>
             <a href="https://www.linkedin.com/in/samandarotabek/" target="_blank" rel="me noopener noreferrer">LinkedIn <ExternalLink size={14} /></a>
             <a href={import.meta.env.BASE_URL + "about.html"}>About me <ArrowUpRight size={14} /></a>
+            <a href="/xizmatlar.html">Xizmatlar <ArrowUpRight size={14} /></a>
             <a href={CV_URL} download="Samandar_Alimov_CV.pdf">CV <Download size={15} /></a>
             <a href={'mailto:' + EMAIL}>Email <ArrowUpRight size={15} /></a>
             <a href="#home">Back to top <ArrowRight className="arrow-up" size={15} /></a>
