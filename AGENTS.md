@@ -37,3 +37,10 @@ The owner explicitly approved their 3:4 cut-out photo to appear on both the publ
 
 ## Meaningful 3D content (2026-11-05)
 The hero 3D element is **not decorative filler**. It conveys the owner's concrete process: IDEA (identify a real problem) -> ENGINEERING (build it in code) -> IMPACT (deliver useful products). Keep three clearly labeled stages visible at mobile widths and a no-WebGL/reduced-motion fallback communicating exactly the same meaning. Avoid abstract knot/sphere artwork that cannot be explained. Preserve clarity, legibility, performance, and verified project claims.
+
+## 2026-11-06 — Team project attribution
+- Ten historical projects/engagements from a former teammate's resume are now presented as **collaborative work**, not the founder's sole-authored achievements or employment at those companies.
+- Source is the owner's statement of working together, plus the teammate's supplied 2-page CV. Precise owner role, timeframe, team stack, production status and numerical improvements have NOT been independently verified.
+- Do not transfer the teammate's private contact information, employment dates, KPI percentages, individual achievements or skills to the owner's public identity.
+- The English-learning company mentioned in the friend's resume must be EXCLUDED from portfolio, CV and public index by owner request.
+- A two-page A4 searchable PDF (page 1 career and core projects, page 2 ten collaborative works) is generated at build. Keep this readable; do not compress all ten cases into a one-page wall of text.

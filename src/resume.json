@@ -61,5 +61,59 @@
     }
   ],
   "skills": "React, TypeScript, JavaScript, HTML, CSS, Flutter, Dart, Supabase, Git, GitHub, Vercel, responsive UI",
-  "languages": "Uzbek (native), English (B1)"
+  "languages": "Uzbek (native), English (B1)",
+  "collaborativeProjects": [
+    {
+      "name": "Jizzakh City School",
+      "description": "School news and online applications",
+      "reference": "jizzaxshaharkhm.uz"
+    },
+    {
+      "name": "EHM Gymnasium",
+      "description": "Private school design and web platform",
+      "reference": "ehmgymnasium.uz"
+    },
+    {
+      "name": "Equip-offer",
+      "description": "Equipment campaign and online commerce",
+      "reference": "equip-offer.uz"
+    },
+    {
+      "name": "Crycoud",
+      "description": "GameDev team website",
+      "reference": "crycoud.com"
+    },
+    {
+      "name": "Idealuc Telegram Bot",
+      "description": "Sales and advertising workflow automation",
+      "reference": "t.me/idealuc_bot"
+    },
+    {
+      "name": "Tasviriy Oyina",
+      "description": "Creative union institutional website",
+      "reference": "tasviriyoyinaorg.uz"
+    },
+    {
+      "name": "Hyundai C.E.",
+      "description": "Automotive dealer website in Uzbekistan",
+      "reference": null
+    },
+    {
+      "name": "Loftmee",
+      "description": "Furniture factory online store",
+      "reference": null
+    },
+    {
+      "name": "Equip.uz",
+      "description": "Equipment marketplace engineering and support",
+      "reference": "equip.uz"
+    },
+    {
+      "name": "IT Progress client work",
+      "description": "Team-built websites and technical support",
+      "reference": null
+    }
+  ],
+  "collaborationNote": "Teamwork reported by the portfolio owner and corroborated by a teammate's resume. Individual tasks and impact metrics are not independently verified.",
+  "collaborativeTechnologies": "PHP, Laravel, Yii2, MySQL, Adobe XD, Tilda and Figma (team-stack references; individual proficiency not established)."
 }

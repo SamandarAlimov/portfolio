@@ -91,3 +91,11 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [x] Keep the electric-blue premium glass art direction, but ensure the WebGL fallback communicates the same stages.
 - [x] Add accessible descriptive semantics and automated browser checks for stages and reduced-motion fallback.
 - [ ] Inspect iPhone Safari and Android on real devices, not just Chromium snapshots.
+
+## 2026-11-06 — Evidence-forward client collaboration portfolio
+- [x] Build a separate evidence-labeled gallery of ten historical client/team engagements, based on a supplied teammate CV and the owner's statement of collaboration.
+- [x] Exclude the English-learning company in the supplied document by owner request.
+- [x] Add all ten items to the two-page CV (first page: skills/core experience; second: project inventory with cautious wording).
+- [x] Keep former teammate's private contact details and unverified employment and KPI claims out of this public portfolio.
+- [ ] Collect individual role descriptions, exact dates, screenshots/PRs/client testimonials for the ten projects.
+- [ ] Recheck historical site uptime before labeling any reference URL a currently live product.

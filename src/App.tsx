@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { journey, projects, skills, type Project } from './content';
 import resume from './resume.json';
+import { collaborations } from './collaborations';
 
 const Scene3D = lazy(() => import('./components/Scene3D'));
 const EMAIL = 'samandaralimov18@gmail.com';
@@ -303,6 +304,38 @@ export default function App() {
               {projects.map((project, i) => <WorkItem project={project} index={i} key={project.number} />)}
             </div>
             <Reveal className="all-work"><span>MORE THAN A SHOWCASE. AN ONGOING PRACTICE.</span><a href={GITHUB} target="_blank" rel="noopener noreferrer">All GitHub projects <Github size={18} /><ArrowUpRight size={17} /></a></Reveal>
+            <div id="collaborations" className="collaborations" aria-labelledby="collaborations-title">
+              <Reveal className="collaboration-heading">
+                <div>
+                  <span className="collaboration-kicker">EXTENDED PORTFOLIO / TEAM DELIVERIES</span>
+                  <h3 id="collaborations-title">More than<br /><em>a few projects.</em></h3>
+                </div>
+                <p>School platforms, commerce, community sites and automation. The following are collaborative projects reported from shared work with a development teammate. Individual responsibilities and measured outcomes can be discussed separately.</p>
+              </Reveal>
+              <div className="collaboration-grid">
+                {collaborations.map((project, index) => (
+                  <Reveal key={project.slug} delay={Math.min(index * 0.025, 0.13)}>
+                    <article className="collaboration-card glass">
+                      <div className="collaboration-card-top">
+                        <span className="collaboration-number">{String(index + 1).padStart(2, '0')}</span>
+                        <span className="collaboration-type">{project.type}</span>
+                      </div>
+                      <h4>{project.name}</h4>
+                      <p>{project.description}</p>
+                      <div className="collaboration-card-bottom">
+                        <span>TEAM COLLABORATION</span>
+                        {project.link ? (
+                          <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={'Explore reported project website for ' + project.name}>
+                            Website <ArrowUpRight size={15} aria-hidden="true" />
+                          </a>
+                        ) : <span>PROJECT REFERENCE</span>}
+                      </div>
+                    </article>
+                  </Reveal>
+                ))}
+              </div>
+              <p className="collaboration-note">Note: historical project domains may have changed. Being listed here does not imply sole authorship, current site uptime, a particular role, or independently verified performance metrics.</p>
+            </div>
           </div>
         </section>
 
@@ -350,14 +383,14 @@ export default function App() {
                 <div className="resume-eyebrow"><span className="resume-dot" /> A CLOSER LOOK AT THE WORK</div>
                 <h2 id="resume-title">Beyond the<br /><em>portfolio.</em></h2>
                 <p>Projects show what I build. My CV brings the experience, education, and technical foundations together in a clear, recruiter-friendly document.</p>
-                <div className="resume-spec"><span>01 / FILE FORMAT</span><strong>PDF · A4 · 1 page</strong></div>
+                <div className="resume-spec"><span>01 / FILE FORMAT</span><strong>PDF · A4 · 2 pages</strong></div>
                 <div className="resume-spec"><span>02 / FOCUS</span><strong>Engineering, projects &amp; experience</strong></div>
                 <div className="resume-spec"><span>03 / LAST UPDATED</span><strong>November 2026</strong></div>
                 <div className="resume-actions">
                   <a href={CV_URL} download="Samandar_Alimov_CV.pdf" className="resume-download"><Download size={18} aria-hidden="true" /> Download CV <ArrowUpRight size={18} aria-hidden="true" /></a>
                   <a href={CV_URL} target="_blank" rel="noopener noreferrer" className="resume-view"><Eye size={18} aria-hidden="true" /> View PDF</a>
                 </div>
-                <p className="resume-helper">No sign-up or request required. The PDF opens directly and is available to anyone visiting this site.</p>
+                <p className="resume-helper">No sign-up required. The two-page PDF covers my core experience and a transparent record of collaborative client work.</p>
               </Reveal>
               <Reveal className="resume-art glass">
                 <div className="resume-art-top"><span>DOCUMENT / 001</span><span>CV · 2026</span></div>
@@ -376,7 +409,7 @@ export default function App() {
                   <span className="resume-paper-heading">EDUCATION</span>
                   <div className="resume-paper-row"><strong>TMC Institute of Tashkent</strong><span>Economics</span></div>
                   <span className="resume-paper-heading">SELECTED PROJECTS</span>
-                  <div className="resume-paper-tags"><span>Alsamos</span><span>Leo Logistics</span><span>Proactive</span></div>
+                  <div className="resume-paper-tags"><span>Alsamos</span><span>Leo Logistics</span><span>Proactive</span><span>10 team projects</span></div>
                 </div>
                 <div className="resume-art-bottom"><FileText size={16} aria-hidden="true" /><span>DESIGNED TO BE READ — NOT JUST SEEN</span><ArrowUpRight size={16} aria-hidden="true" /></div>
               </Reveal>
