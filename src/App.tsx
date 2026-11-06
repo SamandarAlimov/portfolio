@@ -239,9 +239,9 @@ export default function App() {
             <div className="about-grid">
               <div className="about-statement">
                 <Reveal><h2 id="about-title">Not just<br />what it <em>looks like.</em><br />What it <span className="outline-word">does.</span></h2></Reveal>
-                <Reveal delay={0.08} className="about-prose"><span className="tiny-arrow" aria-hidden="true">↳</span><p>I'm Samandar Otabek, a developer interested in the space between technically sound products and the feeling of using them.</p></Reveal>
+                <Reveal delay={0.08} className="about-prose"><span className="tiny-arrow" aria-hidden="true">↳</span><p>I'm Samandar Otabek, also known professionally as Samandar Alimov. I'm a developer building usable web and mobile products, including work on Alsamos.</p></Reveal>
                 <Reveal className="about-second"><p>My work spans React, TypeScript, Flutter and product experiments. Economics and logistics give me another lens: software matters most when it solves real problems.</p></Reveal>
-                <Reveal><a className="inline-link" href="#journey">Read my story <ArrowUpRight size={19} /></a></Reveal>
+                <Reveal><a className="inline-link" href={import.meta.env.BASE_URL + "about.html"}>Read my full profile <ArrowUpRight size={19} /></a></Reveal>
               </div>
               <Reveal className="about-photo-wrap">
                 <div className="about-photo glass">
@@ -408,7 +408,9 @@ export default function App() {
           <a href="#home" className="footer-identity" aria-label="Back to top">S<span>·</span></a>
           <span>Made with intention. © {new Date().getFullYear()} Samandar Otabek.</span>
           <div className="footer-links">
-            <a href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub <ExternalLink size={14} /></a>
+            <a href={GITHUB} target="_blank" rel="me noopener noreferrer">GitHub <ExternalLink size={14} /></a>
+            <a href="https://www.linkedin.com/in/samandarotabek/" target="_blank" rel="me noopener noreferrer">LinkedIn <ExternalLink size={14} /></a>
+            <a href={import.meta.env.BASE_URL + "about.html"}>About me <ArrowUpRight size={14} /></a>
             <a href={CV_URL} download="Samandar_Alimov_CV.pdf">CV <Download size={15} /></a>
             <a href={'mailto:' + EMAIL}>Email <ArrowUpRight size={15} /></a>
             <a href="#home">Back to top <ArrowRight className="arrow-up" size={15} /></a>

@@ -44,3 +44,9 @@ The owner rejected both the arbitrary torus knot and symbolic IDEA/ENGINEERING/I
 - Do not transfer the teammate's private contact information, employment dates, KPI percentages, individual achievements or skills to the owner's public identity.
 - The English-learning company mentioned in the friend's resume must be EXCLUDED from portfolio, CV and public index by owner request.
 - A two-page A4 searchable PDF (page 1 career and core projects, page 2 ten collaborative works) is generated at build. Keep this readable; do not compress all ten cases into a one-page wall of text.
+
+## 2026-11-07 — Person/brand SEO identity
+- Canonical personal website is `https://samandarotabek.uz/` and its static about page `/about.html`. Keep distinct from Alsamos organization's `https://www.alsamos.com/` and historical SAMOS education initiative.
+- Public professional identity: Samandar Otabek, also Samandar Alimov (full name from CV Samandar Alimov Otabek o'g'li). Search relevance must come from truthful visible copy + Person/Website/ProfilePage JSON-LD, not keyword stuffing or fake external accounts.
+- Verified public profiles: `https://github.com/SamandarAlimov` and LinkedIn `https://www.linkedin.com/in/samandarotabek/`. Do not infer Instagram, TikTok, Facebook, YouTube, X, Telegram or any *.alsamos.com subdomain owners/URLs without direct evidence.
+- About page is static HTML so bots without JS can read identity. Keep canonical URLs and sitemap synchronized with real published pages and never add duplicate/thin doorway pages.

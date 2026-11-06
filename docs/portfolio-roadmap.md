@@ -106,3 +106,13 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [x] Added live vs in-development labelling, source links when present, keyboard-friendly selectors, arrow controls, mobile swipe and reduced-motion behavior.
 - [x] Kept the rest of the site's identity, archived site, CV and collaboration records untouched.
 - [ ] Review screenshots at 390/320/1440 and check live production URLs when released.
+
+## 2026-11-07 — Canonical person identity & cross-platform discovery
+- [x] Distinguish person Samandar Otabek / Samandar Alimov from Alsamos Corporation and older SAMOS education initiative.
+- [x] Add indexable, server-rendered static /about.html profile with unique biography and actual professional links.
+- [x] Expand identity metadata and schema: WebSite, WebPage, Person with alternateName, sameAs GitHub/LinkedIn, and distinct Alsamos Organization.
+- [x] Expand sitemap to home and about, preserve robots/canonical, social share metadata with JPEG fallback.
+- [x] Connect visible portfolio about section and footer to profile/LinkedIn.
+- [ ] Confirm domain health and Google Search Console sitemap Success + URL Inspection for both pages.
+- [ ] Confirm actual user profile handles before linking YouTube, Instagram, Telegram, X, Facebook or subdomain profiles.
+- [ ] Get a verified list of any public *.alsamos.com hostnames before linking them; do not invent wildcard SEO routes.
