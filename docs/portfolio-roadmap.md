@@ -116,3 +116,10 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [ ] Confirm domain health and Google Search Console sitemap Success + URL Inspection for both pages.
 - [ ] Confirm actual user profile handles before linking YouTube, Instagram, Telegram, X, Facebook or subdomain profiles.
 - [ ] Get a verified list of any public *.alsamos.com hostnames before linking them; do not invent wildcard SEO routes.
+
+## 2026-11-07 — Uzbek search identity and CV canonical domain
+- [x] Create useful, independently readable Uzbek biography at `/haqimda.html` rather than thin alias doorway pages.
+- [x] Add reciprocal English/Uzbek/x-default hreflang between `/about.html` and `/haqimda.html`; both have self-canonical URLs.
+- [x] Add the third real page to the sitemap and browser tests.
+- [x] Update generated public CV personal website from Alsamos corporate homepage to `samandarotabek.uz`.
+- [ ] Validate Search Console coverage and DNS real-world fetch for all three URLs.
