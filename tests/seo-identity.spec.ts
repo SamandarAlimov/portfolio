@@ -44,3 +44,22 @@ test('sitemap and robots contain only published canonical personal pages', async
   expect(robots.status()).toBe(200);
   expect(await robots.text()).toContain('Sitemap: https://samandarotabek.uz/sitemap.xml');
 });
+
+test('Uzbek identity page has unique canonical, hreflang and truthful links', async ({request}) => {
+  const response = await request.get('/haqimda.html');
+  expect(response.status()).toBe(200);
+  const html = await response.text();
+  expect(html).toContain('<html lang="uz">');
+  expect(html).toContain('Samandar Alimov');
+  expect(html).toContain('Samandar Otabek');
+  expect(html).toContain('Самандар Алимов');
+  expect(html).toContain('Alsamos');
+  expect(html).toContain('SAMOS');
+  expect(html).toContain('https://samandarotabek.uz/haqimda.html');
+  expect(html).toContain('https://github.com/SamandarAlimov');
+  expect(html).toContain('https://www.linkedin.com/in/samandarotabek/');
+  const site = await request.get('/sitemap.xml');
+  expect(await site.text()).toContain('<loc>https://samandarotabek.uz/haqimda.html</loc>');
+  const english = await request.get('/about.html');
+  expect(await english.text()).toContain('hreflang="uz"');
+});
