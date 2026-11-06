@@ -383,14 +383,14 @@ export default function App() {
                 <div className="resume-eyebrow"><span className="resume-dot" /> A CLOSER LOOK AT THE WORK</div>
                 <h2 id="resume-title">Beyond the<br /><em>portfolio.</em></h2>
                 <p>Projects show what I build. My CV brings the experience, education, and technical foundations together in a clear, recruiter-friendly document.</p>
-                <div className="resume-spec"><span>01 / FILE FORMAT</span><strong>PDF · A4 · 1 page</strong></div>
+                <div className="resume-spec"><span>01 / FILE FORMAT</span><strong>PDF · A4 · 2 pages</strong></div>
                 <div className="resume-spec"><span>02 / FOCUS</span><strong>Engineering, projects &amp; experience</strong></div>
                 <div className="resume-spec"><span>03 / LAST UPDATED</span><strong>November 2026</strong></div>
                 <div className="resume-actions">
                   <a href={CV_URL} download="Samandar_Alimov_CV.pdf" className="resume-download"><Download size={18} aria-hidden="true" /> Download CV <ArrowUpRight size={18} aria-hidden="true" /></a>
                   <a href={CV_URL} target="_blank" rel="noopener noreferrer" className="resume-view"><Eye size={18} aria-hidden="true" /> View PDF</a>
                 </div>
-                <p className="resume-helper">No sign-up or request required. The PDF opens directly and is available to anyone visiting this site.</p>
+                <p className="resume-helper">No sign-up required. The two-page PDF covers my core experience and a transparent record of collaborative client work.</p>
               </Reveal>
               <Reveal className="resume-art glass">
                 <div className="resume-art-top"><span>DOCUMENT / 001</span><span>CV · 2026</span></div>
@@ -409,7 +409,7 @@ export default function App() {
                   <span className="resume-paper-heading">EDUCATION</span>
                   <div className="resume-paper-row"><strong>TMC Institute of Tashkent</strong><span>Economics</span></div>
                   <span className="resume-paper-heading">SELECTED PROJECTS</span>
-                  <div className="resume-paper-tags"><span>Alsamos</span><span>Leo Logistics</span><span>Proactive</span></div>
+                  <div className="resume-paper-tags"><span>Alsamos</span><span>Leo Logistics</span><span>Proactive</span><span>10 team projects</span></div>
                 </div>
                 <div className="resume-art-bottom"><FileText size={16} aria-hidden="true" /><span>DESIGNED TO BE READ — NOT JUST SEEN</span><ArrowUpRight size={16} aria-hidden="true" /></div>
               </Reveal>

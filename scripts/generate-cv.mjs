@@ -1,5 +1,5 @@
 /**
- * Self-contained, zero-dependency generator for a readable, one-page PDF CV.
+ * Self-contained, zero-dependency generator for a readable, two-page PDF CV.
  * Produces real searchable PDF text with a small professional portrait; no image-only text, bars or fake claims.
  */
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
@@ -47,7 +47,7 @@ function experience(t,item){
 }
 function link(x,top,w,h,url){annotations.push({x,top,w,h,url});}
 
-// Deliberately small identity portrait; preserves the CV's one-page text hierarchy.
+// Deliberately small identity portrait; preserves the CV's readable first-page hierarchy.
 rect(458,62,90,118,[.935,.947,.965]);
 ops.push('q 84 0 0 112 461 '+py(177)+' cm /Portrait Do Q');
 rect(X,43,42,3.1,BLUE);
@@ -88,21 +88,67 @@ text(X,799,'LANGUAGES',8,true,GRAY);
 text(X+74,799,cv.languages,8.5);
 line(X,811,RIGHT,.8);
 text(X,825,'SAMANDAR ALIMOV   /   CV 2026',7.4,true,GRAY);
-right(825,'ONE PAGE. SUBSTANCE FIRST.',7.2,true,GRAY);
+right(825,'PAGE 1 / 2  -  PROFESSIONAL PROFILE',7.2,true,GRAY);
 
-const stream=ops.join('\n')+'\n';
+// Keep page 1 unchanged and append a separate recruiter-readable project ledger.
+// Project descriptions are team-context claims, NOT proof of personal authorship,
+// production availability, employment, or the teammate's KPI figures.
+const firstStream = ops.join('\n')+'\n';
+const firstLinks = annotations.slice();
+ops.length = 0;
+annotations.length = 0;
+
+rect(X,43,42,3.1,BLUE);
+text(X+54,46.3,'SAMANDAR ALIMOV  /  PROJECT RECORD',8.1,true,GRAY);
+right(46.3,'02 / SELECTED COLLABORATIVE WORK',8.0,true,GRAY);
+text(X,86,'CLIENT & TEAM PROJECTS',27.0,true);
+text(X,111,'Collaborative delivery across education, commerce, technology and industry.',9.2,false,GRAY);
+line(X,128,RIGHT,.85);
+text(X,151,'CONTRIBUTION CONTEXT',9.2,true,BLUE);
+paragraph('These engagements reflect teamwork reported by the portfolio owner and described in a collaborator resume. Specific individual responsibilities, technologies and measured outcomes require separate verification.',X,169,RIGHT-X,8.9,13.6,GRAY);
+const collabs = cv.collaborativeProjects || [];
+if (collabs.length !== 10) throw new Error('Expected 10 collaborative records, found '+collabs.length);
+const colX = [X,309];
+for (let i=0; i<collabs.length; i++) {
+  const project = collabs[i];
+  const x = colX[i % 2], row = Math.floor(i/2), y = 238+row*99;
+  text(x,y,String(i+1).padStart(2,'0')+'  /  TEAM PROJECT',7.9,true,BLUE);
+  text(x,y+21,project.name,Math.max(9.1,10.3-project.name.length*.019),true,INK);
+  const endY=paragraph(project.description,x,y+39,228,8.55,11.5,GRAY);
+  if(endY>y+73) throw new Error('Collaborative project description too long: '+project.name);
+  if (project.reference) {
+    text(x,y+79,project.reference,8.0,false,GRAY);
+    link(x,y+69,231,16,project.reference.startsWith('t.me/')?'https://'+project.reference:'https://'+project.reference);
+  } else {
+    text(x,y+79,'Public project URL not yet verified',7.9,false,GRAY);
+  }
+  line(x,y+89,x+231,.65,HAIR);
+}
+text(X,751,'TEAM STACK REFERENCES',8.6,true,BLUE);
+paragraph('PHP / Laravel / Yii2 / MySQL / Figma / Adobe XD / Tilda are technologies mentioned in the teammate resume; they are NOT claimed as individually verified skill levels.',X,768,RIGHT-X,8.15,12.2,GRAY);
+line(X,811,RIGHT,.8);
+text(X,825,'SAMANDAR ALIMOV  /  COLLABORATIVE PROJECTS',7.4,true,GRAY);
+right(825,'PAGE 2 / 2  -  SELECTED TEAM WORK',7.2,true,GRAY);
+
+const secondStream = ops.join('\n')+'\n';
+const secondLinks = annotations.slice();
 const objects=[];
 const add=v=>(objects.push(v),objects.length);
 const catalog=add('<< /Type /Catalog /Pages 2 0 R >>');
-const pages=add('<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
-const page=add('');
+const pages=add('<< /Type /Pages /Kids [3 0 R 4 0 R] /Count 2 >>');
+const firstPage=add('');
+const secondPage=add('');
 const regular=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>');
 const bold=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>');
 const portraitImage=add('<< /Type /XObject /Subtype /Image /Width 420 /Height 560 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+portrait.length+' >>\nstream\n'+portrait.toString('latin1')+'\nendstream');
-const contents=add('<< /Length '+Buffer.byteLength(stream,'binary')+' >>\nstream\n'+stream+'endstream');
-const ann=[];
-for(const a of annotations) ann.push(add('<< /Type /Annot /Subtype /Link /Border [0 0 0] /Rect ['+num(a.x)+' '+py(a.top+a.h)+' '+num(a.x+a.w)+' '+py(a.top)+'] /A << /S /URI /URI ('+clean(a.url)+') >> >>'));
-objects[page-1]='<< /Type /Page /Parent '+pages+' 0 R /MediaBox [0 0 '+W+' '+H+'] /Resources << /Font << /F1 '+regular+' 0 R /F2 '+bold+' 0 R >> /XObject << /Portrait '+portraitImage+' 0 R >> >> /Contents '+contents+' 0 R /Annots ['+ann.map(i=>i+' 0 R').join(' ')+'] >>';
+const firstContents=add('<< /Length '+Buffer.byteLength(firstStream,'binary')+' >>\nstream\n'+firstStream+'endstream');
+const secondContents=add('<< /Length '+Buffer.byteLength(secondStream,'binary')+' >>\nstream\n'+secondStream+'endstream');
+function makeAnnots(entries){
+ return entries.map(a=>add('<< /Type /Annot /Subtype /Link /Border [0 0 0] /Rect ['+num(a.x)+' '+py(a.top+a.h)+' '+num(a.x+a.w)+' '+py(a.top)+'] /A << /S /URI /URI ('+clean(a.url)+') >> >>'));
+}
+const ann1=makeAnnots(firstLinks),ann2=makeAnnots(secondLinks);
+objects[firstPage-1]='<< /Type /Page /Parent '+pages+' 0 R /MediaBox [0 0 '+W+' '+H+'] /Resources << /Font << /F1 '+regular+' 0 R /F2 '+bold+' 0 R >> /XObject << /Portrait '+portraitImage+' 0 R >> >> /Contents '+firstContents+' 0 R /Annots ['+ann1.map(i=>i+' 0 R').join(' ')+'] >>';
+objects[secondPage-1]='<< /Type /Page /Parent '+pages+' 0 R /MediaBox [0 0 '+W+' '+H+'] /Resources << /Font << /F1 '+regular+' 0 R /F2 '+bold+' 0 R >> >> /Contents '+secondContents+' 0 R /Annots ['+ann2.map(i=>i+' 0 R').join(' ')+'] >>';
 let output='%PDF-1.4\n%\xE2\xE3\xCF\xD3\n';
 const offsets=[0];
 for(let i=0;i<objects.length;i++){offsets.push(Buffer.byteLength(output,'binary'));output+=(i+1)+' 0 obj\n'+objects[i]+'\nendobj\n';}
@@ -112,4 +158,4 @@ for(let i=1;i<offsets.length;i++)output+=String(offsets[i]).padStart(10,'0')+' 0
 output+='trailer\n<< /Size '+(objects.length+1)+' /Root '+catalog+' 0 R >>\nstartxref\n'+start+'\n%%EOF\n';
 await mkdir(dirname(dest),{recursive:true});
 await writeFile(dest,Buffer.from(output,'binary'));
-console.log('Professional CV PDF generated:',dest);
+console.log('Professional two-page CV generated:',dest);

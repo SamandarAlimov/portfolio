@@ -78,6 +78,11 @@ test('CV download is a valid publicly served searchable PDF', async ({ page, req
   expect(bytes.length).toBeGreaterThan(3000);
   const pdfData = bytes.toString('latin1');
   expect(pdfData).toContain('Proactive Marketing');
+  expect(pdfData).toContain('Jizzakh City School');
+  expect(pdfData).toContain('EHM Gymnasium');
+  expect(pdfData).toContain('Hyundai C.E.');
+  expect(pdfData).toContain('Loftmee');
+  expect(pdfData).toContain('/Count 2');
   expect(pdfData).not.toContain('Samhus');
   await expect(page.getByRole('heading', { name: /Beyond the/i })).toBeVisible();
 });
@@ -119,4 +124,15 @@ test('meaningful hero explains the physical 3D stages, including without WebGL',
     clientWidth: document.documentElement.clientWidth,
   }));
   expect(size.scrollWidth).toBeLessThanOrEqual(size.clientWidth + 1);
+});
+
+test('collaborative work is complete, clear and not presented as sole work', async ({ page }) => {
+  await page.goto('/');
+  const section = page.getByRole('heading', { name: /More than/i });
+  await expect(section).toBeVisible();
+  await expect(page.locator('.collaboration-card')).toHaveCount(10);
+  await expect(page.locator('.collaborations')).toContainText('TEAM COLLABORATION');
+  await expect(page.locator('.collaborations')).toContainText('Hyundai C.E.');
+  await expect(page.locator('.collaborations')).toContainText('Loftmee');
+  await expect(page.locator('.collaborations')).not.toContainText('Englify');
 });
