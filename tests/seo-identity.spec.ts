@@ -63,3 +63,28 @@ test('Uzbek identity page has unique canonical, hreflang and truthful links', as
   const english = await request.get('/about.html');
   expect(await english.text()).toContain('hreflang="uz"');
 });
+
+test('service pages are real static pages with reciprocal canonical, headings, provenance, and sitemap entries', async ({request}) => {
+  for (const [path, language, other] of [
+    ['/xizmatlar.html','uz','/services.html'],
+    ['/services.html','en','/xizmatlar.html']
+  ]) {
+    const r = await request.get(path);
+    expect(r.status()).toBe(200);
+    const html = await r.text();
+    expect(html).toContain('<html lang="' + language + '">');
+    expect(html).toContain('rel="canonical" href="https://samandarotabek.uz' + path + '"');
+    expect(html).toContain('href="https://samandarotabek.uz' + other + '"');
+    expect(html).toContain('https://github.com/SamandarAlimov/alsamos');
+    expect(html).toContain('https://leo-logistics.uz/');
+    expect(html).toContain('mailto:samandaralimov18@gmail.com?subject=');
+    expect((html.match(/class="card" id="/g) || []).length).toBe(7);
+    const scripts = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+    const ld = JSON.parse(scripts[0][1]);
+    expect(ld['@graph'].filter((x: { '@type': string }) => x['@type'] === 'Service')).toHaveLength(7);
+  }
+  const sitemap = await request.get('/sitemap.xml');
+  const xml = await sitemap.text();
+  expect(xml).toContain('<loc>https://samandarotabek.uz/xizmatlar.html</loc>');
+  expect(xml).toContain('<loc>https://samandarotabek.uz/services.html</loc>');
+});
