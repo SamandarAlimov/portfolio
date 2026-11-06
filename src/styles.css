@@ -700,3 +700,28 @@ a:focus-visible,button:focus-visible { outline-color: var(--accent); }
   .process-stages strong { font-size: 11px; }
   .process-stages small { font-size: 8.5px; }
 }
+
+
+/* Evidence-forward past teamwork, without pretending every engagement was a solo build. */
+.collaborations{margin-top:125px;padding-top:60px;border-top:1px solid #c7caca;scroll-margin-top:105px}
+.collaboration-heading{display:flex;align-items:end;justify-content:space-between;gap:50px;margin-bottom:39px}
+.collaboration-heading>div{max-width:700px}
+.collaboration-kicker{font:800 10px var(--display);letter-spacing:.16em;color:#075bff}
+.collaboration-heading h3{font:800 clamp(44px,5.6vw,80px)/1.07 var(--display);letter-spacing:-.07em;margin:19px 0 0}
+.collaboration-heading h3 em{font:italic 400 1.2em var(--serif);color:#075bff}
+.collaboration-heading>p{max-width:390px;color:#63676a;font-size:14px;line-height:1.83;margin:0}
+.collaboration-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.collaboration-grid>div{min-width:0}
+.collaboration-card{height:100%;padding:26px 29px 21px;border-radius:20px;background:rgba(255,255,255,.72);display:flex;flex-direction:column;min-height:235px;transition:border-color .23s,transform .23s,box-shadow .23s}
+.collaboration-card:hover{transform:translateY(-3px);border-color:rgba(7,91,255,.4);box-shadow:0 16px 36px rgba(26,37,53,.09)}
+.collaboration-card-top,.collaboration-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.collaboration-number{font:800 11px var(--display);color:#075bff}
+.collaboration-type{font-size:10px;font-weight:700;color:#73787c;text-align:right}
+.collaboration-card h4{margin:31px 0 9px;font:800 clamp(20px,2vw,29px)/1.16 var(--display);letter-spacing:-.05em}
+.collaboration-card>p{font-size:13px;line-height:1.66;color:#74787b;margin:0 0 24px}
+.collaboration-card-bottom{margin-top:auto;padding-top:13px;border-top:1px solid #e1e3e1;font:800 9px var(--display);letter-spacing:.08em;color:#878b8d}
+.collaboration-card-bottom a{font-size:11px;color:#075bff;letter-spacing:0;display:inline-flex;align-items:center;gap:6px}
+.collaboration-card-bottom a:hover{text-decoration:underline}
+.collaboration-note{font-size:11px;line-height:1.65;color:#787d80;max-width:920px;margin:18px 0 0}
+@media(max-width:900px){.collaboration-heading{flex-direction:column;align-items:flex-start;gap:17px}.collaboration-heading>p{max-width:600px}.collaborations{margin-top:88px}}
+@media(max-width:650px){.collaborations{margin-top:69px;padding-top:41px}.collaboration-heading h3{font-size:clamp(40px,10vw,61px)}.collaboration-grid{grid-template-columns:1fr;gap:12px}.collaboration-card{min-height:200px;padding:21px 23px 19px}.collaboration-card h4{margin-top:24px;font-size:24px}}
