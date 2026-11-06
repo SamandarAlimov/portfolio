@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import {
   ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, ExternalLink,
@@ -7,8 +7,8 @@ import {
 import { journey, projects, skills, type Project } from './content';
 import resume from './resume.json';
 import { collaborations } from './collaborations';
+import { ProjectShowcase } from './components/ProjectShowcase';
 
-const Scene3D = lazy(() => import('./components/Scene3D'));
 const EMAIL = 'samandaralimov18@gmail.com';
 const GITHUB = 'https://github.com/SamandarAlimov';
 const CV_URL = import.meta.env.BASE_URL + 'cv/Samandar_Alimov_CV.pdf';
@@ -19,15 +19,6 @@ const links = [
   { id: 'journey', text: 'Journey' },
   { id: 'resume', text: 'CV' },
 ] as const;
-
-function canRenderWebGL() {
-  try {
-    const canvas = document.createElement('canvas');
-    return !!(canvas.getContext('webgl2') || canvas.getContext('webgl'));
-  } catch {
-    return false;
-  }
-}
 
 function Reveal({ children, className = '', delay = 0 }: {
   children: ReactNode; className?: string; delay?: number;
@@ -140,16 +131,11 @@ function ExpertiseItem({ index, isOpen, toggle }: { index: number; isOpen: boole
 export default function App() {
   const reduceMotion = useReducedMotion();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [threeEnabled, setThreeEnabled] = useState(false);
   const [workMode, setWorkMode] = useState<'gallery' | 'index'>('gallery');
   const [openSkill, setOpenSkill] = useState(0);
   const [copied, setCopied] = useState(false);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 28 });
-
-  useEffect(() => {
-    setThreeEnabled(!reduceMotion && canRenderWebGL());
-  }, [reduceMotion]);
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', isMenuOpen);
@@ -211,7 +197,7 @@ export default function App() {
           </div>
           <div className="hero-display">
             <div className="hero-type">
-              <Reveal><span className="hero-kicker"><span className="kicker-square" /> IDEA / ENGINEERING / IMPACT</span></Reveal>
+              <Reveal><span className="hero-kicker"><span className="kicker-square" /> BUILT WORK / OPEN TO INSPECTION</span></Reveal>
               <motion.h1
                 id="hero-title"
                 initial={reduceMotion ? false : { opacity: 0, y: 52 }}
@@ -222,7 +208,7 @@ export default function App() {
               </motion.h1>
               <Reveal delay={0.2} className="hero-intro-row">
                 <span className="intro-bullet" aria-hidden="true">↳</span>
-                <p>I turn real problems into practical digital products — taking ideas through engineering to experiences people can use.</p>
+                <p>I build real digital products — explore the work, examine the code and see what each project is made for.</p>
               </Reveal>
               <Reveal delay={0.26} className="hero-links">
                 <a className="black-button" href="#work">Explore the work <ArrowUpRight size={19} /></a>
@@ -230,25 +216,7 @@ export default function App() {
                 <a className="quiet-link resume-hero-link" href={CV_URL} download="Samandar_Alimov_CV.pdf"><Download size={17} /> Download CV</a>
               </Reveal>
             </div>
-            <div className="hero-gallery glass" role="group" aria-label="My process: idea, engineering and real-world impact. A concept becomes a working digital product.">
-              <div className="gallery-grid" aria-hidden="true" />
-              <div className="gallery-caption gallery-caption-top"><span>FIG. 001 / THE PROCESS</span><span>FROM IDEA TO IMPACT</span></div>
-              <div className="gallery-corner gallery-corner-tl" aria-hidden="true" />
-              <div className="gallery-corner gallery-corner-br" aria-hidden="true" />
-              {threeEnabled ? (
-                <Suspense fallback={<div className="process-fallback" aria-hidden="true"><span className="process-fallback-node process-fallback-idea" /><span className="process-fallback-link" /><span className="process-fallback-node process-fallback-engineering" /><span className="process-fallback-link" /><span className="process-fallback-node process-fallback-impact" /></div>}>
-                  <Scene3D />
-                </Suspense>
-              ) : (
-                <div className="process-fallback" aria-hidden="true"><span className="process-fallback-node process-fallback-idea" /><span className="process-fallback-link" /><span className="process-fallback-node process-fallback-engineering" /><span className="process-fallback-link" /><span className="process-fallback-node process-fallback-impact" /></div>
-              )}
-              <ol className="process-stages" aria-label="Three stages of how I work">
-                <li><span>01 / DISCOVER</span><strong>IDEA</strong><small>Find the problem</small></li>
-                <li><span>02 / CREATE</span><strong>ENGINEERING</strong><small>Build the solution</small></li>
-                <li><span>03 / DELIVER</span><strong>IMPACT</strong><small>Make it useful</small></li>
-              </ol>
-              <div className="gallery-caption gallery-caption-bottom"><span>CONCEPT → CODE → PRODUCT</span><span>PURPOSE-DRIVEN BUILD</span></div>
-            </div>
+            <ProjectShowcase />
             <div className="hero-side-index" aria-hidden="true"><span>DESIGNED TO FEEL DIFFERENT</span><span>↓</span></div>
           </div>
           <div className="hero-footer">

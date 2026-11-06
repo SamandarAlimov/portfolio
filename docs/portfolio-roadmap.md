@@ -99,3 +99,10 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [x] Keep former teammate's private contact details and unverified employment and KPI claims out of this public portfolio.
 - [ ] Collect individual role descriptions, exact dates, screenshots/PRs/client testimonials for the ten projects.
 - [ ] Recheck historical site uptime before labeling any reference URL a currently live product.
+
+## 2026-11-06: Hero redesigned around verifiable work
+- [x] Removed rejected IDEA/ENGINEERING/IMPACT sculptural animation entirely from the hero.
+- [x] Replaced with an interactive, high-quality project dossier for four real entries (Leo Logistics Academy, Proactive Marketing, Alsamos, Alsamos AI), reusing truthful project data and linked evidence.
+- [x] Added live vs in-development labelling, source links when present, keyboard-friendly selectors, arrow controls, mobile swipe and reduced-motion behavior.
+- [x] Kept the rest of the site's identity, archived site, CV and collaboration records untouched.
+- [ ] Review screenshots at 390/320/1440 and check live production URLs when released.

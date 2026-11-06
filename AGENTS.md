@@ -35,8 +35,8 @@ The owner explicitly approved their 3:4 cut-out photo to appear on both the publ
 - The owner explicitly removed the experimental programming-language project from the public portfolio, CV and preview. Do not reintroduce it into public-facing artifacts without a new explicit request.
 - The fourth featured project is Proactive Marketing, sourced from the owner-linked `SamandarAlimov/proactiveagency` repository. Do not fabricate launch metrics, client outcomes or production status. The CV PDF is regenerated from `src/resume.json` with each build.
 
-## Meaningful 3D content (2026-11-05)
-The hero 3D element is **not decorative filler**. It conveys the owner's concrete process: IDEA (identify a real problem) -> ENGINEERING (build it in code) -> IMPACT (deliver useful products). Keep three clearly labeled stages visible at mobile widths and a no-WebGL/reduced-motion fallback communicating exactly the same meaning. Avoid abstract knot/sphere artwork that cannot be explained. Preserve clarity, legibility, performance, and verified project claims.
+## Featured project proof, not decorative 3D (2026-11-06)
+The owner rejected both the arbitrary torus knot and symbolic IDEA/ENGINEERING/IMPACT 3D objects. The home hero must communicate concrete developer work: an accessible, interactive project showcase built from the genuine `src/content.ts` records. Show clearly whether each project is live or in development, link to real public work or source, never pretend case-study artwork is a screenshot and never invent KPIs. Do NOT reintroduce speculative 3D/metaphors without explicit approval. On mobile, selection buttons and swipe work; respect reduced-motion and keyboard access. Keep the rest of the site, public CV, Proactive and collaborative cases unchanged.
 
 ## 2026-11-06 — Team project attribution
 - Ten historical projects/engagements from a former teammate's resume are now presented as **collaborative work**, not the founder's sole-authored achievements or employment at those companies.
