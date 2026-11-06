@@ -104,21 +104,22 @@ test('updated real portrait appears on site and is embedded in the CV', async ({
   expect(pdfBody).toContain('SAMANDAR ALIMOV');
 });
 
-test('meaningful hero explains the physical 3D stages, including without WebGL', async ({ page }) => {
+test('hero showcases verifiable work instead of decorative 3D', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  const panel = page.getByRole('group', { name: /my process: idea, engineering and real-world impact/i });
-  await expect(panel).toBeVisible();
-  const stages = panel.getByRole('list', { name: 'Three stages of how I work' });
-  await expect(stages.getByRole('listitem')).toHaveCount(3);
-  await expect(stages).toContainText('IDEA');
-  await expect(stages).toContainText('ENGINEERING');
-  await expect(stages).toContainText('IMPACT');
-  await expect(stages).toContainText('Find the problem');
-  await expect(stages).toContainText('Build the solution');
-  await expect(stages).toContainText('Make it useful');
-  await expect(panel.locator('.process-fallback')).toBeVisible();
+  const region = page.getByRole('region', { name: 'Featured portfolio projects' });
+  await expect(region).toBeVisible();
+  await expect(region.getByRole('heading', { name: 'Leo Logistics Academy' })).toBeVisible();
+  await expect(region).toContainText('PUBLIC WEBSITE');
+  await expect(region.getByRole('link', { name: /Visit website/i })).toHaveAttribute('href', 'https://leo-logistics.uz');
+  await region.getByRole('button', { name: 'Show project: Proactive Marketing' }).click();
+  await expect(region.getByRole('heading', { name: 'Proactive Marketing' })).toBeVisible();
+  await expect(region).toContainText('WORK IN PROGRESS');
+  await expect(region.getByRole('link', { name: /Explore project/i })).toHaveAttribute('href', 'https://proactive.agency.uz');
+  await region.getByRole('button', { name: 'Next featured project' }).click();
+  await expect(region.getByRole('heading', { name: 'Alsamos' })).toBeVisible();
+  await expect(region.locator('canvas')).toHaveCount(0);
   const size = await page.evaluate(() => ({
     scrollWidth: document.documentElement.scrollWidth,
     clientWidth: document.documentElement.clientWidth,

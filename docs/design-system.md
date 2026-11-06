@@ -24,18 +24,18 @@ Not another portfolio template. The site should feel like a digital design exhib
 
 ## Signature composition
 1. Fixed floating translucent nav capsule.
-2. Overprinted, enormous typographic hero against a frosted 3D object vitrine.
-3. A meaningful interactive three-stage 3D process: faceted idea, chrome software engineering module and vivid cobalt real-world impact connected by a moving signal. HTML labels spell out IDEA / ENGINEERING / IMPACT. Reduced-motion and WebGL fallback show the same message.
+2. Oversized editorial hero beside a frosted, interactive *real-project dossier* — the work is the visual meaning.
+3. Selected work showcase: real portfolio summaries from `src/content.ts`, actual URLs and code links, accurate release status, and selection by buttons, arrows or horizontal swipe. No arbitrary symbolic sculpture or fictional UI screenshot.
 4. White floating cards around distinctly vivid project artwork: violet / cyan / coral / lime, variable bento spans and gallery/index interaction.
 5. Toolset as accordion; timeline as technical record; contact as an inverted charcoal slab.
-6. Subtle scroll reveals, pointer-driven material accents, and a crisp electric-blue progress line.
+6. Subtle scroll reveals, pointer-driven material accents, and a crisp electric-blue progress line. The hero has no WebGL dependency.
 
 ## Color hierarchy
-Neutral backgrounds occupy the majority of the screen. Use electric blue sparingly for global action, highlights and the hero sculpture. Use saturated complementary hues only as deliberate visual identities inside the work gallery. Saturation should be bold, but geometry, typography and layout remain refined; never add arbitrary colored sections simply to make the site louder.
+Neutral backgrounds occupy the majority of the screen. Use electric blue sparingly for global action, highlights and the selected project dossier. Use saturated complementary hues only as deliberate visual identities inside the work gallery. Saturation should be bold, but geometry, typography and layout remain refined; never add arbitrary colored sections simply to make the site louder.
 
 ## Interaction & performance
 - Use Framer Motion and CSS easing for modest movement, never animation for animation's sake.
-- Lazy-load the 3D runtime; respect prefers-reduced-motion and absent WebGL.
+- The hero uses no 3D runtime. Respect prefers-reduced-motion; make the project switch keyboard and touch accessible.
 - Ensure 320px–wide screens work, no accidental horizontal overflow, keyboard access and visible focus rings.
 - No generic metric counters, fabricated client testimonials or stock imagery presented as projects.
 

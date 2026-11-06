@@ -1,0 +1,90 @@
+
+/* Evidence is the design: one real project at a time, in a tactile product dossier.
+   No fake browser screenshots, arbitrary 3D, metric counters or promised outcomes. */
+.hero-gallery.project-showcase {
+  --case-ink: #075bff;
+  --case-glow: rgba(7,91,255,.11);
+  height: 548px;
+  padding: 27px 30px 23px;
+  border-radius: 29px 102px 29px 29px;
+  background:
+    radial-gradient(ellipse at 88% 35%, var(--case-glow), transparent 56%),
+    linear-gradient(153deg, rgba(255,255,255,.91), rgba(232,235,237,.78));
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+.project-showcase::after { display: none !important; }
+.project-showcase.showcase-violet { --case-ink:#692cff; --case-glow:rgba(105,44,255,.12); }
+.project-showcase.showcase-cyan { --case-ink:#075bff; --case-glow:rgba(7,91,255,.12); }
+.project-showcase.showcase-lime { --case-ink:#e43b32; --case-glow:rgba(228,59,50,.12); }
+.project-showcase.showcase-coral { --case-ink:#dc6020; --case-glow:rgba(220,96,32,.11); }
+.showcase-grid {
+  position:absolute; inset:0; z-index:-1; opacity:.32; pointer-events:none;
+  background-image:linear-gradient(rgba(31,48,64,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(31,48,64,.035) 1px,transparent 1px);
+  background-size:38px 38px;
+  mask-image:linear-gradient(95deg,transparent,black 70%);
+}
+.showcase-head { display:flex; justify-content:space-between; align-items:center; gap:18px; min-height:29px; position:relative; z-index:2; }
+.showcase-identity { display:flex; align-items:center; gap:10px; color:#677078; font:800 9px var(--display); letter-spacing:.12em; }
+.showcase-emblem { width:21px; height:21px; border:1px solid var(--case-ink); transform:rotate(-18deg); display:grid; place-items:center; }
+.showcase-emblem span { display:block; width:7px; height:7px; background:var(--case-ink); border-radius:2px; }
+.showcase-counter { font:800 11px var(--display); color:#2b3034; white-space:nowrap; }
+.showcase-counter b { font-weight:500; color:#9da4ab; padding:0 5px; }
+.showcase-content { position:relative; flex:1; min-height:0; padding:40px 1px 14px; display:flex; flex-direction:column; }
+.showcase-topline { display:flex; gap:14px; align-items:center; justify-content:space-between; }
+.showcase-category { font:800 10px var(--display); letter-spacing:.13em; color:var(--case-ink); }
+.showcase-status { display:inline-flex; align-items:center; gap:7px; color:#646d75; font:800 9px var(--display); letter-spacing:.04em; white-space:nowrap; }
+.showcase-status-dot { display:block; background:var(--case-ink); width:6px; height:6px; border-radius:50%; }
+.showcase-figure { position:absolute; pointer-events:none; z-index:-1; top:50px; right:12px; font:800 147px/.9 var(--display); letter-spacing:-.11em; color:rgba(15,30,46,.035); user-select:none; }
+.showcase-title { position:relative; font:800 clamp(30px,3.5vw,51px)/1.04 var(--display); letter-spacing:-.075em; color:#212426; margin:25px 0 15px; max-width:430px; overflow-wrap:break-word; }
+.showcase-description { position:relative; font:500 13px/1.75 'DM Sans',sans-serif; color:#626b74; margin:0; max-width:425px; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+.showcase-stack { margin-top:22px; display:flex; flex-wrap:wrap; gap:7px; }
+.showcase-stack span { padding:7px 10px; border-radius:7px; border:1px solid rgba(30,46,62,.11); background:rgba(255,255,255,.53); color:#4f5a64; font:700 10px var(--display); }
+.showcase-action-row { display:flex; flex-wrap:wrap; align-items:center; gap:13px; margin-top:auto; padding-top:20px; }
+.showcase-primary { display:inline-flex; align-items:center; justify-content:center; gap:21px; min-height:45px; border-radius:999px; padding:0 18px; background:#202428; color:#fff; font:800 11px var(--display); transition:transform .2s,background .2s; }
+.showcase-primary:hover { transform:translateY(-2px); background:var(--case-ink); }
+.showcase-secondary { display:inline-flex; align-items:center; gap:7px; color:#46515b; font:800 11px var(--display); padding:10px 4px; }
+.showcase-secondary:hover { color:var(--case-ink); }
+.showcase-footer { border-top:1px solid rgba(69,82,93,.18); padding-top:17px; margin-top:14px; display:flex; align-items:center; justify-content:space-between; gap:15px; }
+.showcase-select { display:flex; align-items:center; gap:6px; }
+.showcase-select button { border:1px solid rgba(40,50,58,.14); background:rgba(255,255,255,.45); width:39px; height:34px; border-radius:9px; color:#707b83; font:800 10px var(--display); transition:background .2s,color .2s,border-color .2s; }
+.showcase-select button:hover { border-color:var(--case-ink); color:#202428; }
+.showcase-select button.is-active { color:white; background:var(--case-ink); border-color:var(--case-ink); }
+.showcase-arrows { display:flex; gap:7px; }
+.showcase-arrows button { width:36px; height:36px; border-radius:50%; border:1px solid rgba(45,58,72,.17); background:rgba(255,255,255,.58); display:grid; place-items:center; transition:background .2s,color .2s; }
+.showcase-arrows button:hover { background:#202428; color:#fff; }
+@media(max-width:1150px) and (min-width:701px) {
+  .hero-gallery.project-showcase { padding:24px; }
+  .showcase-title { font-size:clamp(30px,3.6vw,46px); }
+}
+@media(max-width:700px) {
+  .hero-gallery.project-showcase { height:438px; width:100%; padding:23px 20px 19px; border-radius:23px 70px 23px 23px; }
+  .showcase-identity { font-size:8px; letter-spacing:.06em; }
+  .showcase-counter { padding-right:12px; }
+  .showcase-content { padding:26px 0 8px; }
+  .showcase-title { font-size:clamp(30px,8.3vw,40px); margin:21px 0 11px; max-width:100%; }
+  .showcase-figure { font-size:110px; top:46px; }
+  .showcase-description { font-size:12px; line-height:1.62; -webkit-line-clamp:3; }
+  .showcase-stack { margin-top:15px; }
+  .showcase-stack span { font-size:9px; padding:6px 8px; }
+  .showcase-action-row { padding-top:10px; }
+  .showcase-footer { margin-top:9px; padding-top:12px; }
+}
+@media(max-width:390px) {
+  .hero-gallery.project-showcase { height:455px; padding-inline:16px; }
+  .showcase-identity { font-size:7.5px; }
+  .showcase-category { font-size:9px; letter-spacing:.07em; }
+  .showcase-status { font-size:8px; }
+  .showcase-title { font-size:30px; }
+  .showcase-description { font-size:11.5px; }
+  .showcase-primary { min-height:42px; gap:10px; padding:0 13px; }
+  .showcase-select button { width:35px; height:34px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .showcase-primary,.showcase-arrows button,.showcase-select button { transition:none; }
+}
+
+@media(max-width:700px) {
+  .showcase-title { letter-spacing:-.055em; }
+}

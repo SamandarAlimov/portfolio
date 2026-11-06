@@ -1,6 +1,6 @@
 # Samandar Otabek — Portfolio
 
-A custom-designed monochrome editorial portfolio with layered white/gray/black glassmorphism, sculptural chrome-and-graphite 3D, asymmetrical project art direction, motion and a React + TypeScript foundation.
+A custom white/gray/black editorial portfolio with vivid accent colors, frosted glassmorphism and a real-work interactive project showcase. Built in React + TypeScript with restrained motion.
 
 ## Original site preserved
 
@@ -12,7 +12,7 @@ It was copied from the original Git tree of commit **37d3833466fb8dfca303f949ca3
 
 ## Stack
 
-React 19, TypeScript, JavaScript, Vite, Three.js, React Three Fiber, Drei, Framer Motion, Lucide icons and vanilla CSS.
+React 19, TypeScript, JavaScript, Vite, Framer Motion, Lucide icons and vanilla CSS. No WebGL required for the hero.
 
 ## Run locally
 
@@ -24,11 +24,11 @@ The GitHub Actions workflow builds on pull requests and deploys dist/ when chang
 
 ## Design direction
 
-This is intentionally **not** a generic portfolio template. Visual language: off-white gallery paper, graphite typography, smoky translucent glass, overprinted giant typography, the Instrument Serif editorial accent, asymmetrical project specimens, and a dark inverted contact monolith. Work switches between bento gallery and compact index, while skills use an interactive accordion. Do not reintroduce colored gradient cards or a standard sidebar portfolio template. See docs/design-system.md.
+This is intentionally **not** a generic portfolio template. Visual language: off-white gallery paper, graphite typography, smoky translucent glass, overprinted giant typography, the Instrument Serif editorial accent, asymmetrical project specimens, and a dark inverted contact monolith. Work switches between bento gallery and compact index, while skills use an interactive accordion. Do not reintroduce random abstract 3D objects, generic gradient cards or a standard sidebar portfolio template. See docs/design-system.md.
 
 ## Accessibility and motion
 
-The WebGL hero is lazy-loaded and has a CSS fallback. Users who prefer reduced motion get static content. Navigation and links support keyboards and focus styling. Contact uses real email and profile links, without a pretend form submission.
+The hero presents real projects with keyboard-accessible buttons, arrow navigation and horizontal mobile swipe. Users who prefer reduced motion get instant project transitions. Navigation and links support keyboards and focus styling. Contact uses real email and profile links, without a pretend form submission.
 
 ## Accuracy
 
@@ -40,7 +40,7 @@ Verify the preferred email and domain, add project screenshots and case studies,
 
 ## Public professional CV
 
-- A purpose-built professional, one-page, ATS-readable English CV is generated from `src/resume.json`.
+- A purpose-built professional, two-page, ATS-readable English CV is generated from `src/resume.json`.
 - Run `npm run build:cv` to generate `public/cv/Samandar_Alimov_CV.pdf` (also runs automatically during `npm run dev` and `npm run build`).
 - The public page has a dedicated `#resume` section, a real View PDF link, and an explicit Download CV link (header, hero, footer).
 - The file is served as a real PDF, not a screenshot or a JS-generated click-time blob.
@@ -48,7 +48,7 @@ Verify the preferred email and domain, add project screenshots and case studies,
 - No duplicate CV blobs are committed; the PDF is rebuilt from versioned source on deployment.
 
 ## Portrait
-The user-approved 3:4 image is stored as a transparent WebP (`public/images/samandar-portrait.webp`) for the About and Resume-preview sections and an optimized white-composite JPEG (`public/images/samandar-portrait-cv.jpg`) embedded by the one-page PDF generator. Update both together to keep the website and downloadable CV consistent.
+The user-approved 3:4 image is stored as a transparent WebP (`public/images/samandar-portrait.webp`) for the About and Resume-preview sections and an optimized white-composite JPEG (`public/images/samandar-portrait-cv.jpg`) embedded by the two-page PDF generator. Update both together to keep the website and downloadable CV consistent.
 
 ## Google Search Console / SEO
 
