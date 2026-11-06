@@ -60,7 +60,7 @@ export function ProjectShowcase() {
             <span className="showcase-status"><span className="showcase-status-dot" />{stage}</span>
           </div>
           <span className="showcase-figure" aria-hidden="true">{String(active + 1).padStart(2, '0')}</span>
-          <h2 className="showcase-title">{project.title}</h2>
+          <h2 className="showcase-title">{project.title === "Leo Logistics Academy" ? <>Leo Logistics<br />Academy</> : project.title}</h2>
           <p className="showcase-description">{project.description}</p>
           <div className="showcase-stack" aria-label="Technologies used">
             {project.technologies.slice(0, 3).map(tag => <span key={tag}>{tag}</span>)}

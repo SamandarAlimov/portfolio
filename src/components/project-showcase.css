@@ -84,3 +84,7 @@
 @media(prefers-reduced-motion:reduce) {
   .showcase-primary,.showcase-arrows button,.showcase-select button { transition:none; }
 }
+
+@media(max-width:700px) {
+  .showcase-title { letter-spacing:-.055em; }
+}
