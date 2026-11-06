@@ -323,10 +323,10 @@ export default function App() {
                   <article className="service-tile glass">
                     <div className="service-tile-top"><span>{String(index + 1).padStart(2, '0')} / SERVICE</span><span className="service-tile-mark" aria-hidden="true">↗</span></div>
                     <h3>{service.en}</h3>
-                    <p>{service.description}</p>
+                    <p>{service.enDescription}</p>
                     <div className="service-tile-bottom">
                       <a href={'/services.html#' + service.slug} aria-label={'Read about ' + service.en}>Details <ArrowUpRight size={16} aria-hidden="true" /></a>
-                      <a href={service.proof} target="_blank" rel="noopener noreferrer" aria-label={'See reference for ' + service.en}>Work reference <ExternalLink size={14} aria-hidden="true" /></a>
+                      <a href={service.proofUrl} target="_blank" rel="noopener noreferrer" aria-label={'See reference for ' + service.en}>Work reference <ExternalLink size={14} aria-hidden="true" /></a>
                     </div>
                   </article>
                 </Reveal>
