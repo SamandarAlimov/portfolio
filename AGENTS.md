@@ -65,3 +65,6 @@ The owner rejected both the arbitrary torus knot and symbolic IDEA/ENGINEERING/I
 ## Static services portability
 - Do not hardcode root-relative service CSS/navigation links in `public/services.html` or `public/xizmatlar.html`; these pages must work both at the production domain root and under GitHub Pages `/portfolio/`.
 - In React use `import.meta.env.BASE_URL` for service page links; Vite's GitHub Pages build uses `/portfolio/`.
+
+## CV dual-format preference (2026-11-07)
+The owner explicitly requested BOTH variants of the same truthful two-page CV: preserve the original with the approved portrait at `public/cv/Samandar_Alimov_CV.pdf`, and generate `public/cv/Samandar_Alimov_CV_No_Photo.pdf` with **no images whatsoever**. Both must be regenerated from the same `src/resume.json` on every production build. Site `#resume` must offer separate view/download choices, old photo link must remain valid. No photo placeholders, blank image blocks or duplicate editable experience records. Validate A4, page count, text selection and absence of any image objects in the photo-free file.

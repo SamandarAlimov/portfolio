@@ -41,11 +41,11 @@ Verify the preferred email and domain, add project screenshots and case studies,
 ## Public professional CV
 
 - A purpose-built professional, two-page, ATS-readable English CV is generated from `src/resume.json`.
-- Run `npm run build:cv` to generate `public/cv/Samandar_Alimov_CV.pdf` (also runs automatically during `npm run dev` and `npm run build`).
-- The public page has a dedicated `#resume` section, a real View PDF link, and an explicit Download CV link (header, hero, footer).
+- Run `npm run build:cv` to generate both `public/cv/Samandar_Alimov_CV.pdf` (with photo) and `public/cv/Samandar_Alimov_CV_No_Photo.pdf` (photo-free). Both run automatically during `npm run dev` and `npm run build`.
+- The public page offers separate view/download links for both CV versions in `#resume`. Existing photo-CV links elsewhere remain intact.
 - The file is served as a real PDF, not a screenshot or a JS-generated click-time blob.
 - Check content accuracy in the resume JSON before changing dates, outcomes, experience or contact details.
-- No duplicate CV blobs are committed; the PDF is rebuilt from versioned source on deployment.
+- No duplicate CV blobs are committed; both PDFs are rebuilt from the same versioned resume source on deployment. The photo-free version contains no embedded images, while retaining the full two-page experience and team-project record.
 
 ## Portrait
 The user-approved 3:4 image is stored as a transparent WebP (`public/images/samandar-portrait.webp`) for the About and Resume-preview sections and an optimized white-composite JPEG (`public/images/samandar-portrait-cv.jpg`) embedded by the two-page PDF generator. Update both together to keep the website and downloadable CV consistent.

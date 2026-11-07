@@ -1,6 +1,7 @@
 /**
- * Self-contained, zero-dependency generator for a readable, two-page PDF CV.
- * Produces real searchable PDF text with a small professional portrait; no image-only text, bars or fake claims.
+ * Self-contained, zero-dependency generator for TWO equivalent, searchable, two-page PDFs.
+ * Keeps the original portrait version and also generates a fully photo-free international CV.
+ * Both files read exactly the same src/resume.json; no duplicated or divergent claims.
  */
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
@@ -8,9 +9,14 @@ import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const cv = JSON.parse(await readFile(join(root, 'src', 'resume.json'), 'utf8'));
-const dest = join(root, 'public', 'cv', 'Samandar_Alimov_CV.pdf');
-const portrait = await readFile(join(root, 'public', 'images', 'samandar-portrait-cv.jpg'));
-if (portrait[0] !== 0xff || portrait[1] !== 0xd8) throw new Error('CV portrait must be a JPEG');
+const versions = [
+  { withPhoto: true, filename: 'Samandar_Alimov_CV.pdf' },
+  { withPhoto: false, filename: 'Samandar_Alimov_CV_No_Photo.pdf' },
+];
+for (const version of versions) {
+const dest = join(root, 'public', 'cv', version.filename);
+const portrait = version.withPhoto ? await readFile(join(root, 'public', 'images', 'samandar-portrait-cv.jpg')) : null;
+if (portrait && (portrait[0] !== 0xff || portrait[1] !== 0xd8)) throw new Error('CV portrait must be a JPEG');
 const W=595.28, H=841.89, X=47, RIGHT=548;
 const INK=[.095,.105,.12], GRAY=[.39,.42,.46], BLUE=[.027,.357,1], HAIR=[.88,.9,.92];
 const ops=[], annotations=[];
@@ -47,16 +53,23 @@ function experience(t,item){
 }
 function link(x,top,w,h,url){annotations.push({x,top,w,h,url});}
 
-// Deliberately small identity portrait; preserves the CV's readable first-page hierarchy.
-rect(458,62,90,118,[.935,.947,.965]);
-ops.push('q 84 0 0 112 461 '+py(177)+' cm /Portrait Do Q');
+// The international version has *no embedded or background photo whatsoever*.
+if (version.withPhoto) {
+  rect(458,62,90,118,[.935,.947,.965]);
+  ops.push('q 84 0 0 112 461 '+py(177)+' cm /Portrait Do Q');
+} else {
+  // Use the recovered white space for quiet identity metadata (not a placeholder).
+  text(440,89,'SOFTWARE',9.0,true,BLUE);
+  text(440,103,'DEVELOPMENT',9.0,true,BLUE);
+  text(440,121,'WEB / MOBILE',8.0,false,GRAY);
+}
 rect(X,43,42,3.1,BLUE);
 text(X+54,46.3,'CURRICULUM VITAE  /  2026',8.1,true,GRAY);
 right(46.3,'01 / PROFESSIONAL PROFILE',8,true,GRAY);
 text(X,87,'SAMANDAR ALIMOV',31.8,true);
 text(X,109,cv.fullName,9,false,GRAY);
 text(X,134,cv.headline.toUpperCase(),11.4,true,BLUE);
-line(X,146,443,.9);
+line(X,146,version.withPhoto ? 443 : RIGHT,.9);
 text(X,164,cv.location+'    |    '+cv.email,9.15);
 link(120,153,220,17,'mailto:'+cv.email);
 text(X,179,cv.phone+'    |    '+cv.github,9.1,false,GRAY);
@@ -140,14 +153,14 @@ const firstPage=add('');
 const secondPage=add('');
 const regular=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>');
 const bold=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>');
-const portraitImage=add('<< /Type /XObject /Subtype /Image /Width 420 /Height 560 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+portrait.length+' >>\nstream\n'+portrait.toString('latin1')+'\nendstream');
+const portraitImage=portrait ? add('<< /Type /XObject /Subtype /Image /Width 420 /Height 560 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+portrait.length+' >>\nstream\n'+portrait.toString('latin1')+'\nendstream') : null;
 const firstContents=add('<< /Length '+Buffer.byteLength(firstStream,'binary')+' >>\nstream\n'+firstStream+'endstream');
 const secondContents=add('<< /Length '+Buffer.byteLength(secondStream,'binary')+' >>\nstream\n'+secondStream+'endstream');
 function makeAnnots(entries){
  return entries.map(a=>add('<< /Type /Annot /Subtype /Link /Border [0 0 0] /Rect ['+num(a.x)+' '+py(a.top+a.h)+' '+num(a.x+a.w)+' '+py(a.top)+'] /A << /S /URI /URI ('+clean(a.url)+') >> >>'));
 }
 const ann1=makeAnnots(firstLinks),ann2=makeAnnots(secondLinks);
-objects[firstPage-1]='<< /Type /Page /Parent '+pages+' 0 R /MediaBox [0 0 '+W+' '+H+'] /Resources << /Font << /F1 '+regular+' 0 R /F2 '+bold+' 0 R >> /XObject << /Portrait '+portraitImage+' 0 R >> >> /Contents '+firstContents+' 0 R /Annots ['+ann1.map(i=>i+' 0 R').join(' ')+'] >>';
+objects[firstPage-1]='<< /Type /Page /Parent '+pages+' 0 R /MediaBox [0 0 '+W+' '+H+'] /Resources << /Font << /F1 '+regular+' 0 R /F2 '+bold+' 0 R >> '+(version.withPhoto?' /XObject << /Portrait '+portraitImage+' 0 R >>':'')+' >> /Contents '+firstContents+' 0 R /Annots ['+ann1.map(i=>i+' 0 R').join(' ')+'] >>';
 objects[secondPage-1]='<< /Type /Page /Parent '+pages+' 0 R /MediaBox [0 0 '+W+' '+H+'] /Resources << /Font << /F1 '+regular+' 0 R /F2 '+bold+' 0 R >> >> /Contents '+secondContents+' 0 R /Annots ['+ann2.map(i=>i+' 0 R').join(' ')+'] >>';
 let output='%PDF-1.4\n%\xE2\xE3\xCF\xD3\n';
 const offsets=[0];
@@ -158,4 +171,5 @@ for(let i=1;i<offsets.length;i++)output+=String(offsets[i]).padStart(10,'0')+' 0
 output+='trailer\n<< /Size '+(objects.length+1)+' /Root '+catalog+' 0 R >>\nstartxref\n'+start+'\n%%EOF\n';
 await mkdir(dirname(dest),{recursive:true});
 await writeFile(dest,Buffer.from(output,'binary'));
-console.log('Professional two-page CV generated:',dest);
+console.log('Professional two-page CV generated:',dest,version.withPhoto?'(with portrait)':'(photo-free)');
+}
