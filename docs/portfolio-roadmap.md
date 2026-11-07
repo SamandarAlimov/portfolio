@@ -133,3 +133,10 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [ ] If desired later, gather real detailed case studies and customer approval before claiming service performance or testimonials.
 
 - [x] Confirm service pages and navigation use portable paths for Vercel root and GitHub Pages subpath, not broken absolute root paths.
+
+## 2026-11-07 — Two professional CV formats
+- [x] Preserve original two-page portrait CV and its public download URL.
+- [x] Add an equally detailed, photo-free, two-page A4 PDF based on the same JSON with no embedded images (international job applications).
+- [x] Present distinct, accessible view/download links for both on the resume section.
+- [x] Extend automated PDF content checks and CI artifact uploads for both files.
+- [ ] Confirm the custom domain serves both PDF files after Vercel's build-rate-limit issue is cleared.

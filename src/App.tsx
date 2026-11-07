@@ -13,6 +13,7 @@ import { offeredServices } from './services';
 const EMAIL = 'samandaralimov18@gmail.com';
 const GITHUB = 'https://github.com/SamandarAlimov';
 const CV_URL = import.meta.env.BASE_URL + 'cv/Samandar_Alimov_CV.pdf';
+const CV_NO_PHOTO_URL = import.meta.env.BASE_URL + 'cv/Samandar_Alimov_CV_No_Photo.pdf';
 const SERVICES_EN_URL = import.meta.env.BASE_URL + 'services.html';
 const SERVICES_UZ_URL = import.meta.env.BASE_URL + 'xizmatlar.html';
 const links = [
@@ -389,10 +390,17 @@ export default function App() {
                 <div className="resume-spec"><span>02 / FOCUS</span><strong>Engineering, projects &amp; experience</strong></div>
                 <div className="resume-spec"><span>03 / LAST UPDATED</span><strong>November 2026</strong></div>
                 <div className="resume-actions">
-                  <a href={CV_URL} download="Samandar_Alimov_CV.pdf" className="resume-download"><Download size={18} aria-hidden="true" /> Download CV <ArrowUpRight size={18} aria-hidden="true" /></a>
-                  <a href={CV_URL} target="_blank" rel="noopener noreferrer" className="resume-view"><Eye size={18} aria-hidden="true" /> View PDF</a>
+                  <a href={CV_URL} download="Samandar_Alimov_CV.pdf" className="resume-download"><Download size={18} aria-hidden="true" /> Download CV with photo <ArrowUpRight size={18} aria-hidden="true" /></a>
+                  <a href={CV_URL} target="_blank" rel="noopener noreferrer" className="resume-view"><Eye size={18} aria-hidden="true" /> View photo CV</a>
                 </div>
-                <p className="resume-helper">No sign-up required. The two-page PDF covers my core experience and a transparent record of collaborative client work.</p>
+                <div className="resume-alt-option">
+                  <div className="resume-alt-copy"><span>02 / INTERNATIONAL VERSION</span><strong>Photo-free CV</strong><p>Same verified experience and projects. Clean, two-page PDF without a portrait.</p></div>
+                  <div className="resume-actions resume-actions--alt">
+                    <a href={CV_NO_PHOTO_URL} download="Samandar_Alimov_CV_No_Photo.pdf" className="resume-download resume-download--alt"><Download size={18} aria-hidden="true" /> Download CV without photo</a>
+                    <a href={CV_NO_PHOTO_URL} target="_blank" rel="noopener noreferrer" className="resume-view"><Eye size={18} aria-hidden="true" /> View photo-free PDF</a>
+                  </div>
+                </div>
+                <p className="resume-helper">Both PDFs are free to view and download, and contain the same experience, qualifications and collaborative work. Choose the format your employer prefers.</p>
               </Reveal>
               <Reveal className="resume-art glass">
                 <div className="resume-art-top"><span>DOCUMENT / 001</span><span>CV · 2026</span></div>

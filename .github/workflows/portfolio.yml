@@ -34,7 +34,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: portfolio-cv-proof
-          path: public/cv/Samandar_Alimov_CV.pdf
+          path: |
+            public/cv/Samandar_Alimov_CV.pdf
+            public/cv/Samandar_Alimov_CV_No_Photo.pdf
           if-no-files-found: error
       - name: Configure GitHub Pages
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'

@@ -77,6 +77,7 @@ test('CV download is a valid publicly served searchable PDF', async ({ page, req
   expect(bytes.subarray(0, 5).toString()).toBe('%PDF-');
   expect(bytes.length).toBeGreaterThan(3000);
   const pdfData = bytes.toString('latin1');
+  expect(pdfData).toContain('/Subtype /Image');
   expect(pdfData).toContain('Proactive Marketing');
   expect(pdfData).toContain('Jizzakh City School');
   expect(pdfData).toContain('EHM Gymnasium');
@@ -149,4 +150,33 @@ test('services are discoverable and usable from mobile portfolio', async ({page}
   await expect(page.getByRole('link',{name:/Xizmatlar — O‘zbekcha/})).toHaveAttribute('href','/xizmatlar.html');
   const dims=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));
   expect(dims.scroll).toBeLessThanOrEqual(dims.client+1);
+});
+
+test('optional photo-free international CV is served, searchable and contains no images', async ({page, request}) => {
+  await page.goto('/');
+  const photoLink = page.getByRole('link', {name:/Download CV with photo/i});
+  await expect(photoLink).toHaveAttribute('href', /cv\/Samandar_Alimov_CV\.pdf$/);
+  const plainLink = page.getByRole('link', {name:/Download CV without photo/i});
+  await expect(plainLink).toHaveAttribute('href', /cv\/Samandar_Alimov_CV_No_Photo\.pdf$/);
+  const [original, plain] = await Promise.all([
+    request.get('/cv/Samandar_Alimov_CV.pdf'),
+    request.get('/cv/Samandar_Alimov_CV_No_Photo.pdf'),
+  ]);
+  expect(original.status()).toBe(200);
+  expect(plain.status()).toBe(200);
+  const originalBytes = await original.body();
+  const bytes = await plain.body();
+  expect(bytes.subarray(0,5).toString('ascii')).toBe('%PDF-');
+  expect(bytes.length).toBeGreaterThan(3000);
+  expect(bytes.length).toBeLessThan(originalBytes.length);
+  const pdfData = bytes.toString('latin1');
+  expect(pdfData).toContain('/Count 2');
+  expect(pdfData).toContain('SAMANDAR ALIMOV');
+  expect(pdfData).toContain('Proactive Marketing');
+  expect(pdfData).toContain('Jizzakh City School');
+  expect(pdfData).toContain('Hyundai C.E.');
+  expect(pdfData).not.toContain('Samhus');
+  expect(pdfData).not.toContain('/Subtype /Image');
+  expect(pdfData).not.toContain('/Portrait');
+  await expect(page.getByRole('link', {name:/View photo-free PDF/i})).toHaveAttribute('href', /CV_No_Photo\.pdf$/);
 });
