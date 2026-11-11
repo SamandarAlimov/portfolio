@@ -244,7 +244,7 @@ export default function App() {
             <div className="about-grid">
               <div className="about-statement">
                 <Reveal><h2 id="about-title">Not just<br />what it <em>looks like.</em><br />What it <span className="outline-word">does.</span></h2></Reveal>
-                <Reveal delay={0.08} className="about-prose"><span className="tiny-arrow" aria-hidden="true">↳</span><p>I'm Samandar Otabek, also known professionally as Samandar Alimov. I'm a developer building usable web and mobile products, including work on Alsamos.</p></Reveal>
+                <Reveal delay={0.08} className="about-prose"><span className="tiny-arrow" aria-hidden="true">↳</span><p>I'm Samandar Otabek, also known as Samandar Alimov. I build web and mobile products and serve as Founder & CEO of Alsamos, SAMOS, ATEAM and Alimov's. I graduated from TMC Institute in 2026 (Economics).</p></Reveal>
                 <Reveal className="about-second"><p>My work spans React, TypeScript, Flutter and product experiments. Economics and logistics give me another lens: software matters most when it solves real problems.</p></Reveal>
                 <Reveal><a className="inline-link" href={import.meta.env.BASE_URL + "about.html"}>Read my full profile <ArrowUpRight size={19} /></a></Reveal>
               </div>
@@ -417,7 +417,7 @@ export default function App() {
                   <div className="resume-paper-row"><strong>{resume.experience[0].title}</strong><span>Alsamos</span></div>
                   <div className="resume-paper-row"><strong>{resume.experience[1].title}</strong><span>Independent</span></div>
                   <span className="resume-paper-heading">EDUCATION</span>
-                  <div className="resume-paper-row"><strong>TMC Institute of Tashkent</strong><span>Economics</span></div>
+                  <div className="resume-paper-row"><strong>TMC Institute of Tashkent</strong><span>Economics · 2026 graduate</span></div>
                   <span className="resume-paper-heading">SELECTED PROJECTS</span>
                   <div className="resume-paper-tags"><span>Alsamos</span><span>Leo Logistics</span><span>Proactive</span><span>10 team projects</span></div>
                 </div>

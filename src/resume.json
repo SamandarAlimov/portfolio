@@ -7,10 +7,10 @@
   "phone": "+998 93 300 77 09",
   "github": "github.com/SamandarAlimov",
   "website": "samandarotabek.uz",
-  "summary": "Software developer focused on responsive React and TypeScript interfaces, Flutter applications, and product-minded engineering. Founder and product builder at Alsamos; built websites for Leo Logistics Academy and Proactive Marketing. Economics graduate with hands-on customer service experience and ongoing U.S. trucking logistics training.",
+  "summary": "React/TypeScript and Flutter developer focused on practical, accessible software. Founder & CEO of Alsamos, SAMOS, ATEAM and Alimov's. Built websites for Leo Logistics Academy and Proactive Marketing; graduated in Economics from TMC Institute in 2026.",
   "experience": [
     {
-      "title": "Founder & Product Builder",
+      "title": "Founder & CEO",
       "organization": "Alsamos | Independent venture",
       "period": "Ongoing",
       "points": [
@@ -53,7 +53,7 @@
   "education": [
     {
       "title": "TMC Institute of Tashkent",
-      "detail": "Economics | 2022 - 2026 | Degree completed"
+      "detail": "Economics | 2022 - 2026 | Graduated 2026"
     },
     {
       "title": "Leo Logistics Academy",
@@ -115,5 +115,31 @@
     }
   ],
   "collaborationNote": "Teamwork reported by the portfolio owner and corroborated by a teammate's resume. Individual tasks and impact metrics are not independently verified.",
-  "collaborativeTechnologies": "PHP, Laravel, Yii2, MySQL, Adobe XD, Tilda and Figma (team-stack references; individual proficiency not established)."
+  "collaborativeTechnologies": "PHP, Laravel, Yii2, MySQL, Adobe XD, Tilda and Figma (team-stack references; individual proficiency not established).",
+  "founderAffiliations": [
+    {
+      "organization": "Alsamos",
+      "role": "Founder & CEO",
+      "source": "Owner-confirmed",
+      "note": "Independent product ecosystem"
+    },
+    {
+      "organization": "SAMOS",
+      "role": "Founder & CEO",
+      "source": "Owner-confirmed 2026-11-11",
+      "note": "Exact dates and present operating status not supplied"
+    },
+    {
+      "organization": "ATEAM",
+      "role": "Founder & CEO",
+      "source": "Owner-confirmed 2026-11-11",
+      "note": "Exact dates and present operating status not supplied"
+    },
+    {
+      "organization": "Alimov's",
+      "role": "Founder & CEO",
+      "source": "Owner-confirmed 2026-11-11",
+      "note": "Exact dates and present operating status not supplied"
+    }
+  ]
 }

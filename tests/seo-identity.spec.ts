@@ -123,3 +123,18 @@ test('Telegram channel and personal account are distinct and visibly labelled', 
     expect(html).toContain('href="' + channel + '"');
   }
 });
+
+test('updated personal biography reflects TMC 2026 graduation and all founder/CEO roles', async ({request,page}) => {
+  for (const route of ['/about.html','/haqimda.html']) {
+    const response = await request.get(route);
+    expect(response.status()).toBe(200);
+    const html = await response.text();
+    for (const name of ['Alsamos','SAMOS','ATEAM',"Alimov's"]) expect(html).toContain(name);
+    expect(html).toContain('2026');
+  }
+  const home = await request.get('/');
+  const h = await home.text();
+  expect(h).toContain('Founder and CEO of Alsamos, SAMOS, ATEAM and Alimov');
+  await page.goto('/');
+  await expect(page.locator('#about')).toContainText('I graduated from TMC Institute in 2026');
+});
