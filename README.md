@@ -72,3 +72,9 @@ This is the personal portfolio (`samandarotabek.uz`), separate from the Alsamos 
 These have been supplied as links from the owner’s YouTube About section. They have not been independently audited for current redirects or availability. The public `Person.sameAs` records these owner-listed links alongside GitHub/LinkedIn; do not treat channel descriptions as verified career claims.
 
 **Channel ownership:** The owner separately identified `@Samandar_Otabek` as their Telegram channel on 2026-11-11. It must not be confused with personal `@SamandarOtabek`. An external URL fetch did not confirm current channel visibility.
+
+## Owner-verified biography correction — 2026-11-11
+- Samandar Otabek (Samandar Alimov) completed Economics at **TMC Institute of Tashkent in 2026**.
+- Personal self-reported leadership: **Founder & CEO** of **Alsamos, SAMOS, ATEAM and Alimov's**. The separate ventures' formal corporate registration, exact start dates and public URLs are not independently established.
+- `src/resume.json` is the single public CV source; both photo and photo-free PDFs must be regenerated and tested.
+- Canonical private knowledge graph: `SamandarAlimov/SamandarOtabek`, personal founder and education notes; it is not a live SQL database.

@@ -180,3 +180,18 @@ test('optional photo-free international CV is served, searchable and contains no
   expect(pdfData).not.toContain('/Portrait');
   await expect(page.getByRole('link', {name:/View photo-free PDF/i})).toHaveAttribute('href', /CV_No_Photo\.pdf$/);
 });
+
+test('both CV variants use updated founder and 2026 graduate details', async ({request,page}) => {
+  await page.goto('/');
+  for (const path of ['/cv/Samandar_Alimov_CV.pdf','/cv/Samandar_Alimov_CV_No_Photo.pdf']){
+    const pdf = await request.get(path);
+    expect(pdf.status()).toBe(200);
+    const text = (await pdf.body()).toString('latin1');
+    expect(text).toContain('Founder & CEO');
+    expect(text).toContain('SAMOS');
+    expect(text).toContain('ATEAM');
+    expect(text).toContain("Alimov's");
+    expect(text).toContain('Graduated 2026');
+    expect(text).not.toContain('Student of TMCI');
+  }
+});

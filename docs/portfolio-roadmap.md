@@ -154,3 +154,10 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [x] Add separately labelled links to footer, English/Uzbek bios and structured Person.sameAs; keep other social links.
 - [x] Update GitHub profile public link index and tests.
 - [ ] Verify public Telegram channel URL with Telegram directly; web tool could not open the page.
+
+## 2026-11-11 — Education and founder affiliation correction
+- [x] Change TMCI Economics from past unspecified study to **graduated 2026** (owner direct confirmation).
+- [x] Add founder/CEO across Alsamos, SAMOS, ATEAM and Alimov's to the bio, home summary and shared CV source.
+- [x] Regenerate photo and photo-free CVs from the same `src/resume.json`; preserve URLs and 10 collaboration records.
+- [x] Do not invent separate ventures' incorporation dates, business status or websites.
+- [ ] Verify Vercel production and public document URLs after build.

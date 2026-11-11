@@ -80,3 +80,9 @@ The owner explicitly requested BOTH variants of the same truthful two-page CV: p
 - Existing `https://t.me/SamandarOtabek` is the personal Telegram account. Do not remove it or redirect its label to the channel.
 - Link both distinctly on the English/Uzbek profiles and in the portfolio footer, and include both in owner-attributed Person.sameAs. The Telegram channel's current live content was not independently accessible through external search tools.
 - No claim about channel audience, activity, verification badge, or content may be invented.
+
+## OWNER CORRECTION — 2026-11-11 (current fact)
+- The owner **graduated from TMC Institute of Tashkent, Economics in 2026**. Do NOT refer to the owner as a current TMCI student. The CV source `src/resume.json` and both generated A4 PDFs must agree with this.
+- The owner confirmed Founder & CEO roles at **Alsamos, SAMOS, ATEAM, and Alimov's**. Treat as owner-reported personal professional roles. No company incorporation, revenues, staff, year founded or current operating state established for the latter three.
+- Keep name variants, old CV URLs, two variants with/without photo, all project and SEO records intact.
+- The canonical private personal knowledge register is `SamandarAlimov/SamandarOtabek` -> `01-Person/Founder-CEO-Roles-2026.md` and education notes. Public résumé information should be a selective presentation, not every private knowledge record.
