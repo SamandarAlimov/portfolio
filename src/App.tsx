@@ -452,6 +452,8 @@ export default function App() {
           <div className="footer-links">
             <a href={GITHUB} target="_blank" rel="me noopener noreferrer">GitHub <ExternalLink size={14} /></a>
             <a href="https://www.linkedin.com/in/samandarotabek/" target="_blank" rel="me noopener noreferrer">LinkedIn <ExternalLink size={14} /></a>
+            <a href="https://www.youtube.com/@SamandarOtabek" target="_blank" rel="me noopener noreferrer">YouTube <ExternalLink size={14} /></a>
+            <a href="https://t.me/SamandarOtabek" target="_blank" rel="me noopener noreferrer">Telegram <ExternalLink size={14} /></a>
             <a href={import.meta.env.BASE_URL + "about.html"}>About me <ArrowUpRight size={14} /></a>
             <a href={SERVICES_UZ_URL}>Xizmatlar <ArrowUpRight size={14} /></a>
             <a href={CV_URL} download="Samandar_Alimov_CV.pdf">CV <Download size={15} /></a>

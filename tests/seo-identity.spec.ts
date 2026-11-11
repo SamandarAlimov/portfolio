@@ -13,7 +13,7 @@ test('personal identity has stable canonical SEO and linked people entities', as
   const person = payload['@graph'].find(entry => entry['@type'] === 'Person');
   expect(person?.name).toBe('Samandar Otabek');
   expect(person?.alternateName).toEqual(expect.arrayContaining(['Samandar Alimov', 'Samandar']));
-  expect(person?.sameAs).toEqual(expect.arrayContaining(['https://github.com/SamandarAlimov', 'https://www.linkedin.com/in/samandarotabek/']));
+  expect(person?.sameAs).toEqual(expect.arrayContaining(['https://github.com/SamandarAlimov', 'https://www.linkedin.com/in/samandarotabek/', 'https://www.youtube.com/@SamandarOtabek', 'https://t.me/SamandarOtabek', 'https://www.instagram.com/SamandarOtabek/', 'https://www.facebook.com/SamandarOtabek', 'https://twitter.com/SamandarOtabek']));
   expect(html).not.toContain('sameAs": ["https://instagram.com/unknown');
   await expect(page.getByRole('link', {name: /Read my full profile/})).toHaveAttribute('href', '/about.html');
 });
@@ -87,4 +87,25 @@ test('service pages are real static pages with reciprocal canonical, headings, p
   const xml = await sitemap.text();
   expect(xml).toContain('<loc>https://samandarotabek.uz/xizmatlar.html</loc>');
   expect(xml).toContain('<loc>https://samandarotabek.uz/services.html</loc>');
+});
+
+test('owner-supplied social links are present across home and both static profile languages', async ({request,page}) => {
+  const socials = ["https://www.youtube.com/@SamandarOtabek","https://t.me/SamandarOtabek","https://www.instagram.com/SamandarOtabek/","https://www.facebook.com/SamandarOtabek","https://twitter.com/SamandarOtabek"];
+  for (const route of ['/', '/about.html', '/haqimda.html']) {
+    const response = await request.get(route);
+    expect(response.status()).toBe(200);
+    const html = await response.text();
+    const [m] = Array.from(html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g));
+    expect(m).toBeDefined();
+    const graph = JSON.parse(m[1])['@graph'];
+    const person = graph.find((entry: { '@type': string }) => entry['@type'] === 'Person');
+    for(const url of socials) expect(person.sameAs).toContain(url);
+  }
+  for (const route of ['/about.html','/haqimda.html']) {
+    const html = await (await request.get(route)).text();
+    for(const url of socials) expect(html).toContain('href="' + url + '"');
+  }
+  await page.goto('/');
+  await expect(page.locator('footer').getByRole('link',{name:/YouTube/})).toHaveAttribute('href','https://www.youtube.com/@SamandarOtabek');
+  await expect(page.locator('footer').getByRole('link',{name:/Telegram/})).toHaveAttribute('href','https://t.me/SamandarOtabek');
 });
