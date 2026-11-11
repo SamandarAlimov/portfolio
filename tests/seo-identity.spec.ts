@@ -107,7 +107,7 @@ test('owner-supplied social links are present across home and both static profil
   }
   await page.goto('/');
   await expect(page.locator('footer').getByRole('link',{name:/YouTube/})).toHaveAttribute('href','https://www.youtube.com/@SamandarOtabek');
-  await expect(page.locator('footer').getByRole('link',{name:/Telegram/})).toHaveAttribute('href','https://t.me/SamandarOtabek');
+  await expect(page.locator('footer').getByRole('link',{name:'Telegram (personal)',exact:true})).toHaveAttribute('href','https://t.me/SamandarOtabek');
 });
 
 test('Telegram channel and personal account are distinct and visibly labelled', async ({page, request}) => {
