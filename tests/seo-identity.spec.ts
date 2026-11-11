@@ -13,7 +13,7 @@ test('personal identity has stable canonical SEO and linked people entities', as
   const person = payload['@graph'].find(entry => entry['@type'] === 'Person');
   expect(person?.name).toBe('Samandar Otabek');
   expect(person?.alternateName).toEqual(expect.arrayContaining(['Samandar Alimov', 'Samandar']));
-  expect(person?.sameAs).toEqual(expect.arrayContaining(['https://github.com/SamandarAlimov', 'https://www.linkedin.com/in/samandarotabek/', 'https://www.youtube.com/@SamandarOtabek', 'https://t.me/SamandarOtabek', 'https://www.instagram.com/SamandarOtabek/', 'https://www.facebook.com/SamandarOtabek', 'https://twitter.com/SamandarOtabek']));
+  expect(person?.sameAs).toEqual(expect.arrayContaining(['https://github.com/SamandarAlimov', 'https://www.linkedin.com/in/samandarotabek/', 'https://www.youtube.com/@SamandarOtabek', 'https://t.me/SamandarOtabek', 'https://t.me/Samandar_Otabek', 'https://www.instagram.com/SamandarOtabek/', 'https://www.facebook.com/SamandarOtabek', 'https://twitter.com/SamandarOtabek']));
   expect(html).not.toContain('sameAs": ["https://instagram.com/unknown');
   await expect(page.getByRole('link', {name: /Read my full profile/})).toHaveAttribute('href', '/about.html');
 });
@@ -90,7 +90,7 @@ test('service pages are real static pages with reciprocal canonical, headings, p
 });
 
 test('owner-supplied social links are present across home and both static profile languages', async ({request,page}) => {
-  const socials = ["https://www.youtube.com/@SamandarOtabek","https://t.me/SamandarOtabek","https://www.instagram.com/SamandarOtabek/","https://www.facebook.com/SamandarOtabek","https://twitter.com/SamandarOtabek"];
+  const socials = ["https://www.youtube.com/@SamandarOtabek","https://t.me/SamandarOtabek","https://t.me/Samandar_Otabek","https://www.instagram.com/SamandarOtabek/","https://www.facebook.com/SamandarOtabek","https://twitter.com/SamandarOtabek"];
   for (const route of ['/', '/about.html', '/haqimda.html']) {
     const response = await request.get(route);
     expect(response.status()).toBe(200);
@@ -107,5 +107,19 @@ test('owner-supplied social links are present across home and both static profil
   }
   await page.goto('/');
   await expect(page.locator('footer').getByRole('link',{name:/YouTube/})).toHaveAttribute('href','https://www.youtube.com/@SamandarOtabek');
-  await expect(page.locator('footer').getByRole('link',{name:/Telegram/})).toHaveAttribute('href','https://t.me/SamandarOtabek');
+  await expect(page.locator('footer').getByRole('link',{name:'Telegram (personal)',exact:true})).toHaveAttribute('href','https://t.me/SamandarOtabek');
+});
+
+test('Telegram channel and personal account are distinct and visibly labelled', async ({page, request}) => {
+  const personal = 'https://t.me/SamandarOtabek';
+  const channel = 'https://t.me/Samandar_Otabek';
+  await page.goto('/');
+  const footer = page.locator('footer');
+  await expect(footer.getByRole('link', {name: 'Telegram (personal)'})).toHaveAttribute('href', personal);
+  await expect(footer.getByRole('link', {name: 'Telegram channel'})).toHaveAttribute('href', channel);
+  for(const profile of ['/about.html', '/haqimda.html']){
+    const html = await (await request.get(profile)).text();
+    expect(html).toContain('href="' + personal + '"');
+    expect(html).toContain('href="' + channel + '"');
+  }
 });

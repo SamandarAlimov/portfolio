@@ -64,8 +64,11 @@ This is the personal portfolio (`samandarotabek.uz`), separate from the Alsamos 
 
 ## Public social profiles (from owner-provided YouTube channel screenshot, 2026-11-11)
 - YouTube: https://www.youtube.com/@SamandarOtabek
-- Telegram: https://t.me/SamandarOtabek
+- Telegram (personal account): https://t.me/SamandarOtabek
+- Telegram (public channel): https://t.me/Samandar_Otabek
 - Instagram: https://www.instagram.com/SamandarOtabek/
 - Facebook: https://www.facebook.com/SamandarOtabek
 - X/Twitter: https://twitter.com/SamandarOtabek
 These have been supplied as links from the owner’s YouTube About section. They have not been independently audited for current redirects or availability. The public `Person.sameAs` records these owner-listed links alongside GitHub/LinkedIn; do not treat channel descriptions as verified career claims.
+
+**Channel ownership:** The owner separately identified `@Samandar_Otabek` as their Telegram channel on 2026-11-11. It must not be confused with personal `@SamandarOtabek`. An external URL fetch did not confirm current channel visibility.

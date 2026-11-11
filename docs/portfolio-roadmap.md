@@ -148,3 +148,9 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [x] Extend automated profile and structured-data tests.
 - [ ] Independently check live profile responses/redirects on each social platform; public search tool did not expose them, so they remain attributed to the screenshot.
 - [ ] Ask the channel owner to add canonical `https://samandarotabek.uz/` to YouTube, Instagram, Telegram, Facebook and X profiles for reciprocal signals; do not modify external accounts without authorization.
+
+## 2026-11-11 — Owner-supplied Telegram channel
+- [x] Add official Telegram channel `@Samandar_Otabek` (underscore) independently of Telegram personal account `@SamandarOtabek`.
+- [x] Add separately labelled links to footer, English/Uzbek bios and structured Person.sameAs; keep other social links.
+- [x] Update GitHub profile public link index and tests.
+- [ ] Verify public Telegram channel URL with Telegram directly; web tool could not open the page.

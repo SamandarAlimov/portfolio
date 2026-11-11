@@ -74,3 +74,9 @@ The owner explicitly requested BOTH variants of the same truthful two-page CV: p
 - Display these as owner/channel-listed social links on the portfolio and static biography pages; add them to `Person.sameAs` based on the owner's supplied account listing. Do not claim independent external-platform verification; the live profile pages could not be read by the browser tool.
 - Keep GitHub and LinkedIn links, canonical portfolio, CV, project facts, and company distinction unchanged. The screenshot's ATEAM/Alimov's/Samos Global Technologies, student status and YouTube country setting are not verified professional credentials or physical location and must not silently enter the CV.
 - If a link stops resolving or ownership changes, remove it from `sameAs` after confirmation rather than creating fake social profiles.
+
+## 2026-11-11 — Separate Telegram channel from personal chat
+- The owner explicitly supplied a second Telegram handle: public channel `@Samandar_Otabek` at `https://t.me/Samandar_Otabek`. The **underscore matters**.
+- Existing `https://t.me/SamandarOtabek` is the personal Telegram account. Do not remove it or redirect its label to the channel.
+- Link both distinctly on the English/Uzbek profiles and in the portfolio footer, and include both in owner-attributed Person.sameAs. The Telegram channel's current live content was not independently accessible through external search tools.
+- No claim about channel audience, activity, verification badge, or content may be invented.
