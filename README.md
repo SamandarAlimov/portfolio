@@ -61,3 +61,11 @@ This is the personal portfolio (`samandarotabek.uz`), separate from the Alsamos 
 - SAMOS is described as a *historical educational initiative*, **not** another name for the person or the same company as Alsamos.
 - No guessed YouTube, Instagram, X, Facebook or Telegram profiles; no assumed Alsamos subdomains.
 - Sitemap includes two actual pages; confirm Search Console URL Inspection and submit sitemap. Optimization does **not** guarantee Google ranking or indexing.
+
+## Public social profiles (from owner-provided YouTube channel screenshot, 2026-11-11)
+- YouTube: https://www.youtube.com/@SamandarOtabek
+- Telegram: https://t.me/SamandarOtabek
+- Instagram: https://www.instagram.com/SamandarOtabek/
+- Facebook: https://www.facebook.com/SamandarOtabek
+- X/Twitter: https://twitter.com/SamandarOtabek
+These have been supplied as links from the owner’s YouTube About section. They have not been independently audited for current redirects or availability. The public `Person.sameAs` records these owner-listed links alongside GitHub/LinkedIn; do not treat channel descriptions as verified career claims.

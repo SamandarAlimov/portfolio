@@ -68,3 +68,9 @@ The owner rejected both the arbitrary torus knot and symbolic IDEA/ENGINEERING/I
 
 ## CV dual-format preference (2026-11-07)
 The owner explicitly requested BOTH variants of the same truthful two-page CV: preserve the original with the approved portrait at `public/cv/Samandar_Alimov_CV.pdf`, and generate `public/cv/Samandar_Alimov_CV_No_Photo.pdf` with **no images whatsoever**. Both must be regenerated from the same `src/resume.json` on every production build. Site `#resume` must offer separate view/download choices, old photo link must remain valid. No photo placeholders, blank image blocks or duplicate editable experience records. Validate A4, page count, text selection and absence of any image objects in the photo-free file.
+
+## 2026-11-11 — Social profiles supplied via YouTube About screenshot
+- Owner supplied a screenshot of the official "Samandar Otabek" YouTube channel About panel, showing `youtube.com/@SamandarOtabek`, `t.me/SamandarOtabek`, `instagram.com/SamandarOtabek`, `facebook.com/SamandarOtabek`, and `twitter.com/SamandarOtabek`.
+- Display these as owner/channel-listed social links on the portfolio and static biography pages; add them to `Person.sameAs` based on the owner's supplied account listing. Do not claim independent external-platform verification; the live profile pages could not be read by the browser tool.
+- Keep GitHub and LinkedIn links, canonical portfolio, CV, project facts, and company distinction unchanged. The screenshot's ATEAM/Alimov's/Samos Global Technologies, student status and YouTube country setting are not verified professional credentials or physical location and must not silently enter the CV.
+- If a link stops resolving or ownership changes, remove it from `sameAs` after confirmation rather than creating fake social profiles.

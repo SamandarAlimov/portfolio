@@ -140,3 +140,11 @@ The legacy archive remains immutable. Never publish fabricated work history or a
 - [x] Present distinct, accessible view/download links for both on the resume section.
 - [x] Extend automated PDF content checks and CI artifact uploads for both files.
 - [ ] Confirm the custom domain serves both PDF files after Vercel's build-rate-limit issue is cleared.
+
+## 2026-11-11 — YouTube channel's public social profile handles
+- [x] Capture five handles from the user-provided YouTube About screenshot: YouTube, Telegram, Instagram, Facebook, Twitter/X (all @SamandarOtabek).
+- [x] Add human-readable outbound social profile URLs to English/Uzbek bio and compact YouTube/Telegram footer links.
+- [x] Connect the same five owner-provided social URLs to `Person.sameAs` across homepage and both profile languages; preserve existing GitHub/LinkedIn.
+- [x] Extend automated profile and structured-data tests.
+- [ ] Independently check live profile responses/redirects on each social platform; public search tool did not expose them, so they remain attributed to the screenshot.
+- [ ] Ask the channel owner to add canonical `https://samandarotabek.uz/` to YouTube, Instagram, Telegram, Facebook and X profiles for reciprocal signals; do not modify external accounts without authorization.
